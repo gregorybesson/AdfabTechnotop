@@ -1,24 +1,36 @@
 <?php
 
-namespace PlaygroundDesign\Service;
+namespace AlexaTopSites\Service;
 
 use ZfcBase\EventManager\EventProvider;
 use Zend\ServiceManager\ServiceManagerAwareInterface;
+use Zend\ServiceManager\ServiceManager;
+
+use AlexaTopSites\Entity\TopCountry;
 
 /**
  * Makes a request to ATS for the top 10 sites in a country
  */
-class TopSites  extends EventProvider implements ServiceManagerAwareInterface
+class Topsites  extends EventProvider implements ServiceManagerAwareInterface
 {
 
-    protected static $ActionName        = 'TopSites';
-    protected static $ResponseGroupName = 'Country';
-    protected static $ServiceHost      = 'ats.amazonaws.com';
-    protected static $NumReturn         = 10;
-    protected static $StartNum          = 1;
-    protected static $SigVersion        = '2';
-    protected static $HashAlgorithm     = 'HmacSHA256';
+    /**
+     *
+     * @var ServiceManager
+     */
+    protected $serviceManager;
+    
+    protected $em;
+    protected $er;
+    
+    protected $ActionName        = 'TopSites';
+    protected $ResponseGroupName = 'Country';
+    protected $ServiceHost      = 'ats.amazonaws.com';
+    protected $SigVersion        = '2';
+    protected $HashAlgorithm     = 'HmacSHA256';
 
+    protected $pagination;
+    protected $startNum;
     protected $accessKeyId;
     protected $secretAccessKey;
     protected $countryCode;
@@ -26,24 +38,51 @@ class TopSites  extends EventProvider implements ServiceManagerAwareInterface
     /**
      * Get top sites from ATS
      */
-    public function getTopSites() {
+    public function getTopSites($accessKeyId, $secretAccessKey, $countryCode, $total=100, $startNum = 1, $pagination = 100) {
 
+        $iterations= (int)($total/$pagination);
+        $reste = $total%$pagination;
+        $found = 0;
+        
         $this->accessKeyId = $accessKeyId;
         $this->secretAccessKey = $secretAccessKey;
         $this->countryCode = $countryCode;
-
-        $queryParams = $this->buildQueryParams();
-        $sig = $this->generateSignature($queryParams);
-        $url = 'http://' . self::$ServiceHost . '/?' . $queryParams .
+        
+        for($i=0;$i<$iterations;$i++){
+            $this->startNum = $pagination*$i + $startNum;
+            $this->pagination = $pagination;
+    
+            $queryParams = $this->buildQueryParams();
+            $sig = $this->generateSignature($queryParams);
+            $url = 'http://' . $this->ServiceHost . '/?' . $queryParams .
+                '&Signature=' . $sig;
+            $ret = $this->makeRequest($url);
+            
+            $found += $this->parseResponse($ret);
+            echo "found: " . $found . " \n";
+        }
+        
+        if($reste > 0){
+            $this->startNum = $pagination*$iterations + $startNum;
+            $this->pagination = $reste;
+            
+            $queryParams = $this->buildQueryParams();
+            $sig = $this->generateSignature($queryParams);
+            $url = 'http://' . $this->ServiceHost . '/?' . $queryParams .
             '&Signature=' . $sig;
-        $ret = self::makeRequest($url);
-        self::parseResponse($ret);
+            $ret = $this->makeRequest($url);
+            
+            $found += $this->parseResponse($ret);
+            echo "found: " . $found . " \n";
+        }
+        
+        return $found;
     }
 
     /**
      * Builds an ISO 8601 timestamp for request
      */
-    protected static function getTimestamp() {
+    protected function getTimestamp() {
         return gmdate("Y-m-d\TH:i:s.\\0\\0\\0\\Z", time());
     }
 
@@ -54,15 +93,15 @@ class TopSites  extends EventProvider implements ServiceManagerAwareInterface
      */
     protected function buildQueryParams() {
         $params = array(
-            'Action'            => self::$ActionName,
-            'ResponseGroup'     => self::$ResponseGroupName,
+            'Action'            => $this->ActionName,
+            'ResponseGroup'     => $this->ResponseGroupName,
             'AWSAccessKeyId'    => $this->accessKeyId,
-            'Timestamp'         => self::getTimestamp(),
+            'Timestamp'         => $this->getTimestamp(),
             'CountryCode'       => $this->countryCode,
-            'Count'             => self::$NumReturn,
-            'Start'             => self::$StartNum,
-            'SignatureVersion'  => self::$SigVersion,
-            'SignatureMethod'   => self::$HashAlgorithm
+            'Count'             => $this->pagination,
+            'Start'             => $this->startNum,
+            'SignatureVersion'  => $this->SigVersion,
+            'SignatureMethod'   => $this->HashAlgorithm
         );
         ksort($params);
         $keyvalue = array();
@@ -78,8 +117,8 @@ class TopSites  extends EventProvider implements ServiceManagerAwareInterface
      * @param $url      URL to make request to
      * @return String   Result of request
      */
-    protected static function makeRequest($url) {
-        print_r("Making request to: \n$url\n");
+    protected function makeRequest($url) {
+        //print_r("Making request to: \n$url\n");
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_TIMEOUT, 4);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -89,18 +128,49 @@ class TopSites  extends EventProvider implements ServiceManagerAwareInterface
     }
 
     /**
-     * Parses the XML response from ATS and echoes the DataUrl element
-     * for each returned site
+     * Parses the XML response from ATS and bulk insert/update results in database
      *
      * @param String $response    xml response from ATS
      */
-    protected static function parseResponse($response) {
-        echo "\nSites: \n";
-        $xml = new SimpleXMLElement($response,null, false,
-                                    'http://ats.amazonaws.com/doc/2005-11-21');
+    protected function parseResponse($response) {
+        
+        $array = array();
+        $xml = new \SimpleXMLElement($response,null, false, 'http://ats.amazonaws.com/doc/2005-11-21');
+        $i=0;
+        
+        $countryCode = (string) $xml->Response->TopSitesResult->Alexa->TopSites->Country->CountryCode;
+        
         foreach($xml->Response->TopSitesResult->Alexa->TopSites->Country->Sites->children('http://ats.amazonaws.com/doc/2005-11-21') as $site) {
-            echo $site->DataUrl . "\n";
+            /*$array[$i]['dataUrl']                     = (string) $site->DataUrl;
+            $array[$i]['rank']                        = (string) $site->Global->Rank;
+            $array[$i]['country']                     = $countryCode;
+            $array[$i]['countryRank']                 = (string) $site->Country->Rank;
+            $array[$i]['countryReachPerMillion']      = (string) $site->Country->Reach->PerMillion;
+            $array[$i]['countryPageViewsPerMillion']  = (string) $site->Country->PageViews->PerMillion;
+            $array[$i]['countryPageViewsPerUser']     = (string) $site->Country->PageViews->PerUser;*/
+            
+            $url = (string) $site->DataUrl;
+            
+            $topCountry = $this->getEntityRepository()->findOneBy(array('url' => $url, 'country' => $countryCode));
+            if (!$topCountry) {
+                $topCountry = new TopCountry($url, $countryCode);
+            }
+
+            $topCountry->setRank((string) $site->Global->Rank);            
+            $topCountry->setCountryRank((string) $site->Country->Rank);
+            $topCountry->setCountryReachPerMillion((string) $site->Country->Reach->PerMillion);
+            $topCountry->setCountryPageViewsPerMillion((string) $site->Country->PageViews->PerMillion);
+            $topCountry->setCountryPageViewsPerUser((string) $site->Country->PageViews->PerUser);
+
+            $this->getEntityManager()->persist($topCountry);
+            
+            $i++;
         }
+
+            $this->getEntityManager()->flush();
+            $this->getEntityManager()->clear(); // Detaches all objects from Doctrine!
+        
+        return $i;
     }
 
     /**
@@ -110,8 +180,8 @@ class TopSites  extends EventProvider implements ServiceManagerAwareInterface
      * @return String             signature
      */
     protected function generateSignature($queryParams) {
-        $sign = "GET\n" . strtolower(self::$ServiceHost) . "\n/\n". $queryParams;
-        echo "String to sign: \n" . $sign . "\n\n";
+        $sign = "GET\n" . strtolower($this->ServiceHost) . "\n/\n". $queryParams;
+        //echo "String to sign: \n" . $sign . "\n\n";
         $sig = base64_encode(hash_hmac('sha256', $sign, $this->secretAccessKey, true));
         return rawurlencode($sig);
     }
@@ -159,5 +229,46 @@ class TopSites  extends EventProvider implements ServiceManagerAwareInterface
      public function setCountryCode($countryCode) {
       $this->countryCode = $countryCode;
       return $this;
+     }
+     
+     /**
+      * Retrieve service manager instance
+      *
+      * @return ServiceManager
+      */
+     public function getServiceManager()
+     {
+         return $this->serviceManager;
+     }
+     
+     /**
+      * Set service manager instance
+      *
+      * @param ServiceManager $serviceManager
+      * @return Game
+      */
+     public function setServiceManager(ServiceManager $serviceManager)
+     {
+         $this->serviceManager = $serviceManager;
+     
+         return $this;
+     }
+     
+     public function getEntityManager()
+     {
+         if (!$this->em) {
+             $this->em = $this->getServiceManager()->get('doctrine.entitymanager.orm_default');
+         }
+     
+         return $this->em;
+     }
+     
+     public function getEntityRepository()
+     {
+         if (!$this->er) {
+             $this->er = $this->getEntityManager()->getRepository('AlexaTopSites\Entity\TopCountry');
+         }
+          
+         return $this->er;
      }
 }

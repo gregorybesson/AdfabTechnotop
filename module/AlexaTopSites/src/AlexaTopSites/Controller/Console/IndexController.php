@@ -16,32 +16,28 @@ class IndexController extends AbstractActionController
 
     public function topsitesAction()
     {
-
+        $service = $this->getTopSitesService();
         $request = $this->getRequest();
 
         // Make sure that we are running in a console and the user has not tricked our
         // application into running this action from a public web server.
-        if (!$request instanceof ConsoleRequest){
+        /*if (!$request instanceof ConsoleRequest){
             throw new \RuntimeException('You can only use this action from a console!');
-        }
+        }*/
 
-        // Get user email from console and check if the user used --verbose or -v flag
         $accessKeyId = $request->getParam('accessKeyId');
         $secretAccessKey   = $request->getParam('secretAccessKey');
         $countryCode     = $request->getParam('co');
-
-
-        $service = $this->getTopSitesService();
-        //$topSites = new TopSites($accessKeyId, $secretAccessKey, $countryCode);
-        $service->getTopSites();
-
-        /*if (!$verbose) {
-            return "Done! $userEmail has received an email with his new password.\n";
+        if($request->getParam('num')){
+            $num = $request->getParam('num');
         }else{
-            return "Done! New password for user $userEmail is '$newPassword'. It has also been emailed to him. \n";
-        }*/
+            $num = 100;
+        }
 
-        return $accessKeyId . '-' . $secretAccessKey . '-' . $countryCode;
+        $numFound = $service->getTopSites($accessKeyId, $secretAccessKey, $countryCode, $num);
+
+        echo "FINISHED : " . $numFound . " elements found";
+
     }
 
     public function getTopSitesService()
@@ -50,7 +46,7 @@ class IndexController extends AbstractActionController
             $this->topSitesService = $this->getServiceLocator()->get('alexatopsites_topsites_service');
         }
 
-        return $this->adminGameService;
+        return $this->topSitesService;
     }
 
     public function setTopSitesService(TopSitesService $topSitesService)

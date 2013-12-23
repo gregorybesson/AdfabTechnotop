@@ -1,5 +1,20 @@
 <?php
 return array(
+    'doctrine' => array(
+        'driver' => array(
+            'alexatopsites_entity' => array(
+                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                'cache' => 'array',
+                'paths' => __DIR__ . '/../src/AlexaTopSites/Entity'
+            ),
+    
+            'orm_default' => array(
+                'drivers' => array(
+                    'AlexaTopSites\Entity' => 'alexatopsites_entity'
+                )
+            )
+        )
+    ),
     'router' => array(
         'routes' => array(
             'frontend' => array(
@@ -63,7 +78,7 @@ return array(
             'routes' => array(
                 'topsites' => array(
                     'options' => array(
-                        'route'    => 'topsites <accessKeyId> <secretAccessKey> [--co=]',
+                        'route'    => 'topsites <accessKeyId> <secretAccessKey> [--co=] [--num=]',
                         'defaults' => array(
                             'controller' => 'alexatopsitesconsole',
                             'action'     => 'topsites'

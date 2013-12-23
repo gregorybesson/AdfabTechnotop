@@ -32,6 +32,7 @@ class Module implements ConsoleUsageProviderInterface
             array( 'ACCESS_KEY_ID', 'Your AWS Access Key Id' ),
             array( 'SECRET_ACCESS_KEY', 'Your AWS Secret Key' ),
             array( '--co',     '(optional) COUNTRY CODE for the search' ),
+            array( '--num',     '(optional) Number of sites to grab. If none provided => num = 100' ),
         );
     }
 
@@ -39,7 +40,18 @@ class Module implements ConsoleUsageProviderInterface
     {
         return array(
             'invokables' => array(
-                'alexatopsites_topsites_service' => 'AlexaTopSites\Service\TopSites',
+                'alexatopsites_topsites_service' => 'AlexaTopSites\Service\Topsites',
+            ),
+            
+            'factories' => array(
+            
+                'alexatopsites_topcountry_mapper' => function ($sm) {
+                    $mapper = new \AlexaTopSites\Mapper\TopCountry(
+                        $sm->get('doctrine.entitymanager.orm_default')
+                    );
+            
+                    return $mapper;
+                },
             ),
         );
     }
