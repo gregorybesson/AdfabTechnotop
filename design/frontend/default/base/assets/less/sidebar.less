@@ -1,0 +1,458 @@
+
+
+.sidebar,
+#sidebar-game {
+  padding: 0 0 30px 20px;
+  
+  .sb-block,.sd-block {
+    display: inline-block;
+    margin: 0 0 55px 0;
+    width: 100%;
+    //padding: 20px 0;
+    border-top: 1px solid @pg-orange;
+
+    &:first-child {
+      border-top: none;
+    }
+    img{
+      float:left;
+      margin:0 18px 0 0;
+    }
+    h5,
+    h5 a {
+      float:left;
+      font-family: @futura;
+    font-size:16px;
+    line-height:18px;
+      color: @pg-black;
+    }
+    .sb-content {
+      width: 100%;
+      float: left;
+      padding: 10px 0 0 0;
+      margin:0 0 0 0;
+
+      a {
+        color: @pg-black;
+      }
+      
+      // list with picto
+      ul.links-list {
+      width: 94%;
+      margin:0;
+        li {
+          background:url('../images/common/puce-sb-block.png') no-repeat left top transparent;
+          text-align: left;
+          margin-bottom: 2px;
+          font-family: @futura;
+        font-size:14px;
+        line-height:20px;
+          color: @pg-black;
+          //min-height: 48px;
+          clear: both;
+          padding: 0 0 0 20px;
+          margin: 10px 0 0 0;
+          
+          &:first-child{
+            margin:0;
+          }
+          
+          img {
+            border: none;
+            float: left;
+            margin-right: 20px;
+          }
+          a.sb-picto-link {
+            display: block; 
+            width: 100%;
+            //height: 48px;
+            &:hover {
+              text-decoration: none;
+            }
+          }
+        }
+      }
+    }
+    &.newsletter-connect {
+      display:none;
+      .btn-gray-dark {
+        margin: 5px 0; 
+      }
+      .suscribe-success {
+        display: none;
+      }
+    }
+    &.tonnes-cadeaux {
+      display:none;
+      .accroche {
+        margin: 10px 0 20px;
+        font-weight: bold;
+      }
+      .btn-inverse {
+        display: none;
+      }
+    }
+    &.fb-box {
+      display:none;
+      
+      .fb-like-box,
+      .fb_iframe_widget>span,
+      .fb-like-box iframe { 
+        width: 100% !important; 
+      }
+    }
+    &.participate{
+      border-top: 1px solid @pg-orange;
+    }
+    &.activities{
+      .liste{
+        float: left;
+      width: 100%;
+      padding: 0 20px;
+      margin: 10px 0 0 0;
+      
+      li{
+        width:100%;
+        margin:15px 0 0 0;
+        font-family: @futura;
+            font-size:15px;
+            line-height:20px;
+        
+        .name{
+          color:@pg-orange;
+          text-transform:uppercase;
+        }
+        
+        &:first-child{
+          margin:0;
+        }
+      }
+      }
+    }
+
+  .link{
+    &.how-works,&.ranking{
+      color: @pg-white;
+      background-color: @pg-orange;
+      padding: 12px 10px;
+      float: left;
+      margin: 25px 8% 0;
+    }
+    &.ranking{
+    margin:25px 20% 0;
+    }
+  }
+    &.ranking {
+
+      .btn-group{
+        margin: 0 5%;
+        width: 90%;
+        margin-bottom: 10px;
+        border-bottom: 1px solid @pg-grey-normal;
+        .btn{
+          font-family: @futura;
+      font-size:14px;
+      line-height:20px;
+          border:none;
+          border-radius:0;
+          box-shadow: none;
+      padding: 7px 0;
+      text-transform: none;
+      background-color:transparent;
+          &.active{
+            color: @pg-white;
+            background-color:@pg-grey-normal;
+            box-shadow:none;
+          }
+        }
+      }
+      .list {
+        margin: 0 5%;
+        width: 90%;
+        text-align: left;
+        
+        li.row {
+          margin: 0;
+          padding-top:0;
+          > div {
+            float: left;
+            &.position {
+              float: none;
+            }
+          }
+          .rank {
+            color: @pg-red;
+            font-size: 20px;
+            padding: 0 10px;
+          }
+          .avatar,
+          .name {
+            margin-right: 10px;
+          }
+          &.current {
+            margin-top: 20px;
+            padding: 10px;
+            //background-color: @pg-grey-light;
+          }
+          &.week{
+            margin:0;
+            border-bottom: 1px solid @pg-grey-normal;
+            
+            .position{
+              &.global{
+              width: 90%;
+                li{
+                  background:url('../images/common/classement.png') no-repeat left top transparent;
+                  padding: 6px 0 6px 34px;
+                  margin:8px 0 0 0;
+                  font-family: @futura;
+            font-size:20px;
+            line-height:24px;
+            
+            .pseudo{
+              font-size:14px;
+              text-transform:uppercase;
+            }
+            .point{
+              &.number{
+                color:@pg-white;
+                background-color:@pg-orange;
+                font-size:16px;
+                line-height:28px;
+                -webkit-border-radius: 5px;
+                -moz-border-radius: 5px;
+                border-radius: 5px;
+                padding: 0 10px;
+                float:right;
+              }
+            }
+                  
+                  &:first-child{
+                    margin:0;
+                  }
+                  &:nth-child(2){
+                    background-position:left -40px;
+                  }
+                  &:last-child{
+                    background-position:left -78px;
+                  }
+                }
+              }
+              
+              &.you{
+                margin: 35px 0 0 0;
+                text-align: center;
+                font-family: @futura;
+          font-size:14px;
+          line-height:20px;
+              
+                .point{
+            &.number{
+              color:@pg-white;
+              background-color:@pg-orange;
+              font-size:16px;
+              line-height:28px;
+              -webkit-border-radius: 5px;
+              -moz-border-radius: 5px;
+              border-radius: 5px;
+              padding: 0 10px;
+              float:right;
+              margin: 0 25px 0 0;
+            }
+          }
+              }
+            }
+          }
+        }
+      }
+    }
+    &.news-feed {
+    display:none;
+      .row {
+        margin: 0 0 20px;
+        text-align: left;
+        font-size: 13px;
+        a:hover {
+          text-decoration: none;
+        }
+        .title-news {
+          font-weight: bold;
+          margin: 5px 0;
+        }
+        img {
+          max-width: 100%;
+          height: auto;
+          display: block;
+        }
+        .head-news {
+          font-weight: bold;
+          border-bottom: 2px solid @pg-grey-light;
+          padding-bottom: 4px;
+          text-transform: uppercase;
+        }
+        li {
+          margin-bottom: 20px;
+          clear: both;
+          overflow: hidden;
+          a {
+            display: block;
+          }
+          img {
+            width: 40%;
+            float: left;
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.game-sidebar{
+  margin: 70px 0 0 0;
+}
+#sidebar-user{
+  padding:0 0 0 20px;
+  
+  #user{
+    position:relative;
+    height:114px;
+    background-color:#f8ecd2;
+    -webkit-border-top-left-radius: 20px;
+    -webkit-border-top-right-radius: 20px;
+    -moz-border-radius-topleft: 20px;
+    -moz-border-radius-topright: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom:1px solid #b8614e;
+    
+    .avatar{
+      position:absolute;
+      top:0;
+      background: url('../images/common/medal.png') no-repeat 74px top transparent;
+      img{
+        margin: 64px 0 0 0;
+        width: 35%;
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        border-radius: 50px;
+        border: 5px solid @pg-orange;
+        background-color: @pg-white;
+      }
+    }
+  }
+  #name{
+    background-color:@pg-orange;
+    padding: 58px 0 25px 0;
+    
+    #username{
+      font-family: @futura;
+      font-size:24px;
+      line-height:26px;
+      text-align:center;
+      color:@pg-black;
+    }
+    
+    #point{
+      float:left;
+      padding: 0 58px;
+      
+      span,a{
+        float: left;
+        width:100%;
+        font-family: @futura;
+        font-size:14px;
+        line-height:24px;
+        color:@pg-black;
+      }
+      
+      a{
+        text-decoration: underline;
+      }
+    }
+  }
+  
+  #gerer{
+    margin: 0 0 20px 0;
+    
+    #button{
+      padding:0;
+      float:left;
+      border:1px solid #bf5749;
+      border-left:none;
+      border-right:none;
+      
+      .manage-account{
+        background: url('../images/common/sprite-manage-account.png') no-repeat center 6px #bf5749;
+        text-indent: -9999px;
+        padding: 12px 0;
+      }
+      .btn-wrapper{
+        background:none;
+        padding:0;
+        text-indent: -9999px;
+        
+        a{
+          width: 100%;
+          background: transparent;
+          border: none;
+          background-position: center bottom;
+          padding: 12px 0;
+          border-radius: 0;
+          background: url('../images/common/sprite-manage-account.png') no-repeat center -33px @pg-orange;
+          
+          &:active{
+            box-shadow: none;
+          }
+          &:hover{
+            background-color:#bf5749;
+          }
+        }
+      }
+    }
+    
+    #manage{
+      float:left;
+      padding: 20px 12px 15px 12px;
+      border:1px solid #e6e6e3;
+      border-top:none;
+      
+      li{
+        margin:10px 0 0 0;
+        a{
+          font-family: @futura;
+          font-size:12px;
+          line-height:14px;
+          color:@pg-black;
+          
+          &.btn{
+            padding: 0;
+            border: none;
+            background: transparent;
+            
+            &:active{
+              box-shadow: none;
+            }
+          }
+        }
+        
+        &:first-child{
+          margin:0;
+        }
+      }
+    }
+  }
+  .avatar,
+  .username,
+  .btn-wrapper{
+    text-align: center;
+  }
+}/*sidebar user*/
+
+#sidebar-game{
+  .row{
+    > div{
+      padding-bottom: 10px;
+    }
+  }
+}

@@ -1,0 +1,134 @@
+<?php $this->plugin('translate')->setTranslatorTextDomain('playgroundgame');// Pour le texte ?>
+
+<?php $fbShareMsg = 'Venez jouer aux jeux de Playground'; ?>
+<?php $twShareMsg = 'Venez jouer aux jeux de Playground'; ?>
+<?php $fbRequestMsg = 'Venez jouer aux jeux de Playground'; ?>
+
+<!-- SPONSOR (parrainer amis) (user page) -->
+<div id="sponsor-friends" class="row-fluid">
+
+	<div id="datas-result" data-url="<?php echo $this->url('frontend', array(), array('force_canonical' => true)); ?>" data-secretkey="<?php echo $this->secretKey; ?>" data-fbmsg="<?php echo $fbShareMsg; ?>" data-twmsg="<?php echo $twShareMsg; ?>" data-fbrequest="<?php echo $fbRequestMsg; ?>" data-sociallink="<?php echo $this->socialLinkUrl; ?>" data-route="<?php echo $this->url('frontend/sponsorfriends'); ?>"></div>
+
+	<!-- content -->
+	<div id="badges-resume">
+		<p class="h1">Parrainer mes amis</p>
+		<p class="h2">
+			<img src="<?php echo $this->frontendAssetPath('images/common/hand-star-orange.png') ?>" alt="star" width="32" height="29" border="0" />
+			Invitez vos amis et gagnez 250 points pour chacun de vos amis qui s’inscrira sur Playground
+		</p>
+
+		<!-- SPONSOR (parrainer) -->
+		<div id="parrainer" class="row-fluid">
+
+			<!-- invitations sociales -->
+			<div id="invit-social" class="row-fluid bg-arrow-left">
+				<div class="span7 center">
+					<p class="orange">Sur les réseaux sociaux</p>
+					<p class="peppo f-left"></p>
+					<ul id="round-social" class="f-right">
+						<li><a id="fb-share" href="javascript:void(0)" target="_blank"><img src="<?php echo $this->frontendAssetPath('images/common/round-facebook.png') ?>" alt="Facebook" width="79" height="83" border="0" /></a></li>
+						<li><a href="https://twitter.com/intent/tweet?text=<?php echo urlencode('Venez jouer aux jeux de Playground'); ?>&url=<?php echo urlencode($this->socialLinkUrl); ?>" data-txt="<?php echo urlencode('Venez jouer aux jeux de Playground'); ?>"><img src="<?php echo $this->frontendAssetPath('images/common/round-twitter.png') ?>" alt="Twitter" wodth="78" height="83" border="0" /></a></li>
+						<!--<li><a href="https://plus.google.com/share?url=<?php echo $this->url('frontend', array(), array('force_canonical' => true)); ?>" target="_blank"><img src="<?php echo $this->frontendAssetPath('images/common/round-google.png') ?>" alt="Google +" width="79" height="83" border="0" /></a></li>-->
+						<li><a id='google-plus' href="https://plus.google.com/share?url=<?php echo urlencode($this->socialLinkUrl); ?>"><img src="<?php echo $this->frontendAssetPath('images/common/round-google.png'); ?>" alt="Share on Google+"/></a></li>
+					</ul>
+				</div>
+			</div>
+
+			<!-- Par mail -->
+			<div id="invit-mail" class="row-fluid bg-arrow-right">
+				<div class="span8 center">
+					<div class="row-fluid">
+						<div class="span3">
+							<img src="<?php echo $this->frontendAssetPath('images/common/round-mail.png') ?>" alt="par mail" width="82" height="86" border="0" />
+						</div>
+						<div class="span8">
+                            <p class="orange">Par mail</p>
+
+                            <?php if ($this->statusMail === true) : ?>
+								<div id="mail-sended">
+									<p class="a-left">Merci,<br/> Vos invitations ont bien été envoyées !</p>
+
+									<div class="btn btn-warning more-invit">
+										Inviter + d'amis
+									</div>
+
+									<p class="peppo f-left"></p>
+								</div>
+							<?php endif; ?>
+
+                            <div id="mail-send" <?php if($this->statusMail): echo 'style="display:none"'; endif; ?>>
+	                            <?php $form = $this->form;?>
+	                            <?php $form->prepare();?>
+	                            <?php echo $this->form()->openTag($form) ?>
+	                            <?php echo $this->formInput($form->get('email1')); ?>
+	                            <?php echo $this->formElementErrors($form->get('email1')); ?>
+	                            <?php echo $this->formInput($form->get('email2')); ?>
+	                            <?php echo $this->formElementErrors($form->get('email2')); ?>
+	                            <?php echo $this->formInput($form->get('email3')); ?>
+	                            <?php echo $this->formElementErrors($form->get('email3')); ?>
+	                            <p class="peppo f-left"></p>
+                                <?php $form->get('submit')->setLabel($this->translate('Validate')); ?>
+	                            <?php echo $this->formButton($form->get('submit')) ?>
+	                            <!--<input class="btn btn-warning" type="submit" value="Envoyer"/>-->
+	                            <?php echo $this->form()->closeTag() ?>
+                            </div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- terminer -->
+			<!-- <div id="terminer" class="row-fluid">
+				<div class="span4 center">
+					<span class="btn btn-warning">
+						<span class="arrow-right">Terminer</span>
+					</span>
+				</div>
+			</div> -->
+
+		</div>
+		<!-- //END SPONSOR (parrainer) -->
+		<?php if(count($this->events)>0):?>
+		<div class="row-fluid">
+			<p class="h1">Vos amis parrainés</p>
+			<?php foreach($this->events as $event):?>
+    			<?php if(in_array($event->getActionId(), array(20))):?>
+    			<?php $now = new \DateTime('now');?>
+    		    <?php $interval = $now->diff($event->getCreatedAt());?>
+    		    <?php
+    		    //var_dump($now->diff($event->getCreatedAt()));
+    		    $duration = 0;
+    	        if($interval->days < 1){
+    	            $duration = 'moins d\'1 jour';
+    	        }elseif($interval->days < 2){
+    	            $duration = '1 jour';
+    	        }elseif($interval->days < 31){
+    	            $duration = $interval->days . ' jours';
+    	        }elseif($interval->days < 365){
+    	            $duration = $interval->m . ' mois';
+    	        }elseif($interval->days < 730){
+    	            $duration = $interval->y . ' an';
+    	        }else{
+    	            $duration = $interval->y . ' ans';
+    	        }
+    	        ?>
+    			<div class="row-fluid orange-dot-top">
+    				<div class="span8">
+    					<p>
+    						Vous avez parrainé <a class="green-underline" href=""><?php echo $event->getLabel()?></a><br/>
+    						<span class="small">Il y a <?php echo $duration;?></span>
+    					</p>
+    				</div>
+    				<div class="span4">
+    					<p class="orange-points">+ <?php echo $event->getPoints()?> points</p>
+    				</div>
+    			</div>
+    			<?php endif;?>
+			<?php endforeach;?>
+		</div>
+		<?php endif;?>
+
+	</div>
+
+</div>
+<!-- END SPONSOR (parrainer amis) (user page) -->

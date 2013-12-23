@@ -1,0 +1,74 @@
+<?php $this->plugin('translate')->setTranslatorTextDomain('playgrounduser');// Pour le texte ?>
+<!-- NEWSLETTER -->
+<div id="newsletter" class="row">
+	<?php
+    $form = $this->form;
+    $form->prepare();
+    $form->setAttribute('action', $this->url('frontend/zfcuser/newsletter', array('channel' => $this->channel)));
+    $form->setAttribute('method', 'post');
+    ?>
+    <h1>
+        Newsletter
+    </h1>
+	<!-- create account -->
+	<div class="choose row">
+		<!-- start form -->
+        <?php echo $this->form()->openTag($form) ?>				
+			<!-- opt-in -->
+			<div class="row opt-in">
+				<b class="col-md-12">
+				    <?php echo $this->translate('Subscribe to newsletters to not miss a game and be informed of all our great deals')?> : 
+				</b>
+				<?php if(($this->zfcUserIdentity() && ! $this->zfcUserIdentity()->getOptin()) || ($this->zfcUserIdentity() && ! $this->zfcUserIdentity()->getOptinPartner())): ?>
+				<p class="col-md-12">
+				    <b>
+				        <?php echo $this->translate('Earn 150 points for registration !')?>
+				    </b>
+				</p>
+				<?php endif ?>
+				<div class="col-md-7">
+					<p>
+					    <?php echo $this->translate('I want to receive the newsletter Playground')?>
+					    <br/>
+					   <?php echo $this->translate('(new contests, tips, VIP invitations ...)')?>
+					</p>
+				</div>
+				<div class="col-md-3">
+					<?php echo $this->formRadio($form->get('optin')) ?>
+					<?php echo $this->formElementErrors($form->get('optin')) ?>
+				</div>
+				<div class="col-md-2">
+					<?php if($this->zfcUserIdentity() && ! $this->zfcUserIdentity()->getOptin()) : ?>
+    					<p>
+    					    + 150 pts
+    					</p>
+					<?php endif; ?>
+				</div>
+			</div>
+			<div class="row opt-in">
+				<div class="col-md-7">
+					<p>
+					    <?php echo $this->translate('I want to receive offers from partners Playground')?>
+					   <?php echo $this->translate('(discounts, tips ...)')?>
+					</p>
+				</div>
+				<div class="col-md-3">
+					<?php echo $this->formRadio($form->get('optinPartner')) ?>
+					<?php echo $this->formElementErrors($form->get('optinPartner')) ?>
+				</div>
+				<div class="col-md-2">
+					<?php if($this->zfcUserIdentity() && ! $this->zfcUserIdentity()->getOptinPartner()): ?>
+					<p>
+					    + 150 pts
+					</p>
+					<?php endif; ?>
+				</div>
+			</div>
+			<div id="btn-create-account" class="row col-md-2">
+				<?php echo $this->formButton($form->get('submit')->setAttributes(array('class' => 'btn btn-default'))) ?>
+			</div>
+        <?php echo $this->form()->closeTag() ?>
+		<!-- end form -->			
+	</div>	
+</div>
+<!-- END NEWSLETTER -->

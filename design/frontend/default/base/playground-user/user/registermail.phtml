@@ -1,0 +1,9 @@
+<?php $this->plugin('translate')->setTranslatorTextDomain('playgrounduser');// Pour le texte ?>
+<!-- NEW USER -->
+<div id="new-user" class="row-fluid">
+	<div class="span8 center">
+		<div class="row-fluid">
+			<p class="h2"><?php echo $this->translate('An email has been sent to the address'); ?> <?php echo $this->escapeHtml($this->userEmail); ?>, <?php echo $this->translate('click on the confirmation link it contains to confirm your registration'); ?>.</p>
+		</div>
+	</div>
+</div>

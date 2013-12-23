@@ -1,0 +1,2836 @@
+// Common structures
+// 
+// --------------------------------------------------
+
+// Override bootstrap font
+body{
+  font-family: @futura;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+// hide advertising
+#ad-mega-banner,
+#ad-left,
+#ad-right{
+  display: none;
+}
+
+// Block structural
+.navbar-default,
+#containerpage,
+#header,
+#footer{
+  width: @site-width;
+  margin: 0 auto;
+}
+
+#containerpage{
+	padding: 65px 0 0 0;
+	background-color: #f7f7f7;
+	
+	#top-promo{
+		width: 100%;
+		margin:0 0 40px 0;
+	}
+	
+	.title-main{
+		font-family: @futura;
+		font-size: 30px;
+		line-height: 32px;
+		padding: 0 42px;
+		margin: 0 0 30px 0;
+	}
+	
+	.breadcrumb{
+		display:none;
+	}
+	
+	.row{
+		margin:0;
+		
+		&.posts{
+			margin: 0 0 0 40px;
+			border: 1px solid #e6e6e3;
+			background-color: #f2f2f2;
+			padding:20px;
+			
+			.sliders{
+				.nivoSlider{
+					margin:10px 0 5px 0;
+				}
+			}
+			.alert-link{
+				margin: 25px 0 10px;
+				text-align: left;
+				
+				.btn-default{
+					border: 0;
+					border-bottom: 2px solid #25967b;
+					color: #fff;
+					font-family: 'futura-bk';
+					font-size: 14px;
+					line-height: 16px;
+					text-transform: uppercase;
+					background-color: @pg-green;
+					padding: 12px 32px;
+				}
+			}
+		}
+		
+		h1{
+			border: none;
+			padding: 0;
+			margin: 0;
+			font-family: @futura;
+			font-size: 30px;
+			line-height: 40px;
+			padding: 0 0 0 40px;
+			margin:0 0 30px 0;
+		}
+		
+		.main-content{
+			.welcome{
+				width:100%;
+				
+				&.game-postvote{
+					
+					#content-article{
+						margin-top:0;
+						
+						.reglement{
+							margin:5px 0 30px 15px;
+						}
+						.center{
+							width: 100%;
+							float: left;
+							margin: 20px 0 0 0;
+							
+							#participants{
+								width: 416px;
+								float:left;
+								background-color:@pg-orange;
+								margin: 0;
+								
+								a{
+									width: 100%;
+									float: left;
+									font-family: @futura;
+									font-size: 30px;
+									line-height: 40px;
+									color:@pg-white;
+									text-shadow: none;
+									text-decoration: none;
+									padding: 42px 40px;
+									text-align: left;
+								}
+							}
+							.btn-group{
+								a{
+									font-family: 'futura-bk';
+									font-size: 26px;
+									line-height: 30px;
+									color: @pg-white;
+									text-transform: uppercase;
+									text-shadow: none;
+									text-decoration: none;
+									padding: 47px 15px 47px 58px;
+									background-size: auto 100% !important;
+									border-radius: 0;
+									background: url('../images/common/bt-play.png') no-repeat right top @pg-orange;
+								}
+							}
+						}
+					}
+				}
+				
+				.block-game{
+					margin:0;
+					.game-infos{
+						width: 100%;
+						float: left;
+						margin: 0;
+						padding: 20px 0 0px 40px;
+						
+						.left{
+							float:left;
+						}
+						
+						.social-share{
+							float:right;
+							width: auto;
+						}
+						
+						.instantwin,.lottery,.postvote,.quiz{
+							margin: 0 5px 10px 0;
+							float: left;
+							padding:2px 0 2px 30px;
+							font-family: @futura;
+							font-size: 12px;
+							line-height: 14px;
+							background:url('../images/common/sprite-desc.png') no-repeat left -31px transparent;
+						}
+						.postvote{
+							background:url('../images/common/sprite-desc.png') no-repeat left -73px transparent;
+						}
+						
+						.logo-partner{
+							margin:0;
+						}
+					}
+				}
+				
+				#content-article{
+					width:100%;
+					float:left;
+					margin: 20px 0;
+					
+					.welcome-block{
+						//display:none;
+						font-family: @futura;
+						font-size: 14px;
+						line-height: 20px;
+						margin: 0 0 20px 0;
+						padding: 0 0 0 38px;
+						
+						p{
+						
+							img{
+								width:100% !important;
+								height:auto !important;
+							}
+						}
+					}
+					.center{
+						float: right;
+						.btn-default{
+							padding: 0;
+							border: 0;
+							background: transparent;
+							a{
+							
+								.left,.right{
+									width:20px;
+									height:57px;
+									float:left;
+									text-indent:-9999px;
+									background:url('../images/common/sprite-participate.png') no-repeat left bottom transparent;
+								}
+								.right{
+									background:url('../images/common/sprite-participate.png') no-repeat left top transparent;
+								}
+								.center{
+									float:left;
+									background-color:@pg-orange;
+									padding: 0 10px;
+									height: 57px;
+									font-family: @futura;
+									font-size: 18px;
+									line-height: 57px;
+									text-transform:uppercase;
+									color:@pg-white;
+								}
+							}
+							&:active{
+					      		box-shadow:none;
+					      	}
+						}
+					}
+				}
+				#reglement,#participants{
+					text-align: right;
+					margin: 5px 0 0 15px;
+					a{
+						color:@pg-black;
+						font-family: @futura;
+						font-size: 12px;
+						line-height: 14px;
+						text-decoration:underline;
+						background: transparent;
+						border: none;
+						padding: 0;
+						
+						&:active{
+				      		box-shadow:none;
+				      	}
+					}
+				}
+				#reglement{
+					margin:5px 0 15px 15px;
+				}
+			}
+			
+			.list-participant{
+				&.game-postvote{
+					
+					.search-bar{
+						margin: 0 0 0 40px;
+						
+						.col-md-3{
+							padding:0;
+							
+							.selector{
+								select{
+									font-family: @futura;
+									font-size: 12px;
+									line-height: 14px;
+								}
+							}
+						}
+						
+						form{
+							float: right;
+							width: 220px;
+							border: 1px solid #e6e6e3;
+							background-color: @pg-white;
+							
+							.searchbar{
+								padding:0;
+								
+								input{
+									border-radius: 0;
+									border:none;
+									background:none;
+									padding:0;
+									height: 30px;
+									font-family: 'futura-bk';
+									font-size: 12px;
+									line-height: 14px;
+									padding: 6px;
+								}
+							}
+							.btn-search{
+								padding:0;
+								
+								input{
+									width:36px;
+									outline: none;
+									padding: 5px 8px;
+									border: none;
+									border-radius: 0;
+									text-indent:-9999px;
+									background:url('../images/common/btn-glass-bk.png') no-repeat center center transparent;
+								}
+							}
+						}
+					}
+					
+					.consultation-list-wrap{
+						margin: 15px 0 0 40px;
+						
+						.row{
+							
+							.col-md-10{
+								padding: 0 40px 0 0;
+								
+								.readmore,.alert-link{
+									text-align: right;
+									
+									a{
+										border: 0;
+										border-bottom: 2px solid #25967b;
+										color: #fff;
+										font-family: 'futura-bk';
+										font-size: 14px;
+										line-height: 16px;
+										text-transform: uppercase;
+										background-color: #2ebb9a;
+										padding: 12px 22px;
+									}
+								}
+							}
+							
+							.col-md-2{
+								padding:0;
+								margin: 30px 0 0 0;
+								
+								.nb-votes{
+									text-align: center;
+									position: relative;
+									
+									a{
+										min-width: 79px;
+										height: 82px;
+										width: 100%;
+										background: url("../images/common/round-vote.png") no-repeat center center;
+										position: absolute;
+										top: 0;
+										left: 0;
+									}
+									.already-voted{
+										padding: 90px 0 0 0;
+									}
+									.bn-votes{
+										font-family: 'futura-bk';
+										font-size: 12px;
+										line-height: 14px;
+									}
+								}
+							}
+						}
+					}
+					
+					.btn-group{
+						width: 100%;
+						float: left;
+						margin: 20px 0;
+						
+						#participants{
+							width: 416px;
+							float:left;
+							background-color:@pg-orange;
+							margin: 0;
+							
+							a{
+								width: 100%;
+								float: left;
+								font-family: @futura;
+								font-size: 30px;
+								line-height: 40px;
+								color:@pg-white;
+								text-shadow: none;
+								text-decoration: none;
+								padding: 42px 40px;
+								text-align: left;
+							}
+						}
+						.btn-participate{
+							float: left;
+							
+							a{
+								font-family: 'futura-bk';
+								font-size: 26px;
+								line-height: 30px;
+								color: @pg-white;
+								text-transform: uppercase;
+								text-shadow: none;
+								text-decoration: none;
+								padding: 47px 15px 47px 58px;
+								background-size: auto 100% !important;
+								border-radius: 0;
+								background: url('../images/common/bt-play.png') no-repeat right top @pg-orange;
+							}
+						}
+					}
+				}
+			}
+			/*list-participant*/
+		}
+		
+	}
+}
+#content.row {
+  margin: 0;
+}
+
+.sidebar,#sidebar-game {
+  padding: 0 0 30px 20px;
+  
+  .sb-block,.sd-block {
+  	display: inline-block;
+  	margin: 0 0 55px 0;
+    width: 100%;
+    //padding: 20px 0;
+    border-top: 1px solid @pg-orange;
+
+    &:first-child {
+      border-top: none;
+    }
+    img{
+      float:left;
+      margin:0 18px 0 0;
+    }
+    h5,
+    h5 a {
+      float:left;
+      font-family: @futura;
+	  font-size:16px;
+	  line-height:18px;
+      color: @pg-black;
+    }
+    .sb-content {
+      width: 100%;
+      float: left;
+      padding: 10px 0 0 0;
+      margin:0 0 0 0;
+
+      a {
+        color: @pg-black;
+      }
+      
+      // list with picto
+      ul.links-list {
+      width: 94%;
+      margin:0;
+        li {
+          background:url('../images/common/puce-sb-block.png') no-repeat left top transparent;
+          text-align: left;
+          margin-bottom: 2px;
+          font-family: @futura;
+	  	  font-size:14px;
+	  	  line-height:20px;
+          color: @pg-black;
+          //min-height: 48px;
+          clear: both;
+          padding: 0 0 0 20px;
+          margin: 10px 0 0 0;
+          
+          &:first-child{
+          	margin:0;
+          }
+          
+          img {
+            border: none;
+            float: left;
+            margin-right: 20px;
+          }
+          a.sb-picto-link {
+            display: block; 
+            width: 100%;
+            //height: 48px;
+            &:hover {
+              text-decoration: none;
+            }
+          }
+        }
+      }
+    }
+    &.newsletter-connect {
+      display:none;
+      .btn-gray-dark {
+        margin: 5px 0; 
+      }
+      .suscribe-success {
+        display: none;
+      }
+    }
+    &.tonnes-cadeaux {
+      display:none;
+      .accroche {
+        margin: 10px 0 20px;
+        font-weight: bold;
+      }
+      .btn-inverse {
+        display: none;
+      }
+    }
+    &.fb-box {
+      display:none;
+      
+      .fb-like-box,
+      .fb_iframe_widget>span,
+      .fb-like-box iframe { 
+        width: 100% !important; 
+      }
+    }
+    &.participate{
+    	border-top: 1px solid @pg-orange;
+    }
+    &.activities{
+    	.liste{
+    		float: left;
+			width: 100%;
+			padding: 0 20px;
+			margin: 10px 0 0 0;
+			
+			li{
+				width:100%;
+				margin:15px 0 0 0;
+				font-family: @futura;
+		  	    font-size:15px;
+		  	    line-height:20px;
+				
+				.name{
+					color:@pg-orange;
+					text-transform:uppercase;
+				}
+				
+				&:first-child{
+					margin:0;
+				}
+			}
+    	}
+    }
+
+	.link{
+		&.how-works,&.ranking{
+			color: @pg-white;
+			background-color: @pg-orange;
+			padding: 12px 10px;
+			float: left;
+			margin: 25px 8% 0;
+		}
+		&.ranking{
+		margin:25px 20% 0;
+		}
+	}
+    &.ranking {
+
+      .btn-group{
+      	margin: 0 5%;
+        width: 90%;
+        margin-bottom: 10px;
+      	border-bottom: 1px solid @pg-grey-normal;
+	      .btn{
+	      	font-family: @futura;
+			font-size:14px;
+			line-height:20px;
+	      	border:none;
+	      	border-radius:0;
+	      	box-shadow: none;
+			padding: 7px 0;
+			text-transform: none;
+			background-color:transparent;
+	      	&.active{
+	      		color: @pg-white;
+	      		background-color:@pg-grey-normal;
+	      		box-shadow:none;
+	      	}
+	      }
+      }
+      .list {
+      	margin: 0 5%;
+        width: 90%;
+        text-align: left;
+        
+        li.row {
+          margin: 0;
+          padding-top:0;
+          > div {
+            float: left;
+            &.position {
+              float: none;
+            }
+          }
+          .rank {
+            color: @pg-red;
+            font-size: 20px;
+            padding: 0 10px;
+          }
+          .avatar,
+          .name {
+            margin-right: 10px;
+          }
+          &.current {
+            margin-top: 20px;
+            padding: 10px;
+            //background-color: @pg-grey-light;
+          }
+          &.week{
+          	margin:0;
+          	border-bottom: 1px solid @pg-grey-normal;
+          	
+          	.position{
+          		&.global{
+          		width: 90%;
+          			li{
+          				background:url('../images/common/classement.png') no-repeat left top transparent;
+          				padding: 6px 0 6px 34px;
+          				margin:8px 0 0 0;
+          				font-family: @futura;
+						font-size:20px;
+						line-height:24px;
+						
+						.pseudo{
+							font-size:14px;
+							text-transform:uppercase;
+						}
+						.point{
+							&.number{
+								color:@pg-white;
+								background-color:@pg-orange;
+								font-size:16px;
+								line-height:28px;
+								-webkit-border-radius: 5px;
+								-moz-border-radius: 5px;
+								border-radius: 5px;
+								padding: 0 10px;
+								float:right;
+							}
+						}
+          				
+          				&:first-child{
+          					margin:0;
+          				}
+          				&:nth-child(2){
+          					background-position:left -40px;
+          				}
+          				&:last-child{
+          					background-position:left -78px;
+          				}
+          			}
+          		}
+          		
+          		&.you{
+          			margin: 35px 0 0 0;
+          			text-align: center;
+          			font-family: @futura;
+					font-size:14px;
+					line-height:20px;
+							
+          			.point{
+						&.number{
+							color:@pg-white;
+							background-color:@pg-orange;
+							font-size:16px;
+							line-height:28px;
+							-webkit-border-radius: 5px;
+							-moz-border-radius: 5px;
+							border-radius: 5px;
+							padding: 0 10px;
+							float:right;
+							margin: 0 25px 0 0;
+						}
+					}
+          		}
+          	}
+          }
+        }
+      }
+    }
+    &.news-feed {
+    display:none;
+      .row {
+        margin: 0 0 20px;
+        text-align: left;
+        font-size: 13px;
+        a:hover {
+          text-decoration: none;
+        }
+        .title-news {
+          font-weight: bold;
+          margin: 5px 0;
+        }
+        img {
+          max-width: 100%;
+          height: auto;
+          display: block;
+        }
+        .head-news {
+          font-weight: bold;
+          border-bottom: 2px solid @pg-grey-light;
+          padding-bottom: 4px;
+          text-transform: uppercase;
+        }
+        li {
+          margin-bottom: 20px;
+          clear: both;
+          overflow: hidden;
+          a {
+            display: block;
+          }
+          img {
+            width: 40%;
+            float: left;
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+.game-sidebar{
+	margin: 70px 0 0 0;
+}
+#sidebar-user{
+	padding:0 0 0 20px;
+  
+	#user{
+		position:relative;
+		height:114px;
+		background-color:#f8ecd2;
+		-webkit-border-top-left-radius: 20px;
+		-webkit-border-top-right-radius: 20px;
+		-moz-border-radius-topleft: 20px;
+		-moz-border-radius-topright: 20px;
+		border-top-left-radius: 20px;
+		border-top-right-radius: 20px;
+		border-bottom:1px solid #b8614e;
+		
+		.avatar{
+			position:absolute;
+			top:0;
+			background: url('../images/common/medal.png') no-repeat 74px top transparent;
+			img{
+				margin: 64px 0 0 0;
+				width: 35%;
+				-webkit-border-radius: 50px;
+				-moz-border-radius: 50px;
+				border-radius: 50px;
+				border: 5px solid @pg-orange;
+				background-color: @pg-white;
+			}
+		}
+	}
+	#name{
+		background-color:@pg-orange;
+		padding: 58px 0 25px 0;
+		
+		#username{
+			font-family: @futura;
+			font-size:24px;
+			line-height:26px;
+			text-align:center;
+			color:@pg-black;
+		}
+		
+		#point{
+			float:left;
+			padding: 0 58px;
+			
+			span,a{
+				float: left;
+				width:100%;
+				font-family: @futura;
+				font-size:14px;
+				line-height:24px;
+				color:@pg-black;
+			}
+			
+			a{
+				text-decoration: underline;
+			}
+		}
+	}
+	
+	#gerer{
+		margin: 0 0 20px 0;
+		
+		#button{
+			padding:0;
+			float:left;
+			border:1px solid #bf5749;
+			border-left:none;
+			border-right:none;
+			
+			.manage-account{
+				background: url('../images/common/sprite-manage-account.png') no-repeat center 6px #bf5749;
+				text-indent: -9999px;
+				padding: 12px 0;
+			}
+			.btn-wrapper{
+				background:none;
+				padding:0;
+				text-indent: -9999px;
+				
+				a{
+					width: 100%;
+					background: transparent;
+					border: none;
+					background-position: center bottom;
+					padding: 12px 0;
+					border-radius: 0;
+					background: url('../images/common/sprite-manage-account.png') no-repeat center -33px @pg-orange;
+					
+					&:active{
+						box-shadow: none;
+					}
+					&:hover{
+						background-color:#bf5749;
+					}
+				}
+			}
+		}
+		
+		#manage{
+			float:left;
+			padding: 20px 12px 15px 12px;
+			border:1px solid #e6e6e3;
+			border-top:none;
+			
+			li{
+				margin:10px 0 0 0;
+				a{
+					font-family: @futura;
+					font-size:12px;
+					line-height:14px;
+					color:@pg-black;
+					
+					&.btn{
+						padding: 0;
+						border: none;
+						background: transparent;
+						
+						&:active{
+							box-shadow: none;
+						}
+					}
+				}
+				
+				&:first-child{
+					margin:0;
+				}
+			}
+		}
+	}
+  .avatar,
+  .username,
+  .btn-wrapper{
+    text-align: center;
+  }
+}/*sidebar user*/
+
+/* content */
+.block-game{
+  position: relative;
+  width: 100%;
+  .inline-block();
+  padding:0;
+  margin: 0 0 36px 0;
+  //height: 404px;
+  
+  .icon-bloc-game{
+	position: absolute;
+	top: 0;
+	left: 40px;
+	width: 61px;
+	height: 72px;
+	
+	&.instantwin,&.lottery{
+		background: url('../images/common/sprite-bloc-game.png') no-repeat 0 top transparent;
+	}
+	&.postvote{
+		background: url('../images/common/sprite-bloc-game.png') no-repeat 0 -77px transparent;
+	}
+  }
+  &.price{
+  	a{
+  		width: 100%;
+		float: left;
+		
+		img{
+			width: 100%;
+		}
+  	}
+  	
+  	.game-price-content{
+  		float: left;
+		width: 100%;
+		background-color:@pg-orange;
+		height: 126px;
+		padding: 20px 17px 5px;
+		
+		.logo-star{display:none;}
+		
+		.txt{
+			
+			h2{
+				margin:0 0 15px 0 !important;
+				float: left;
+				width: 70%;
+				margin: 0;
+				padding: 0;
+				text-align: left;
+				text-shadow: none;
+				font-family: @futura;
+				font-size: 14px;
+				line-height: 16px;
+				color:@pg-white;
+			}
+			
+			div{
+				float: left;
+				width: 70%;
+				p{
+					color:@pg-white;
+					font-family: @futura;
+					font-size: 14px;
+					line-height: 16px;
+				}
+			}
+		}
+  	}
+  	
+  	.readmore{
+	  	position: absolute;
+		bottom: 0;
+		right: 0;
+		width: 28%;
+		height: 126px;
+		
+		a{
+			font-family: @futura;
+			font-size:18px;
+			line-height:32px;
+			color:@pg-white;
+			text-transform:uppercase;
+			width:100%;
+			height:100%;
+			background: url('../images/common/bt-play.png') no-repeat 0 top transparent;
+			padding: 48px 0 48px 35px;
+			
+			&:hover{
+				color:@pg-white;
+				text-decoration:none;
+			}
+		}
+		
+		&:active{
+			box-shadow: none;
+		}
+  	}
+  }
+  
+  &.no-image{
+    display: block;
+    .img-content{
+      height: 200px;
+      > a{
+        height: 200px;
+        display: block;
+      }
+    }
+  }
+  .img-content{
+    position: relative;
+    height:100%;
+    
+    img{
+      display: block;
+      max-width:100%;
+    }
+  }
+  .dark-overlay{
+    background-color: #d95f49;
+	//position: absolute;
+	//left: 0!important;
+	width: 100%;
+	//bottom: 0;
+	z-index: 10;
+	color: #fff;
+	text-align: center;
+	text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+	padding: 0!important;
+	//height: 126px;
+	margin:0;
+	
+	h2{
+		margin: 0;
+		padding: 0;
+		text-align: left;
+		text-shadow: none;
+		font-family: @futura;
+		font-size: 14px;
+		line-height: 16px;
+	}
+	.col-md-2{
+		.btn-default{
+			padding: 0;
+			margin: 0;
+			text-shadow: none;
+			background: none;
+			border: none
+		}
+	}
+  }
+  .logo-sponsor{
+  	display:none;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+  .col-md-12{
+  	padding:0;
+  }
+  
+  .wrapper-game{
+  	width: 72%;
+	float: left;
+	padding: 17px 17px 5px;
+	
+	h2 {
+	width:100%;
+    color:@pg-white;
+    text-transform: uppercase;
+    font-size: 14px;
+    text-transform: none;
+	}
+	
+	.game-infos{
+		margin: 5px 0 10px;
+		padding: 0;
+		text-align: left;
+		text-shadow: none;
+		float:left;
+		
+		.desc{
+			float:left;
+		  	font-family: @futura;
+			font-size:16px;
+			line-height:20px;
+		  	text-align: left;
+			text-shadow: none;
+			margin:10px 0 9px;
+			padding: 0 0 0 30px;
+			
+			&.lottery,&.instantwin{
+				background:url('../images/common/sprite-desc.png') no-repeat left top transparent;
+			}
+			&.postvote{
+				background:url('../images/common/sprite-desc.png') no-repeat left -48px transparent;
+			}
+		}
+	}
+  }
+  
+  .button-play{
+  	width: 28%;
+	float: right;
+	height: 126px;
+	
+	.button-wrap{
+	    width: 100%;
+		height: 100%;
+	  	background:url('../images/common/bt-play.png') no-repeat 0 top transparent;
+	  	
+	  	.btn{
+	  		width: 100%;
+			height: 100%;
+			padding: 45px 0;
+			
+			a{
+				font-family: @futura;
+				font-size:30px;
+				line-height:32px;
+				color:@pg-white;
+				text-transform:uppercase;
+				text-shadow: none;
+				
+				&:hover{
+					color:@pg-white;
+					text-decoration:none;
+				}
+			}
+			
+			&:active{
+				box-shadow: none;
+			}
+	  	}
+	  }
+  }
+  .btn-default{
+    margin-top: 15px;
+    font-family: @futura;
+	font-size:30px;
+	line-height:32px;
+	color:@pg-white;
+	text-transform:uppercase;
+  }
+  .stamp{
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+  }
+}
+
+.game-infos{
+  margin: 10px 0;
+  > div{
+    display: inline;
+  }
+  .logo-partner{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 10px 0 0 5px;
+    img{
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+form[name="preview_form"]{
+  padding-bottom: 20px;
+  .message{
+    margin: 10px;
+  }
+}
+
+/* result game */
+#mail-send{
+  button{
+    margin-top: 10px;
+  }
+}
+
+#parrainer{
+  #terminer{
+    padding: 20px 0;
+    div{
+      text-align: right;
+      padding-right: 23px;
+    }
+  }
+}
+
+.recirculation{
+  padding-top: 20px;
+  .partenaire-logo{
+    img{
+      width: 100%;
+    }
+  }
+  h2{
+    margin: 0;
+  }
+  .offer{
+    clear: both;
+    .btn-default{
+      margin: 10px 0;
+    }
+  }
+  .col-md-3{
+    text-align: center;
+  }
+  .btn-default{
+    input{
+      margin: 0;
+      padding: 0;
+      border: none;
+      background: none;
+      color: inherit;
+      outline: none;
+    }
+  }
+}
+
+/* homepage carousel */
+#homepage-carousel{
+  width: 100%;
+  float: left;
+  height: 100%;
+  margin: 20px 0;
+  
+  .carousel-caption{
+    padding-bottom: 50px;
+  }
+  .carousel-control{
+    &.right{
+      background: url("../images/common/arrow-right.png") no-repeat center center transparent;
+    }
+    &.left{
+      background: url("../images/common/arrow-left.png") no-repeat center center transparent;
+    }
+    &.right,
+    &.left{
+      color:transparent;
+      text-shadow:none;
+    }
+  }
+}
+
+/* game */
+.query-block{
+  padding-bottom: 20px;
+  .heading{
+    font-size: 18px;
+    padding-bottom: 10px;
+  }
+  .question{
+    font-size: 16px;
+    padding-bottom: 5px;
+  }
+  .clue{
+    font-size: 14px;
+    padding-bottom: 15px;
+    p{
+      font-weight: bold;
+      display: inline;
+    }
+  }
+  .radio{
+    display: inline;
+    padding: 0 5px 0 0;
+    input{
+      float: none;
+      margin: 0;
+    }
+  }
+  label{
+    display: block;
+    &:hover{
+      color: @pg-red;
+    }
+  }
+  .question-image{
+    padding-bottom: 20px;
+  }
+  .answers{
+    padding-left: 20px;
+  }
+}
+.game-quiz{
+  > div{
+    padding-bottom: 20px;
+  }
+  .social-icon{
+    li{
+      
+    }
+  }
+  #invit-social{
+    margin: 0;
+  }
+  #invit-mail{
+    .row{
+      padding: 0;
+    }
+    .text-mail{
+      padding-top: 30px;
+    }
+  }
+  #terminer{
+    text-align: right;
+  }
+}
+#invit-mail{
+  #mail-sended{
+    padding-bottom: 10px;
+  }
+}
+/* Instant win */
+#play-instantwin{
+  padding-bottom: 20px;
+  .scratchcontent{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: none;
+  }
+}
+.next-instant-win-step{
+  .btn{
+    display: none;
+  }
+  margin: 15px 0;
+}
+#result-instantwin{
+  display: none;
+  .valid-text{
+    margin: 7px 0 10px;
+  }
+}
+#wScratchgame{
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  .wScratchwin{
+    position: absolute;
+    top: 20px;
+    font-size: 20px;
+    padding: 10px;
+    text-align: center;
+    display: none;
+    div{
+      display: block;
+    }
+  }
+}
+.caracteres-restants{
+  text-align: right;
+}
+#postForm{
+  > .row{
+    padding-bottom: 5px;
+  }
+}
+.photo-file{
+  img.preview{
+    max-width: 100%;
+  }
+  .preview-img{
+    position: relative;
+    padding-bottom: 5px;
+    .trash{
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      opacity:.5;
+      .transition(all .5s);
+      &:hover{
+        opacity:1;
+      }
+    }
+  }
+}
+#sidebar-game{
+  .row{
+    > div{
+      padding-bottom: 10px;
+    }
+  }
+}
+
+.coordinates{
+  .win{
+    text-align: right;
+  }
+  #annotation{
+    clear: both;
+    text-align: left;
+  }
+}
+
+/* My badges */
+#account-badge{
+  #my-badges{
+    li{
+      img{
+        width: 50%;
+      }
+    }
+  }
+  #my-points{
+    .view-detail{
+      padding-top: 10px;
+    }
+  }
+}
+
+/* user activity */
+#user-activity{
+  #list-activity{
+    .date{
+      font-size: 11px;
+      color:@pg-grey-light;
+    }
+  }
+}
+
+/* newsletter */
+#newsletter{
+  .choose{
+    .radio{
+      width: 100px;
+      margin: 0;
+      padding: 0;
+      min-height: 0;
+      span{
+        float: left;
+      }
+    }
+  }
+}
+
+/* Personnal informations */
+#account-modify{
+  form{
+    .row{
+      .col-md-4{
+        line-height: 11px;
+      }
+    }
+    .btn-default{
+      margin-top: 15px;
+    }
+  }
+  input[type="text"],
+  input[type="email"],
+  
+  input[type="password"],
+  select{
+    width: 100%;
+  }
+  .radio{
+    display: block;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+  }
+  .civility{
+    .col-md-6{
+      label{
+        display: inline-block;
+        padding: 0 20px;
+      }
+    }
+  }
+  .wrapper-submit{
+    text-align: right;
+  }
+  .selector{
+    span{
+      display: none;
+    }
+  }
+  #delete-account{
+    padding-bottom: 20px;
+    .btn{
+      margin-top: 15px;
+    }
+  }
+}
+
+/* register */
+#register-form{
+  margin: 0;
+  form{
+    > div{
+      padding-bottom: 5px;
+    }
+  }
+  .opt-in,
+  .civility {
+    label{
+      padding-left: 20px;
+      min-width: 110px;
+    }
+  }
+  .radio{
+    display: inline;
+    min-height: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+  }
+}
+
+/* list game participant */
+.list-participant{
+  .search-bar{
+    form{
+      margin: 15px 0 0 0;
+      input[type="text"]{
+        width: 100%;
+      }
+    }
+  }
+}
+
+/* contact page */
+#contact-us{
+  #btn-send{
+    text-align: right;
+    padding: 10px 0;
+  }
+}
+
+/* RSS feed */
+.feed-news{
+  .link-feed,
+  .image-feed{
+    display: block;
+  }
+  .image-feed{
+    width: 100%;
+  }
+}
+
+
+.main-content{
+	padding:0 20px 0 0;
+	
+	#faq{
+		padding: 0 0 0 40px;
+		
+		h1{
+			padding:0;
+			margin:0 0 50px 0;
+		}
+		h3{
+			font-family:@futura;
+			font-size:14px;
+			line-height:20px;
+			margin: 0px 0 5px 28px;
+			float: left;
+			width: 95%;
+			
+			a{
+				float: left;
+				width: 100%;
+				padding: 0 0 0 20px;
+				background:url('../images/common/puce-sb-block-bk.png') no-repeat left center transparent;
+				color:@pg-black;
+				
+				&:hover{
+					text-decoration:none;
+					color:@pg-orange;
+					background:url('../images/common/puce-sb-block.png') no-repeat left center transparent;
+				}
+				p{
+					margin:0;
+				}
+			}
+		}
+		.content-block{
+			float: left;
+			width: 95%;
+			margin: 0 0 30px 28px;
+			border:1px solid #e6e6e3;
+			background-color:f2f2f2;
+			padding:20px;
+			
+			p{
+				font-family:@futura;
+				font-size:14px;
+				line-height:20px;
+				margin:20px 0 0 0;
+				
+				&:first-child{
+					margin:0;
+				}
+			}
+		}
+	}
+	/*faq*/
+	
+	#contact-us{
+		padding: 0 0 0 40px;
+		
+		h1{
+			padding:0;
+			margin:0 0 20px 0;
+		}
+		
+		.wrap-form{
+			border:1px solid #e6e6e3;
+			background-color:f2f2f2;
+			padding:20px;
+			
+			h2{
+				font-family:@futura;
+				font-size:14px;
+				line-height:20px;
+				padding: 0 0 0 20px;
+				background:url('../images/common/puce-sb-block.png') no-repeat left center transparent;
+				color:@pg-orange;
+			}
+			
+			form{
+				#contact-inner{
+					.row{
+						margin: 0 0 0 60px;
+						
+						.block-right{
+							padding:0;
+							margin:0 0 15px 0;
+							
+							&.lastname,&.firstname{
+								width: 140px;
+							}
+							&.firstname{
+								margin:0 0 35px 0;
+							}
+							&.email{
+								width: 180px;
+							}
+							input{
+								width:100%;
+								border-radius: 0;
+								border: 1px solid #e6e6e3;
+								background-color:@pg-white;
+								padding: 6px;
+								height: 30px;
+								font-family:@futura;
+								font-size:12px;
+								line-height:14px;
+							}
+							&.contact-select{
+								margin:0;
+								width:180px;
+								
+								.selector{
+									width: 180px !important;
+									
+									span{
+										width: 169px !important;
+									}
+									select{
+										width:100%;
+										top: 0;
+										border-radius: 0;
+										border: 1px solid #e6e6e3;
+										background-color: #e6e6e3;
+										padding: 6px;
+										height: 30px;
+										font-family:@futura;
+										font-size:12px;
+										line-height:14px;
+									}
+								}
+							}
+							&.contact-textarea{
+								textarea{
+									width:100%;
+									border-radius: 0;
+									border: 1px solid #e6e6e3;
+									background-color:@pg-white;
+									padding: 12px;
+									height: 125px;
+									font-family:@futura;
+									font-size:12px;
+									line-height:14px;
+									resize: none;
+								}
+							}
+						}
+					}
+					#btn-send{
+						width: 81%;
+						padding:0;
+						
+						div{
+							padding:0;
+							
+							.btn-default{
+								padding: 0;
+								border: none;
+								border-bottom:2px solid #25967b;
+								color: @pg-white;
+								font-family:@futura;
+								font-size:14px;
+								line-height:16px;
+								text-transform:uppercase;
+								background-color:@pg-green;
+								padding:12px 32px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}/*contact us*/
+	
+	#account-modify{
+		padding: 0 0 0 40px;
+		
+		h1{
+			padding:0;
+			margin:0 0 20px 0;
+		}
+		
+		#wrap-account{
+			border:1px solid #e6e6e3;
+			background-color:#f2f2f2;
+			padding:0px;
+			
+			#update-login{
+				padding:20px;
+				
+				.update-login-block{
+					h3{
+						font-family:@futura;
+						font-size:24px;
+						line-height:26px;
+						color:@pg-grey-normal;
+						margin:0 0 15px 0;
+					}
+					.desc-form{
+						font-family:@futura;
+						font-size:14px;
+						line-height:16px;
+						margin: 0 0 15px 20px;
+					}
+					
+					form{
+						border:none;
+						margin: 0 0 0 20px;
+						padding:0;
+						
+						.row{
+							margin: 0 0 8px 0;
+							.col-md-4{
+								padding:0;
+								text-align: right;
+								font-family:@futura;
+								font-size:14px;
+								line-height:16px;
+								color:@pg-black;
+								margin: 6px 0 0 0;
+								
+								p{
+									margin:0;
+								}
+							}
+							.col-md-6{
+								input{
+									width:100%;
+									border-radius: 0;
+									border: 1px solid #e6e6e3;
+									background-color:@pg-white;
+									padding: 6px;
+									height: 30px;
+									font-family:@futura;
+									font-size:12px;
+									line-height:14px;
+								}
+								&.credential{
+									width: 27%;
+								}
+							}
+						}
+						.wrapper-submit{
+							padding:0;
+						}
+					}
+				}
+			}
+			
+			form{
+				&.validate{
+					border-top:1px solid #e6e6e3;
+					padding:20px;
+					
+					#update-adresse{
+						h3{
+							font-family:@futura;
+							font-size:24px;
+							line-height:26px;
+							color:@pg-grey-normal;
+							margin:0 0 15px 0;
+						}
+						.desc-form{
+							font-family:@futura;
+							font-size:14px;
+							line-height:16px;
+							margin: 0 0 15px 20px;
+							color:@pg-orange;
+							background:url('../images/common/puce-sb-block.png') no-repeat left top transparent;
+							padding:0 0 0 15px;
+						}
+						.row{
+							margin: 0 0 8px 0;
+							.col-md-2{
+								padding:0;
+								.orange-points{
+									padding:8px 0 8px 34px;
+									background: url('../images/common/classement.png') no-repeat left top transparent;
+									color:@pg-yellow;
+									font-family:@futura;
+									font-size:12px;
+									line-height:14px;
+								}
+							}
+							.col-md-4{
+								padding:0;
+								text-align: right;
+								font-family:@futura;
+								font-size:12px;
+								line-height:16px;
+								color:@pg-black;
+								margin: 6px 0 0 0;
+								
+								p{
+									margin:0;
+								}
+							}
+							.col-md-6{
+								input{
+									width:100%;
+									border-radius: 0;
+									border: 1px solid #e6e6e3;
+									background-color:@pg-white;
+									padding: 6px;
+									height: 30px;
+									font-family:@futura;
+									font-size:12px;
+									line-height:14px;
+								}
+								&.credential{
+									width: 27%;
+								}
+								.uploader{
+									width: 100%;
+									background: @pg-white;
+									border: 1px solid #e6e6e3;
+									height: 30px;
+									
+									.filename,.action{
+										font-family:@futura;
+										font-size:12px;
+										line-height:14px;
+										padding: 6px 5px;
+										height: 28px;
+										background: none;
+									}
+								}
+								label{
+									padding: 0;
+									width: 119px;
+									float:left;
+									.radio{
+										margin: 0 5px 0 0;
+										float:left;
+										span{
+											float:left;
+											input{
+												width: auto;
+												margin: 0;
+												height: 20px;
+											}
+										}
+									}
+								}
+								.selector{
+									width:100% !important;
+									span{
+										display: block;
+										width: 229px !important;
+									}
+									select{
+										top: 0;
+										width:100%;
+										border-radius: 0;
+										border: 1px solid #e6e6e3;
+										background-color: @pg-white;
+										padding: 6px;
+										height: 30px;
+										font-family:@futura;
+										font-size:12px;
+										line-height:14px;
+									}
+								}
+							}
+						}
+						.wrapper-submit{
+							padding:0;
+						}
+					}
+				}
+			}
+		}
+		.wrapper-submit{
+			.btn-default{
+				padding: 0;
+				border: none;
+				border-bottom:2px solid #25967b;
+				color: @pg-white;
+				font-family:@futura;
+				font-size:14px;
+				line-height:16px;
+				text-transform:uppercase;
+				background-color:@pg-green;
+				padding:12px 32px;
+			}
+			
+			&.delete{
+				.btn-default{
+					border-bottom:2px solid #b93d30;
+					background-color:@pg-orange;
+				}
+			}
+		}
+	}/*account modify*/
+	
+	#delete-account{
+		margin: 30px 0;
+		border: 1px solid #e6e6e3;
+		background-color: #f2f2f2;
+		padding:20px;
+		
+		h3{
+			font-family:@futura;
+			font-size:24px;
+			line-height:26px;
+			color:@pg-grey-normal;
+			margin:0 0 15px 0;
+		}
+		form{
+			border:none;
+			margin: 0 0 0 20px;
+			
+			.row{
+				margin: 0 0 8px 0;
+				.col-md-4{
+					padding:0;
+					text-align: right;
+					font-family:@futura;
+					font-size:14px;
+					line-height:16px;
+					color:@pg-black;
+					margin: 6px 0 0 0;
+					
+					p{
+						margin:0;
+					}
+				}
+				.col-md-6{
+					input{
+						width:100%;
+						border-radius: 0;
+						border: 1px solid #e6e6e3;
+						background-color:@pg-white;
+						padding: 6px;
+						height: 30px;
+						font-family:@futura;
+						font-size:12px;
+						line-height:14px;
+					}
+					&.credential{
+						width: 27%;
+					}
+				}
+			}
+			.wrapper-submit{
+				padding:0;
+			}
+		}
+	}
+	/* delete account*/
+	
+	.wrap-game{
+		min-height: 514px;
+		
+		#play-instantwin{
+			.instructions{
+				margin:0 0 0 40px;
+			}
+			
+			.block-game{
+				.game-infos{
+					margin:0 0 20px 40px;
+					
+					.instantwin{
+						padding: 0 0 0 30px;
+						background: url('../images/common/sprite-desc.png') no-repeat left -25px transparent;
+					}
+				}
+			}
+		}
+		/*play-instantwin*/
+		
+		.next-instant-win-step{
+			text-align: center;
+			margin: 0 0 40px 0;
+			
+			.btn-default{
+				padding: 0;
+				border: 0;
+				border-bottom: 2px solid #25967b;
+				color: @pg-white;
+				font-family: 'futura-bk';
+				font-size: 14px;
+				line-height: 16px;
+				text-transform: uppercase;
+				background-color:@pg-green;
+				padding: 12px 32px;
+			}
+		}
+		/*next-instant-win-step*/
+		
+		#result-instantwin{
+			
+			#content-article{
+				margin: 20px 0 40px 40px;
+				padding: 20px;
+				
+				p{
+					padding:0;
+					margin: 0 0 10px 0;
+				}
+				form{
+					
+					.win{
+						padding:0;
+						text-align: center;
+						margin: 20px 0;
+						
+						.btn-default{
+							border: 0;
+							border-bottom: 2px solid #25967b;
+							color: @pg-white;
+							font-family: 'futura-bk';
+							font-size: 14px;
+							line-height: 16px;
+							text-transform: uppercase;
+							background-color:@pg-green;
+							padding: 12px 32px;
+						}
+					}
+					
+					.form-group {
+						padding:0;
+						margin: 0 0 10px 0;
+						
+						label{
+							padding: 0;
+							text-align: right;
+							font-family: 'futura-bk';
+							font-size: 14px;
+							line-height: 16px;
+							color: @pg-black;
+							margin: 6px 0 0 0;
+							font-weight: normal;
+						}
+						.block-right{
+							padding: 0 0 0 60px;
+									
+							input{
+								width: 100%;
+								border-radius: 0;
+								border: 1px solid #e6e6e3;
+								background-color: #fff;
+								padding: 6px;
+								height: 30px;
+								font-family: 'futura-bk';
+								font-size: 12px;
+								line-height: 14px;	
+							}
+							.selector{
+								width:254px !important;
+								
+								span{
+									width:244px !important;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		/*result-instantwin*/
+		
+		.corrections{
+			margin: 20px 0;
+			padding: 0 0 0 40px;
+			
+			div{
+				ul{
+					.question{
+						margin: 20px 0 0 0;
+						
+						&:first-child{
+							margin:0;
+						}
+						b,p{
+							font-family:@futura;
+							font-size:14px;
+							line-height:16px;
+							margin: 0 0 8px 0;
+							float: left;
+							width: 100%;
+						}
+						p{
+							margin:0;
+						}
+						
+						ul{
+							.response{
+								.your-answer,.right-answer{
+									color:@pg-orange;
+									font-family:@futura;
+									font-size:14px;
+									line-height:16px;
+									font-weight:bold;
+								}
+								.right-answer{
+									color:@pg-green;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		.block-game{
+			padding: 0;
+			margin: 0 0 20px 0;
+			
+			&.no-image{
+				.img-content{
+					height: auto;
+					
+					.dark-overlay{
+						margin: 0 0 0 40px !important;
+						width: 100%;
+						
+						.postvote{
+							text-align: left;
+							text-shadow: none;
+							color:@pg-black;
+							background: url('../images/common/sprite-desc.png') no-repeat left -72px transparent;
+							padding: 0 0 0 30px;
+						}
+					}
+				}
+			}
+
+			.img-content{
+				.dark-overlay{
+					&.row{
+						background: transparent;
+						margin: 22px 0 0 40px !important;
+						width: 93.5%;
+						
+						h2{
+							font-family:@futura;
+							font-size:12px;
+							line-height:14px;
+							background:url('../images/games/sprite-deploy-game.png') no-repeat 0 0 transparent;
+							padding:5px 0 5px 30px;
+						}
+						#reglement{
+							float:right;
+							
+							a{
+								text-shadow: none;
+								font-family:@futura;
+								font-size:12px;
+								line-height:14px;
+								text-decoration:underline;
+								color:@pg-black;
+							}
+						}
+					}
+				}
+			}
+		}
+		/* block game */
+		
+		#play-instantwin{
+			.instructions{
+				
+			}
+		}
+		/*play-instantwin*/
+		.btn-group{
+			width:100%;
+			margin: 0 0 30px 0;
+			
+			.btn-default{
+				float:right;
+				padding: 0;
+				border: none;
+				background: transparent;
+				
+				&.participate,&.rules{
+					clear: both;
+					color: #2e2e2e;
+					font-family: 'futura-bk';
+					font-size: 12px;
+					line-height: 14px;
+					text-decoration: underline;
+					background: transparent;
+					border: 0;
+					padding: 0;
+					margin: 5px 0 0 15px;
+				}
+				
+				&.rules{
+					margin:5px 20px 0 0;
+				}
+				
+				&:active{
+					box-shadow: none;
+				}
+				.left,.right{
+					width: 20px;
+					height: 57px;
+					float: left;
+					text-indent: -9999px;
+					background: url('../images/common/sprite-participate.png') no-repeat left bottom transparent;
+				}
+				.center{
+					float: left;
+					background-color: #d95f49;
+					padding: 0 10px;
+					height: 57px;
+					font-family: 'futura-bk';
+					font-size: 18px;
+					line-height: 57px;
+					text-transform: uppercase;
+					color: #fff;
+				}
+				.right{
+					background: url('../images/common/sprite-participate.png') no-repeat left top transparent;
+				}
+				
+				&.modify,&.validate{
+					float:left;
+					padding: 0;
+					border: 0;
+					border-bottom: 2px solid #25967b;
+					color: #fff;
+					font-family: 'futura-bk';
+					font-size: 14px;
+					line-height: 16px;
+					text-transform: uppercase;
+					background-color: @pg-green;
+					padding: 12px 32px;
+					margin: 40px 0 0 20px;
+					border-bottom-right-radius: 4px;
+					border-top-right-radius: 4px;
+				}
+				&.validate{
+					float:right;
+					margin: 40px 20px 0 0;
+					border-radius: 4px;
+				}
+			}
+		}
+		/* btn group*/
+		
+		#content-article{
+			margin:0 0 40px 40px;
+			border:1px solid #e6e6e3;
+			background-color: #f2f2f2;
+			
+			h2{
+				margin: 0;
+				padding:20px;
+			}
+			p{
+				font-family: 'futura-bk';
+				font-size: 16px;
+				line-height: 20px;
+			}
+			
+			.message{
+				margin:0;
+				padding: 0 20px;
+				
+				.posts{
+					.postvote-preview{
+						h2{
+							margin:0;
+							padding:0;
+							font-family: 'futura-bk';
+							font-size: 16px;
+							line-height: 18px;
+							margin: 0 0 15px 0;
+						}
+						
+						h3,p{
+							border-bottom: 1px solid;
+							padding: 0 0 5px 0;
+							margin: 20px 0 10px 0;
+							padding:0;
+							font-family: 'futura-bk';
+							font-size: 12px;
+							line-height: 14px;
+							text-transform:uppercase;
+						}
+						
+						p{
+							border:none;
+							margin:0 0 10px 0;
+							text-transform:none;
+						}
+						.text{
+							margin: 10px 0 0 0;
+						}
+						.row{
+							.avatar{
+								padding:0;
+								margin: 10px 0 0 0;
+							}
+						}
+					}
+				}
+			}
+			
+			form{
+				.page{
+					display:none;
+					float: left;
+					width: 100%;
+					
+					&.active{
+						display:block;
+					}
+					
+					.query-block{
+						padding:0 0 30px 0;
+						width: 100%;
+						float: left;
+						
+						.heading{
+							font-family:@futura;
+							font-size:12px;
+							line-height:20px;
+							color:@pg-orange;
+							padding: 0;
+							text-align: center;
+							text-transform: uppercase;
+						}
+						.question{
+							font-family:@futura;
+							font-size:14px;
+							line-height:20px;
+							text-align: center;
+							margin: 5px 0 18px;
+						}
+						
+						.clue{
+							text-align: center;
+						}
+						.wrap-checker{
+							width: 70%;
+							display: block;
+							margin: 0 auto;
+							
+							label{
+								float:left;
+								display:inline-block;
+								width: 50%;
+								min-height: 40px;
+								
+								.radio{
+									padding: 0 5px 0 0;
+									margin: 5px 5px 15px 0;
+									float: left;
+								}
+							}
+							
+							textarea{
+								width:100%;
+								height: 90px;
+								resize: none;
+							}
+						}
+					}
+				}
+				.center{
+					text-align: center;
+					margin: 0 0 20px 0;
+					
+					.btn-default{
+						padding: 0;
+						border: 0;
+						border-bottom: 2px solid #25967b;
+						color: @pg-white;
+						font-family: 'futura-bk';
+						font-size: 14px;
+						line-height: 16px;
+						text-transform: uppercase;
+						background-color:@pg-green;
+						padding: 12px 32px;
+					}
+				}
+			}
+			
+			.content-postvote{
+				padding: 20px;
+				
+				.wrapper{
+					
+					#postForm{
+						.row{
+							margin: 0 0 8px 0;
+							padding:0;
+							
+							label{
+								padding: 0;
+								text-align: right;
+								font-family: 'futura-bk';
+								font-size: 14px;
+								line-height: 16px;
+								color: #2e2e2e;
+								margin: 6px 0 0 0;
+							}
+							div{
+								padding: 0 0 0 40px;
+								
+								.preview-img{
+									position:reltive;
+									padding: 0;
+								}
+								.preview{
+									margin: 0 0 10px 0;
+								}
+								.trash{
+									top:0;
+									left:0;
+								}
+								
+								input, textarea,.progress,.uploader{
+									width: 100%;
+									border-radius: 0;
+									border: 1px solid #e6e6e3;
+									background-color: #fff;
+									padding: 6px;
+									height: 30px;
+									font-family: 'futura-bk';
+									font-size: 12px;
+									line-height: 14px;
+								}
+								.progress{
+									padding: 0;
+								}
+								textarea{
+									resize:none;
+									height: 100px;
+								}
+								.uploader{
+									
+									width: 100%;
+									height: 40px;
+									background: @pg-white;
+									padding: 0;
+									
+									.form-control{
+										height: 40px;
+									}
+									.filename{
+										font-family: 'futura-bk';
+										font-size: 14px;
+										line-height: 16px;
+										height: 40px;
+										border-right: solid 1px #e6e6e3;
+										padding: 10px 5px;
+									}
+									.action{
+										font-family: 'futura-bk';
+										font-size: 12px;
+										line-height: 14px;
+										border: none;
+										background: transparent;
+										padding: 10px 0;
+										height: 38px;
+									}
+								}
+								
+							}
+							.caracteres-restants{
+								font-family: 'futura-bk';
+								font-size: 12px;
+								line-height: 14px;
+							}
+						}
+					}
+				}
+				
+				.center{
+					margin: 40px 0 0 0;
+					text-align: right;
+					
+					.btn-default{
+						padding: 0;
+						border: 0;
+						border-bottom: 2px solid #25967b;
+						color: #fff;
+						font-family: 'futura-bk';
+						font-size: 14px;
+						line-height: 16px;
+						text-transform: uppercase;
+						background-color: @pg-green;
+						padding: 12px 32px;
+					}
+				}
+			}
+			.champs-obligatoitres{
+				margin: 0 0 20px 20px;
+				font-family: 'futura-bk';
+				font-size: 12px;
+				line-height: 14px;
+			}
+		}
+		
+		&.result{
+			.wrapper-result{
+				margin:0 0 40px 40px;
+				padding:20px;
+				border:1px solid #e6e6e3;
+				background-color: #f2f2f2;
+				
+				#heading{
+					h2{
+						font-family: 'futura-bk';
+						font-size: 14px;
+						line-height: 16px;
+						color: @pg-orange;
+						background: url('../images/common/puce-sb-block.png') no-repeat left top transparent;
+						padding: 0 0 0 20px;
+						margin:0;
+					}
+				}
+				#parrainer{
+					margin: 25px 0 0 0;
+					
+					#invit-social{
+						p{
+							padding:0;
+							text-align: right;
+							text-transform: uppercase;
+							font-family: 'futura-bk';
+							font-size: 14px;
+							line-height: 16px;
+						}
+						
+						.social-icon{
+							padding:0;
+							float: right;
+							
+							li{
+								padding:0;
+								margin: 0 0 0 20px;
+								
+								.link{
+									-webkit-border-radius: 50%;
+									-moz-border-radius: 50%;
+									border-radius: 50%;
+									width: 65px;
+									height: 65px;
+									float: left;
+									text-indent: -9999px;
+									
+									&.fb{
+										background: url('../images/common/icon-social.png') no-repeat 22px center @pg-fb;
+									}
+									&.twitter{
+										background: url('../images/common/icon-social.png') no-repeat -58px center @pg-twitter;
+									}
+									&.google-plus{
+										background: url('../images/common/icon-social.png') no-repeat -145px center @pg-google;
+									}
+								}
+							}
+						}
+					}
+					#invit-mail{
+						margin:38px 0 18px 0;
+						
+						.row{
+							.col-md-5{
+								padding:0;
+							}
+							.text-mail{
+								padding:0;
+								text-align: right;
+								text-transform: uppercase;
+								font-family: 'futura-bk';
+								font-size: 14px;
+								line-height: 16px;
+							}
+							
+							.wrapper-share{
+								padding: 0;
+								margin: 0 0 0 40px;
+								
+								#mail-sended{
+									padding:0;
+									
+									.a-left{
+										text-transform: uppercase;
+										font-family: 'futura-bk';
+										font-size: 14px;
+										line-height: 20px;
+									}
+									.btn-default{
+										float: right;
+										padding: 0;
+										border: 0;
+										border-bottom: 2px solid #25967b;
+										color: #fff;
+										font-family: 'futura-bk';
+										font-size: 14px;
+										line-height: 16px;
+										text-transform: uppercase;
+										background-color: @pg-green;
+										padding: 12px 32px;
+									}
+								}
+								#mail-send{
+									display:block;
+									
+									&.none{
+										display: none;
+									}
+									
+									form{
+										.img-mail{
+											width:12%;
+											float: left;
+										}
+										.row{
+											float: right;
+											width: 75%;
+											
+											.wrap-input{
+												padding:0;
+												margin:0 0 12px 0;
+												
+												input{
+													width: 100%;
+													border-radius: 0;
+													border: 1px solid #e6e6e3;
+													background-color: #fff;
+													padding: 6px;
+													height: 30px;
+													font-family: 'futura-bk';
+													font-size: 12px;
+													line-height: 14px;
+												}
+											}
+											.wrap-button{
+												padding: 0;
+												text-align: right;
+												
+												.btn-default{
+													padding: 0;
+													border: 0;
+													border-bottom: 2px solid #25967b;
+													color: #fff;
+													font-family: 'futura-bk';
+													font-size: 14px;
+													line-height: 16px;
+													text-transform: uppercase;
+													background-color: @pg-green;
+													padding: 12px 32px;
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					
+					#terminer{
+						padding:0;
+						margin: 50px 0 0 0;
+						
+						.col-md-12{
+							padding: 0;
+							text-align: center;
+							
+							.btn-default{
+								border: 0;
+								border-bottom: 2px solid #25967b;
+								color: #fff;
+								font-family: 'futura-bk';
+								font-size: 14px;
+								line-height: 16px;
+								text-transform: uppercase;
+								background-color: @pg-green;
+								padding: 12px 32px;
+							}
+						}
+					}
+				}
+			}
+		}
+		/*result*/
+		
+		&.recirculation{
+			min-height: 484px;
+			padding: 0;
+			margin: 70px 0 0 40px;
+			
+			div{
+				font-family: 'futura-bk';
+				font-size: 12px;
+				line-height: 14px;
+				background: url('../images/games/sprite-deploy-game.png') no-repeat 0 0 transparent;
+				padding: 5px 0 5px 30px;
+				
+				&.partenaire-logo,&.col-md-11,&.offer{
+					background:none;
+					padding:0 15px;
+				}
+				&.col-md-11,&.offer{
+					padding:0;
+				}
+				&.offer{
+					text-align: center;
+					
+					.btn-default{
+						margin: 20px 0 0 0;
+						border: 0;
+						border-bottom: 2px solid #25967b;
+						color: #fff;
+						font-family: 'futura-bk';
+						font-size: 14px;
+						line-height: 16px;
+						text-transform: uppercase;
+						background-color: @pg-green;
+						padding: 12px 32px;
+					}
+				}
+			}
+			.feed-news{
+				display:none;
+			}
+			.row{
+				&.partner{
+					padding:0;
+					margin: 15px 0 !important;
+					background: none;
+					
+					.col-md-3{
+						padding:0;
+						background: none;
+						
+						a{
+							float:left;
+							color:@pg-black;
+							font-family: 'futura-bk';
+							font-size: 12px;
+							line-height: 14px;
+									
+							div{
+								background: none;
+							}
+						}
+					}
+				}
+			}
+			.other-games{
+				background: url('../images/common/puce-sb-block.png') no-repeat left top transparent;
+				padding: 0 0 0 20px;
+				margin: 40px 0 0 0;
+				
+				h2{
+					font-family: 'futura-bk';
+					font-size: 14px;
+					line-height: 16px;
+					color:@pg-orange;
+					padding:0;
+				}
+			}
+		}
+		/*recirculation*/
+	}
+	/* wrap-game*/
+
+}
+.social-share{
+  	float: left;
+	width: 100%;
+	margin:0;
+  	li{
+  		float:left;
+  		margin:0 0 0 8px;
+  		
+  		&:first-child{
+  			margin:0;
+  		}
+  		
+  		.link{
+  			-webkit-border-radius: 50%;
+			-moz-border-radius: 50%;
+			border-radius: 50%;
+			width:35px;
+			height:35px;
+			float: left;
+			text-indent: -9999px;
+			background-size: auto 60% !important;
+  			&.fb{
+  				background:url('../images/common/icon-social.png') no-repeat 12px center #262626;
+				
+				&:hover{
+					background-color:@pg-fb;
+				}
+  			}
+  			&.twitter{
+  				background:url('../images/common/icon-social.png') no-repeat -32px center #262626;
+  				&:hover{
+					background-color:@pg-twitter;
+				}
+  			}
+  			&.google{
+  				background:url('../images/common/icon-social.png') no-repeat -77px center #262626;
+  				&:hover{
+					background-color:@pg-google;
+				}
+  			}
+  		}
+  	}
+ }

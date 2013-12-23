@@ -1,0 +1,460 @@
+<?php $this->plugin('translate')->setTranslatorTextDomain('playgrounduser');// Pour le texte ?>
+<!-- USER MODIFY -->
+<div id="account-modify" class="row">
+	<?php if ($statusPassword === true) : ?>
+    <div class="alert alert-success">
+        <?php echo $this->translate('Password changed successfully.') ?>
+    </div>
+    <?php elseif ($statusPassword === false) : ?>
+    <div class="alert alert-error">
+        <?php echo $this->translate('Unable to update your password. Please try again.') ?>
+    </div>
+    <?php endif; ?>
+    <?php if ($statusEmail === true) : ?>
+    <div class="alert alert-success">
+        <?php echo $this->translate('Email address changed successfully.') ?>
+    </div>
+    <?php elseif ($statusEmail === false) : ?>
+    <div class="alert alert-error">
+        <?php echo $this->translate('Unable to update your email address. Please try again.') ?>
+    </div>
+    <?php endif; ?>
+    <?php if ($statusInfo === true) : ?>
+    <div class="alert alert-success">
+        <?php echo $this->translate('Info changed successfully.') ?>
+    </div>
+    <?php elseif ($statusInfo === false) : ?>
+    <div class="alert alert-error">
+        <?php echo $this->translate('Unable to update your info. Please try again.') ?>
+    </div>
+    <?php endif; ?>
+
+	<!-- content -->
+	<h1>
+	   	<?php echo $this->translate('Change my informations') ?>
+	</h1>
+	<!-- update login -->
+	<div id="wrap-account">
+		<div id="update-login" class="row">
+			<div class="update-login-block">
+	            <h3>
+				    <?php echo $this->translate('Change my password') ?>
+				</h3>
+	            <p class="desc-form">
+				    <?php echo $this->translate('Your username allows you to login to your account Playground') ?>.
+				</p>
+			    <?php
+	            $formEmail = $this->changeEmailForm;
+	            $formEmail->prepare();
+	            $formEmail->setAttribute('action', $this->url('frontend/zfcuser/profile', array('channel' => $this->channel)));
+	            $formEmail->setAttribute('method', 'post');
+	            echo $this->form()->openTag($formEmail);
+			    echo $this->formInput($formEmail->get('identity'));
+				echo $this->formElementErrors($formEmail->get('identity'));
+				?>
+				<div class="row">
+					<div class="col-md-4">
+						<p>
+						    <?php echo $formEmail->get('newIdentity')->getLabel(); ?> :
+						</p>
+					</div>
+					<div class="col-md-6">
+						<?php echo $this->formInput($formEmail->get('newIdentity')->setAttributes(array('class' => 'form-control'))) ?>
+						<?php echo $this->formElementErrors($formEmail->get('newIdentity')) ?>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<p>
+						    <?php echo $formEmail->get('newIdentityVerify')->getLabel(); ?> :
+						</p>
+					</div>
+					<div class="col-md-6">
+						<?php echo $this->formInput($formEmail->get('newIdentityVerify')->setAttributes(array('class' => 'form-control'))) ?>
+						<?php echo $this->formElementErrors($formEmail->get('newIdentityVerify')) ?>
+					</div>
+				</div>
+	
+				<div class="row">
+					<div class="col-md-4">
+						<p>
+						    <?php echo $formEmail->get('credential')->getLabel(); ?> :
+						</p>
+					</div>
+					<div class="col-md-6 credential">
+						<?php echo $this->formInput($formEmail->get('credential')->setAttributes(array('class' => 'form-control'))) ?>
+						<?php echo $this->formElementErrors($formEmail->get('credential')) ?>
+					</div>
+				</div>
+	            <div class="wrapper-submit col-md-12">
+	                <input type="submit" class="btn btn-default" value="Valider"/>
+	                <div class="clearfix"></div>
+	            </div>
+	            <div class="clearfix"></div>
+				<?php echo $this->form()->closeTag() ?>
+			</div>
+			<div class="update-login-block">
+				<?php
+	            $form = $this->changePasswordForm;
+	            $form->prepare();
+	            $form->setAttribute('action', $this->url('frontend/zfcuser/profile', array('channel' => $this->channel)));
+	            $form->setAttribute('method', 'post');
+				$form->setAttribute('class', 'validate');
+	            $emailElement = $form->get('identity');
+	            $emailElement->setAttributes(array('class' => 'form-control'));
+	            $emailElement->setValue($this->zfcUserIdentity()->getEmail());
+	            echo $this->form()->openTag($form);
+	            echo $this->formElementErrors($form->get('identity'));
+	            echo $this->formInput($form->get('identity'));
+	            ?>
+				<h3>
+				    <?php echo $this->translate('Change password');?>
+				</h3>
+				<div class="row">
+					<div class="col-md-4">
+						<p>
+						    <?php echo $form->get('credential')->getLabel(); ?> :
+						</p>
+					</div>
+					<div class="col-md-6">
+						<?php echo $this->formInput($form->get('credential')->setAttributes(array('class' => 'form-control'))) ?>
+						<?php echo $this->formElementErrors($form->get('credential')) ?>
+					</div>
+				</div>
+	
+				<div class="row">
+					<div class="col-md-4">
+						<p>
+						    <?php echo $form->get('newCredential')->getLabel(); ?> :
+						    <br/>
+							<span class="annotation">
+							    6 caractères minimum
+							</span>
+					    </p>
+					</div>
+					<div class="col-md-6">
+						<?php echo $this->formInput($form->get('newCredential')->setAttributes(array('class' => 'form-control'))) ?>
+						<?php echo $this->formElementErrors($form->get('newCredential')) ?>
+					</div>
+				</div>
+	
+				<div class="row">
+					<div class="col-md-4">
+						<p>
+						    <?php echo $form->get('newCredentialVerify')->getLabel(); ?> :
+						</p>
+					</div>
+					<div class="col-md-6">
+						<?php echo $this->formInput($form->get('newCredentialVerify')->setAttributes(array('class' => 'form-control'))) ?>
+						<?php echo $this->formElementErrors($form->get('newCredentialVerify')) ?>
+					</div>
+				</div>
+	            <div class="wrapper-submit col-md-12">
+	                <input type="submit" class="btn btn-default" value="Valider"/>
+	                <div class="clearfix"></div>
+	            </div>
+	            <div class="clearfix"></div>
+				<?php echo $this->form()->closeTag() ?>
+			</div>
+	
+		</div>
+	
+		<!-- update adresse -->
+		<!-- start form change adresse -->
+	
+		<?php
+	    $formInfo = $this->changeInfoForm;
+	
+	    $formInfo->prepare();
+	    $formInfo->setAttribute('action', $this->url('frontend/zfcuser/profile', array('channel' => $this->channel)));
+	    $formInfo->setAttribute('method', 'post');
+		$formInfo->setAttribute('class', 'validate');
+	
+	    ?>
+	    <?php echo $this->form()->openTag($formInfo) ?>
+	    <?php echo $this->formHidden($formInfo->get('email')); ?>
+			<div id="update-adresse" class="row backgrey">
+	            <h3>
+				    <?php echo $this->translate('Modify my details');?>
+				</h3>
+	            <p class="desc-form">
+	                <?php echo $this->translate('Confirm or enter your info and earn points !');?>
+	            </p>
+				<div class="row">
+					<div class="col-md-4">
+						<p>
+						    <?php echo $this->translate('Your pseudo');?> :
+						</p>
+					</div>
+					<div class="col-md-6">
+						<?php echo $this->formInput($formInfo->get('username')->setAttributes(array('class' => 'form-control'))); ?>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-4">
+						<p>
+						    <?php echo $formInfo->get('avatar')->getLabel(); ?> : 
+						</p>
+					</div>
+					<div class="col-md-6" id="avatarfile" data-profilfile="Votre photo de profil">
+						<?php echo $this->formFile($formInfo->get('avatar')); ?>
+						<?php echo $this->formElementErrors($formInfo->get('avatar')) ?>
+					</div>
+					<div class="col-md-2">
+						<p class="orange-points">
+						    + 150 pts
+						</p>
+					</div>
+				</div>
+	
+				<div class="row civility">
+					<div class="col-md-4">
+					    <p>
+					        <?php echo $formInfo->get('title')->getLabel(); ?>
+					        <span class="red">*</span> :
+				        </p>
+					</div>
+					<div class="col-md-6">
+					    <?php echo $this->formRadio($formInfo->get('title')) . $this->formElementErrors($formInfo->get('title')) ?>
+					</div>
+				</div>
+	
+				<div class="row">
+					<div class="col-md-4">
+					    <p>
+					        <?php echo $formInfo->get('lastname')->getLabel(); ?>
+					        <span class="red">*</span> :
+				        </p>
+					</div>
+					<div class="col-md-6">
+						<?php echo $this->formInput($formInfo->get('lastname')->setAttributes(array('class' => 'form-control'))) ?>
+						<?php echo $this->formElementErrors($formInfo->get('lastname')) ?>
+					</div>
+					<div class="col-md-2">
+						<p class="orange-points">+ 25 pts</p>
+					</div>
+				</div>
+	
+				<div class="row">
+					<div class="col-md-4">
+					    <p>
+					        <?php echo $formInfo->get('firstname')->getLabel(); ?>
+					        <span class="red">*</span> :
+				        </p>
+					</div>
+					<div class="col-md-6">
+						<?php echo $this->formInput($formInfo->get('firstname')->setAttributes(array('class' => 'form-control'))) ?>
+						<?php echo $this->formElementErrors($formInfo->get('firstname')) ?>
+					</div>
+					<div class="col-md-2">
+						<p class="orange-points">
+						    + 25 pts
+						</p>
+					</div>
+				</div>
+	
+				<div class="row">
+					<div class="col-md-4">
+					    <p>
+					        <?php echo $formInfo->get('address')->getLabel(); ?> :
+					    </p>
+					</div>
+					<div class="col-md-6">
+						<?php echo $this->formInput($formInfo->get('address')->setAttributes(array('class' => 'form-control'))) ?>
+						<?php echo $this->formElementErrors($formInfo->get('address')) ?>
+					</div>
+					<div class="col-md-2">
+						<p class="orange-points">
+						    + 150 pts
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<p>
+						    <?php echo $formInfo->get('address2')->getLabel(); ?> :
+						</p>
+					</div>
+					<div class="col-md-6">
+						<?php echo $this->formInput($formInfo->get('address2')->setAttributes(array('class' => 'form-control'))) ?>
+						<?php echo $this->formElementErrors($formInfo->get('address2')) ?>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4 zipcode">
+						<p>
+						    <?php echo $formInfo->get('postal_code')->getLabel(); ?>
+						    <span class="red">*</span> :
+					    </p>
+					</div>
+					<div class="col-md-6">
+						<?php echo $this->formInput($formInfo->get('postal_code')->setAttributes(array('class' => 'form-control'))) ?>
+						<?php echo $this->formElementErrors($formInfo->get('postal_code')) ?>
+					</div>
+					<div class="col-md-2">
+						<p class="orange-points">
+						    + 25 pts
+						</p>
+					</div>
+				</div>
+	
+				<div class="row">
+					<div class="col-md-4">
+						<p>
+						    <?php echo $formInfo->get('city')->getLabel(); ?> :
+						</p>
+					</div>
+					<div class="col-md-6">
+						<?php echo $this->formInput($formInfo->get('city')->setAttributes(array('class' => 'form-control'))) ?>
+						<?php echo $this->formElementErrors($formInfo->get('city')) ?>
+					</div>
+					<div class="col-md-2">
+						<p class="orange-points">+ 75 pts</p>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-4">
+						<p>
+						    <?php echo $formInfo->get('country')->getLabel(); ?> :
+						</p>
+					</div>
+					<div class="col-md-6">
+						<?php echo $this->formSelect($formInfo->get('country')->setAttributes(array('class' => 'form-control'))) ?>
+						<?php echo $this->formElementErrors($formInfo->get('country')) ?>
+					</div>
+					<div class="col-md-2">
+						<p class="orange-points">
+						    + 0 pts
+						</p>
+					</div>
+				</div>
+	
+				<div class="row">
+					<div class="col-md-4">
+						<p>
+						    <?php echo $formInfo->get('telephone')->getLabel(); ?> :
+						</p>
+					</div>
+					<div class="col-md-6 phone">
+						<?php echo $this->formInput($formInfo->get('telephone')->setAttributes(array('class' => 'form-control'))) ?>
+						<?php echo $this->formElementErrors($formInfo->get('telephone')) ?>
+					</div>
+					<div class="col-md-2">
+						<p class="orange-points">
+						    + 150 pts
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<p>
+						    <?php echo $formInfo->get('dob')->getLabel(); ?>
+						    <span class="red">*</span> :
+					    </p>
+					</div>
+					<div class="col-md-6">
+						<?php echo $this->formDateTime($formInfo->get('dob')->setAttributes(array('class' => 'form-control'))) ?>
+						<?php echo $this->formElementErrors($formInfo->get('dob')) ?>
+					</div>
+				</div>
+				<div class="wrapper-submit col-md-12">
+				    <input type="submit" class="btn btn-default" value="Valider"/>
+				    <div class="clearfix"></div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		<?php echo $this->form()->closeTag() ?>
+		<!-- end form change adresse-->
+	</div>
+	<?php
+    $formPrize = $this->prizeCategoryForm;
+    $formPrize->setAttribute('action', $this->url('frontend/zfcuser/profile_prizes', array('channel' => $this->channel)));
+    $formPrize->setAttribute('method', 'post');
+    
+    if(($formPrize->get('prizeCategory') instanceof Zend\Form\Element\MultiCheckbox )) :
+        echo $this->form()->openTag($formPrize);
+    ?>
+    	<!-- update hobby-->
+    	<div id="update-hobby" class="row backgrey">
+    		<p class="">
+    		    <?php echo $this->translate('Interests'); ?>
+    		</p>
+    		<p class="orange">
+    		    <b id="motto-gagner-points-hobby">
+    		        <?php echo $this->translate('Indicate your interests and win 100 points !'); ?>
+    		    </b>
+    		</p>
+    		<div class="row hobbies">
+                <?php echo $this->formHidden($formPrize->get('user')); ?>
+                <?php echo $this->formMultiCheckbox($formPrize->get('prizeCategory')); ?>
+    		</div>
+            <div class="wrapper-submit col-md-10">
+                <input type="submit" class="btn btn-default" value="Valider"/>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+    	</div>
+        <?php
+        echo $this->form()->closeTag($formPrize);
+    endif;
+    $formBlockAccount = $this->blockAccountForm;
+    $formBlockAccount->setAttribute('action', $this->url('frontend/zfcuser/blockaccount', array('channel' => $this->channel)));
+    $formBlockAccount->setAttribute('method', 'post');
+    $emailElement = $formBlockAccount->get('identity');
+    $emailElement->setValue($this->zfcUserIdentity()->getEmail());
+    ?>
+    <!-- delete account-->
+	<div id="delete-account" class="row backgrey">
+	    <?php if($this->zfcUserIdentity()->getState() == 2):?>
+    		<p class="">
+    		    <?php echo $this->translate('Reactivate my account'); ?>
+    		</p>
+    		<p>
+    		    <?php echo $this->translate('To reactivate my account'); ?> : 
+    		</p>
+    		<p>
+    			<?php echo $this->translate('Reactivate my account instuctions'); ?>
+    		</p>
+		<?php else:?>
+            <h3>
+    		    <?php echo $this->translate('Delete my account'); ?>
+    		</h3>
+            <p class="desc-form">
+    		    <?php echo $this->translate('To delete my account'); ?> : 
+    		</p>
+    		<p>
+    			<?php echo $this->translate('Delete my account instructions'); ?>
+    		</p>
+		<?php
+		endif;
+        echo $this->form()->openTag($formBlockAccount);
+        echo $this->formElementErrors($formBlockAccount->get('identity'));
+        echo $this->formHidden($formBlockAccount->get('activate'));
+        echo $this->formInput($formBlockAccount->get('identity')->setAttributes(array('class' => 'form-control')));
+        ?>
+		<div class="row">
+			<div class="col-md-4">
+				<p>
+				    <?php echo $form->get('credential')->getLabel(); ?> :
+				</p>
+			</div>
+			<div class="col-md-6">
+				<?php echo $this->formInput($formBlockAccount->get('credential')->setAttributes(array('class' => 'form-control'))) ?>
+				<?php echo $this->formElementErrors($formBlockAccount->get('credential')) ?>
+			</div>
+		</div>
+        <div class="wrapper-submit delete col-md-12">
+            <?php echo $this->formInput($formBlockAccount->get('submit')->setAttributes(array('class' => 'btn btn-default'))); ?>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+		<?php
+        echo $this->formInput($formBlockAccount->get('cancel')->setAttributes(array('class' => 'form-control')));
+        echo $this->formInput($formBlockAccount->get('confirm_submit'));
+        echo $this->form()->closeTag($formBlockAccount);
+        ?>
+	</div>
+</div>
+<!-- END USER MODIFY -->

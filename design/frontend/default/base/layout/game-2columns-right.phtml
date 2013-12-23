@@ -1,0 +1,57 @@
+<?php echo $this->doctype(); ?>
+<?php 
+$children = $this->viewModel()
+    ->getCurrent()
+    ->getChildren();
+
+$ourView  = $children[0];
+?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+    <head>
+        <?php echo $this->head();?>
+    </head>
+    <body>
+		<div id="container">
+		    <div id="fb-root"></div>
+            <div id="content" class="row-fluid">
+                <!-- <div id="ad-left"><img src="<?php //echo $this->frontendAssetPath('images/adserving/adserving-left.jpg')?>" border="0" /></div>
+                <div id="ad-right"><img src="<?php //echo $this->frontendAssetPath('images/adserving/adserving-right.jpg')?>" border="0" /></div> -->
+                <?php echo $this->header(array('channel' => $this->channel));?>
+                <!-- <div id="ad-mega-banner"><img src="<?php //echo $this->frontendAssetPath('images/adserving/adserving-mega-banner.jpg')?>" border="0" /></div> -->
+                <?php if (isset($ourView->flashMessages) && count($ourView->flashMessages)) : ?>
+                <ul class="flashMessages">
+                    <?php foreach ($ourView->flashMessages as $fMessage) : ?>
+                    <li><?php echo $fMessage; ?></li>
+                    <?php endforeach; ?>
+                </ul>
+                <?php endif; ?>
+                <div id="containerpage" >
+                	<div class="row">
+                		<div class="main-content col-md-8">
+                			<?php echo $this->content; ?>
+                		</div>
+                		<?php echo $this->column_right; ?>
+                	</div>
+                </div>
+                <?php echo $this->footer(array('channel' => $this->channel));?>
+            </div>
+        </div>
+        <?php echo $this->inlineScript() ?>
+
+        <!-- POPIN RULES -->
+        <div class="modal fade" id="rules-popin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $this->translate('Close'); ?></button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <div id="rules-popin">
+            <div class="modal-body"></div>
+        </div>
+        <!-- POPIN RULES -->
+    </body>
+</html>

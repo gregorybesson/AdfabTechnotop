@@ -1,0 +1,103 @@
+#contact-us {
+  padding: 0 0 0 40px;
+  
+  h1{
+    padding:0;
+    margin:0 0 20px 0;
+  }
+  
+  .wrap-form{
+    border:1px solid #e6e6e3;
+    background-color:f2f2f2;
+    padding:20px;
+    
+    h2{
+      font-family:@futura;
+      font-size:14px;
+      line-height:20px;
+      padding: 0 0 0 20px;
+      background:url('../images/common/puce-sb-block.png') no-repeat left center transparent;
+      color:@pg-orange;
+    }
+    
+    form{
+      #contact-inner{
+        .row{
+          margin: 0 0 0 60px;
+          
+          .block-right{
+            padding:0;
+            margin:0 0 15px 0;
+            
+            &.lastname,&.firstname{
+              width: 140px;
+            }
+            &.firstname{
+              margin:0 0 35px 0;
+            }
+            &.email{
+              width: 180px;
+            }
+            input{
+              width:100%;
+              border-radius: 0;
+              border: 1px solid #e6e6e3;
+              background-color:@pg-white;
+              padding: 6px;
+              height: 30px;
+              font-family:@futura;
+              font-size:12px;
+              line-height:14px;
+            }
+            &.contact-select{
+              margin:0;
+              width:180px;
+              
+              .selector{
+                width: 180px !important;
+                
+                span{
+                  width: 169px !important;
+                }
+                select{
+                  width:100%;
+                  top: 0;
+                  border-radius: 0;
+                  border: 1px solid #e6e6e3;
+                  background-color: #e6e6e3;
+                  padding: 6px;
+                  height: 30px;
+                  font-family:@futura;
+                  font-size:12px;
+                  line-height:14px;
+                }
+              }
+            }
+            &.contact-textarea{
+              textarea{
+                width:100%;
+                border-radius: 0;
+                border: 1px solid #e6e6e3;
+                background-color:@pg-white;
+                padding: 12px;
+                height: 125px;
+                font-family:@futura;
+                font-size:12px;
+                line-height:14px;
+                resize: none;
+              }
+            }
+          }
+        }
+        #btn-send{
+          width: 81%;
+          padding:0;
+          
+          div{
+            padding:0;
+          }
+        }
+      }
+    }
+  }
+}/*contact us*/

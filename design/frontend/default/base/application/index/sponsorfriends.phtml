@@ -1,0 +1,65 @@
+<?php
+$this->plugin('translate')->setTranslatorTextDomain('playgroundgame');
+$fbShareMsg = $this->translate('Come play games Playground');
+$twShareMsg = $this->translate('Come play games Playground');
+$fbRequestMsg = $this->translate('Come play games Playground');
+?>
+<!-- SPONSOR (parrainer amis) (user page) -->
+<div id="sponsor-friends" class="row">
+	<div
+	   id="datas-result"
+	   data-url="<?php echo $this->url('frontend', array('channel' => $this->channel), array('force_canonical' => true)); ?>" data-secretkey="<?php echo $this->secretKey; ?>"
+	   data-fbmsg="<?php echo $fbShareMsg; ?>" data-twmsg="<?php echo $twShareMsg; ?>"
+	   data-fbrequest="<?php echo $fbRequestMsg; ?>"
+	   data-sociallink="<?php echo $this->socialLinkUrl; ?>"
+	   data-route="<?php echo $this->url('frontend/sponsorfriends', array('channel' => $this->channel)); ?>">
+    </div>
+	<!-- content -->
+	<div id="badges-resume">
+		<h1>
+		    <?php echo $this->translate('Sponsor my friends'); ?>
+		</h1>
+		<h2>
+			<?php echo $this->translate('Invite your friends and earn 250 points for each friend who registers on Playground'); ?>
+		</h2>
+		<!-- SPONSOR (parrainer) -->
+        <?php echo $this->partial('playground-game/partial/result-share'); ?>
+		<!-- //END SPONSOR (parrainer) -->
+	</div>
+	<div id="activity-story">
+		<?php $i=0; foreach($this->activities as $story): ?>
+		<div id="list-activity" class="row-fluid orange-dot-top">
+			<div class="span10">
+				<!-- @todo : avoir des templates par type de telling -->
+				<?php //echo $story['openGraphMapping']; ?>
+				A <?php echo $story['created_at']->format('d-m-Y H:i:s') ?>, <?php echo $this->translate($story['label']); ?>
+					<?php
+					foreach ($story['object'] as $type => $values) :
+						echo $type."<br />";
+						if(is_array($values)) {
+						foreach ($values as $key => $value) :
+							if(is_array($value)) {
+								foreach ($value as $k => $v) {
+									echo $k.":".$v."<br />";
+								}
+							} else {
+								echo $key.":".$value."<br />";
+							}
+
+						endforeach;
+						} else {
+							echo $value;
+						}
+
+						echo "<br/>";
+					endforeach;
+					?>
+
+				<?php echo $story['points']?> points
+
+			</div>
+		</div>
+		<?php  $i++; endforeach;?>
+	</div>
+</div>
+<!-- END SPONSOR (parrainer amis) (user page) -->

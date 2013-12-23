@@ -1,0 +1,11 @@
+<?php $this->plugin('translate')->setTranslatorTextDomain('playgroundgame');// Pour le texte ?>
+
+<!-- THEMATIQUES -->
+<div id="jeux-concours" class="thematique">
+    <div class="row-fluid">
+        <h1><?php echo $this->prizecategoryname;?></h1>
+    </div>
+
+    <?php $this->partialLoop()->setObjectKey('game')?>
+    <?php echo $this->partialLoop('playground-game/partial/game.phtml', $this->games) ?>
+</div><!-- END THEMATIQUES -->

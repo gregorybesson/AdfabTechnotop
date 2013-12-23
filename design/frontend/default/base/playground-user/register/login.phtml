@@ -1,0 +1,27 @@
+<?php $this->plugin('translate')->setTranslatorTextDomain('playgrounduser');// Pour le texte ?>
+<?php
+$form = $this->loginForm;
+$form->prepare();
+$form->setAttribute('action', $this->url('frontend/zfcuser/ajaxlogin', array('channel' => $this->channel)));
+$form->setAttribute('id', 'register-login');
+$form->setAttribute('method', 'post'); ?>
+<?php echo $this->form()->openTag($form); ?>
+    <div class="row">
+        <div class="col-md-3" >
+            <?php echo $this->formElementErrors($form->get('identity')->setAttributes(array('class' => 'form-control'))); ?>
+            <?php echo $this->formInput($form->get('identity')); ?>
+        </div>
+        <div class="col-md-3" >
+            <?php echo $this->formInput($form->get('credential')->setAttributes(array('class' => 'form-control'))); ?>
+        </div>
+        <div id="btn-connect" class="col-md-2">
+            <?php echo $this->formButton($form->get('submit')->setAttributes(array('class' => 'btn btn-default'))) ?>
+        </div>
+    </div>
+        <a href="<?php echo $this->url('frontend/zfcuser/forgotpassword', array('channel' => $this->channel)) ?>">
+            <?php echo $this->translate('Forgot your password?');?>
+        </a>
+    <?php if ($this->redirect): ?>
+        <input type="hidden" name="redirect" value="<?php echo $this->redirect ?>" />
+    <?php endif ?>
+<?php echo $this->form()->closeTag() ?>

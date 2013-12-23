@@ -1,0 +1,182 @@
+<?php $this->plugin('translate')->setTranslatorTextDomain('playgrounduser');// Pour le texte ?>
+<!-- NEW USER -->
+<div id="new-user" >
+	<div>
+		<h2>
+		    <?php echo $this->translate('login or register'); ?>
+		</h2>
+		<!-- login -->
+		<div id="login-part" data-redirect="<?php  if($this->redirect) : echo $this->redirect; else : $this->url('frontend', array('channel' => $this->channel)); endif; ?>">
+			<div class="row">
+				<div class="block-left col-md-12">
+					<p>
+					    <?php echo $this->translate('Already an account ?')?>
+					</p>
+				</div>
+				<div class="block-right col-md-12">
+					<?php if(!$this->zfcUserIdentity()): ?>
+					    <?php echo $this->userLoginWidget(array(
+		    		        'redirect' => ($this->redirect) ? $this->redirect : $this->url('frontend', array('channel' => $this->channel)),
+		    		        'enableRegistration' => false,
+		    		        'template' => 'playground-user/register/login.phtml'
+			    		)); ?>
+					<?php endif;?>
+					<div class="input-login-error"></div>
+				</div>
+			</div>
+		</div>
+		<?php
+	    if (!$this->enableRegistration) {
+	        print "Registration is disabled";
+	        return;
+	    }
+	    $form = $this->registerForm;
+	    $form->prepare();
+	    $form->setAttribute('method', 'post');
+		$form->setAttribute('class', 'validate');
+	    ?>
+		<!-- create account -->
+        <h2>
+            <?php echo $this->translate('Create an account')?>
+        </h2>
+		<div id="register-form" class="row">
+			<div id="fb-connect" class="row">
+				<p class="col-md-4">
+				    <?php echo $this->translate('Use Facebook connect')?>
+				</p class="col-md-8">
+				<p>
+				    <a href="<?php echo $this->url('frontend/zfcuser/register',array('socialnetwork' => 'facebook', 'channel' => $this->channel)) . ($this->redirect ? '?redirect='.$this->redirect : '');?>">
+			           <img src="<?php echo $this->frontendAssetPath('images/common/fb-connect.png') ?>" alt="Facebook Connect" />
+			        </a>
+				</p>
+			</div>
+			<!-- start form -->
+	        <?php echo $this->form()->openTag($form) ?>
+				<div class="row">
+					<div class="block-left yourtitle col-md-4"><?php echo $form->get('title')->getLabel(); ?> <span>*</span> :</div>
+					<div class="block-right civility col-md-4">
+						<?php echo $this->formRadio($form->get('title')) . $this->formElementErrors($form->get('title')) ?>
+					</div>
+				</div>
+				<div class="row">
+					<div class="block-left col-md-4">
+					    <?php echo $form->get('lastname')->getLabel(); ?> 
+					    <span>*</span> :
+					</div>
+					<div class="block-right col-md-4">
+						<?php echo $this->formInput($form->get('lastname')->setAttributes(array('class' => 'form-control'))) ?>
+						<?php echo $this->formElementErrors($form->get('lastname')) ?>
+					</div>
+				</div>
+				<div class="row">
+					<div class="block-left col-md-4">
+					    <?php echo $form->get('firstname')->getLabel(); ?>
+					    <span>*</span> :
+					</div>
+					<div class="block-right col-md-4">
+						<?php echo $this->formInput($form->get('firstname')->setAttributes(array('class' => 'form-control'))) ?>
+						<?php echo $this->formElementErrors($form->get('firstname')) ?>
+					</div>
+				</div>
+				<div class="row">
+					<div class="block-left col-md-4">
+					    <?php echo $form->get('email')->getLabel(); ?> 
+					    <span>*</span> :
+				    </div>
+					<div class="block-right col-md-4">
+					    <?php echo $this->formInput($form->get('email')->setAttributes(array('class' => 'form-control'))) ?>
+					    <?php echo $this->formElementErrors($form->get('email')) ?>
+					</div>
+				</div>
+				<?php //I do hide these fields on Facebook registration ?>
+				<?php if($form->has('password')):?>
+				<div class="row">
+					<div class="block-left col-md-4">
+					    <?php echo $form->get('password')->getLabel(); ?>
+					    <span>*</span> :
+                        <span class="annotation">
+                            ( 6 caractères minimum )
+                        </span>
+					</div>
+					<div class="block-right col-md-4">
+						<?php echo $this->formInput($form->get('password')->setAttributes(array('class' => 'form-control'))) ?>
+						<?php echo $this->formElementErrors($form->get('password')) ?>
+					</div>
+				</div>
+				<div class="row">
+					<div class="block-left col-md-4">
+					    <?php echo $form->get('passwordVerify')->getLabel(); ?> 
+					    <span>*</span> :
+					</div>
+					<div class="block-right col-md-4">
+						<?php echo $this->formInput($form->get('passwordVerify')->setAttributes(array('class' => 'form-control'))) ?>
+						<?php echo $this->formElementErrors($form->get('passwordVerify')) ?>
+					</div>
+				</div>
+				<?php endif;?>
+				<div class="row">
+					<div class="block-left col-md-4"><?php echo $form->get('dob')->getLabel(); ?><span>*</span> :</div>
+					<div class="block-right col-md-4 register-select mobile">
+						<?php echo $this->formDateTime($form->get('dob')->setAttributes(array('class' => 'form-control'))) ?>
+						<?php echo $this->formElementErrors($form->get('dob')) ?>
+					</div>
+				</div>
+				<div class="row">
+					<div class="block-left col-md-4">
+					    <?php echo $form->get('postal_code')->getLabel(); ?> 
+					    <span>*</span> :
+					</div>
+					<div id="wrapcp" class="block-right col-md-4">
+						<?php echo $this->formInput($form->get('postal_code')->setAttributes(array('class' => 'form-control'))) ?>
+						<?php echo $this->formElementErrors($form->get('postal_code')) ?>
+					</div>
+				</div>
+                <h2>
+                    <?php echo $this->translate('Inscrivez-vous aux newsletters :')?>
+                </h2>
+				<!-- opt-in -->
+				<div class="row opt-in">
+					<div class="col-md-4 raz">
+						<p>
+						    <?php echo $this->translate('Je souhaite recevoir la newsletter de Playground')?> 
+						    <span>*</span>
+                            <br />
+                            <span class="annotation"><?php echo $this->translate('(nouveaux jeux-concours, bons plans, invitations VIP...)')?></span>
+						</p>
+					</div>
+					<div class="col-md-6">
+						<?php echo $this->formRadio($form->get('optin')) ?>
+						<?php echo $this->formElementErrors($form->get('optin')) ?>
+					</div>
+				</div>
+				<div class="row opt-in">
+					<div class="col-md-4">
+						<p>
+						    <?php echo $this->translate('Je souhaite recevoir les offres des partenaires de Playground')?> 
+						    <span>*</span>
+						    <br />
+                            <span class="annotation"><?php echo $this->translate('(réductions, bons plans...)')?></span>
+						</p>
+					</div>
+					<div class="col-md-6">
+						<?php echo $this->formRadio($form->get('optinPartner')) ?>
+						<?php echo $this->formElementErrors($form->get('optinPartner')) ?>
+					</div>
+				</div>
+				<div id="btn-create-account" class="row">
+					<div class="col-md-7 center">
+						<?php echo $this->formButton($form->get('submit')->setAttributes(array('class' => 'btn btn-default'))) ?>
+					</div>
+				</div>
+				<?php if ($this->redirect): ?>
+	                <input type="hidden" name="redirect" value="<?php echo $this->redirect ?>" />
+	            <?php endif ?>
+	        <?php echo $this->form()->closeTag() ?>
+			<!-- end form -->
+		</div>
+		<p id="annotation">
+		    <?php echo $this->translate('* champs obligatoires')?>
+		</p>
+	</div>
+</div>
+<!-- END NEW USER -->

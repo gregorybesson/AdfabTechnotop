@@ -1,0 +1,126 @@
+<?php $achievements =  $this->userBadges(0,true);?>
+
+<!-- USER ACCOUNT -->
+<div id="account-badge" class="row-fluid">
+	<!-- mes badges -->
+	<div id="my-badges">
+		<p class="h1">Mes badges</p>
+		<ul>
+            <?php $i=0;foreach($achievements as $key=>$achievement): ?>
+    		    <?php $badge = $achievement['reward'];?>
+    		    <?php if($badge):?>
+	    		    <?php if($badge->getHide() == false || in_array($badge->getId(), $achievement['userReward'])) : ?>
+	    			<li<?php if ($i%5 == 0): ?> id="first-badge"<?php endif;?>>
+	    			     <?php if(in_array($badge->getId(), $achievement['userReward'])):?>
+	    			     	<?php if($badge->getImage()): ?>
+	    			        	<img src="/<?php echo $badge->getImage();?>" alt="/<?php echo $badge->getImage(); ?>" />
+	    			     	<?php else: ?>
+	    			     		<img  src="<?php echo $this->frontendAssetPath('images/badges/big-default.png')?>" alt="" />
+	    			     	<?php endif; ?>
+	    			     <?php else:?>
+	    			         <img  src="<?php echo $this->frontendAssetPath('images/badges/big-default.png')?>" alt="" />
+	    			     <?php endif;?>
+	    			     <div class="<?php echo ($badge)? strtolower($badge->getTitle()):'silverlight'?>">
+				             <p><b><?php echo ucfirst(strtolower($this->translate($badge->getTitle())));?></b></p>
+	    			     </div>
+	    		    </li>
+    			<?php $i++;endif; ?>
+    			<?php endif; ?>
+            <?php endforeach;?>
+		</ul>
+	</div>
+
+	<!-- mes points -->
+	<div id="my-points">
+		<div id="title-point">
+			<p class="h1">Mes points</p>
+			<p class="f-right"><a class="greenlink" href="<?php echo $this->url('frontend/activity', array('channel' => $this->channel));?>">&gt; Votre historique de points</a></p>
+		</div>
+
+		<div class="row-fluid orange-dot-top">
+			<div class="span8">
+				<p><b>Participer à un jeu</b> <span class="orange-points">+ 100 points</span></p>
+				<p>Participez aux jeux concours pour tenter de gagner pleins de cadeaux, et en plus vous cumulez des points !</p>
+				<p><a class="green-underline" href="<?php echo $this->url('frontend/jeuxconcours', array('channel' => $this->channel));?>">&gt; Voir les jeux en cours</a></p>
+			</div>
+			<div class="span4">
+				<p class="big-points"><?php echo number_format($this->gamesTotal, 0, ',', ' ' ) ?> points</p>
+			</div>
+		</div>
+
+		<div class="row-fluid orange-dot-top">
+			<div class="span8">
+				<p><b>Renseignez les infos de votre compte</b> <span class="orange-points">Jusqu'à + 725 points</span></p>
+				<p>Validez vos informations d'inscriptions, changez votre pseudo ou votre image de profil et renseignez vos coordonnées. Plus vous renseignez d'informations, plus vous gagnez de points !</p>
+				<p><a class="green-underline" href="<?php echo $this->url('frontend/zfcuser/profile', array('channel' => $this->channel));?>">&gt; Modifier mes informations persos</a></p>
+			</div>
+			<div class="span4">
+				<p class="big-points"><?php echo number_format($this->userTotal, 0, ',', ' ' ) ?> points</p>
+			</div>
+		</div>
+
+		<div class="row-fluid orange-dot-top">
+			<div class="span8">
+				<p><b>Inscrivez-vous aux newletter</b> <span class="orange-points">+300 points</span></p>
+				<p><a class="green-underline" href="<?php echo $this->url('frontend/zfcuser/newsletter', array('channel' => $this->channel));?>">&gt; Inscrivez-vous</a> à la newsletter Playground et à celle de nos partenaires officiels</p>
+			</div>
+			<div class="span4">
+				<p class="big-points"><?php echo number_format($this->newsletterTotal, 0, ',', ' ' ) ?> points</p>
+			</div>
+		</div>
+
+		<div class="row-fluid orange-dot-top">
+			<div class="span8">
+				<p><b>Parrainez vos amis</b> <span class="orange-points">+250 points par ami inscrit</span></p>
+				<p>Lorsque vous participe à un jeu, partagez le auprès de vos amis par mail ou sur les réseaux sociaux, chaque nouvel ami qui s'inscrit vous rapporte des points.</p>
+				<p><a class="green-underline" href="<?php echo $this->url('frontend/sponsorfriends', array('channel' => $this->channel)) ?>">&gt; Invitez des amis maintenant!</a></p>
+			</div>
+			<div class="span4">
+				<p class="big-points"><?php echo number_format($this->sponsorshipTotal, 0, ',', ' ' ) ?> points</p>
+			</div>
+		</div>
+
+		<div class="row-fluid orange-dot-top">
+			<div class="span8">
+				<p><b>Atteindre le niveau bronze d'un badge</b> <span class="orange-points">+250 points</span></p>
+			</div>
+			<div class="span4">
+				<p class="big-points"><?php echo number_format($this->badgesBronze, 0, ',', ' ' ) ?> points</p>
+			</div>
+		</div>
+
+		<div class="row-fluid orange-dot-top">
+			<div class="span8">
+				<p><b>Atteindre le niveau argent d'un badge</b> <span class="orange-points">+500 points</span></p>
+			</div>
+			<div class="span4">
+				<p class="big-points"><?php echo number_format($this->badgesSilver, 0, ',', ' ' ) ?> points</p>
+			</div>
+		</div>
+
+		<div class="row-fluid orange-dot-top">
+			<div class="span8">
+				<p><b>Atteindre le niveau or d'un badge</b> <span class="orange-points">+750 points</span></p>
+			</div>
+			<div class="span4">
+				<p class="big-points"><?php echo number_format($this->badgesGold, 0, ',', ' ' ) ?> points</p>
+			</div>
+		</div>
+
+		<div class="row-fluid orange-dot-double">
+			<div class="span8">
+				<p><b>Anniversaire</b> <span class="orange-points">+250 points</span></p>
+				<p>Pour récompenser nous vous offrons des points chaque année le jour de votre inscription !</p>
+			</div>
+			<div class="span4">
+				<p class="big-points"><?php echo number_format($this->anniversaryTotal, 0, ',', ' ' ) ?> points</p>
+			</div>
+		</div>
+
+		<div class="row-fluid orange-dot-double">
+			<p class="big-points">Total : <?php echo number_format($this->total, 0, ',', ' ' ) ?> points</p>
+		</div>
+	</div>
+
+</div>
+<!-- END USER ACCOUNT -->

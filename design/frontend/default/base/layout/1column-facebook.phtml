@@ -1,0 +1,52 @@
+<?php $this->doctype(Zend\View\Helper\Doctype::XHTML5);?>
+<?php echo $this->doctype(); ?>
+<?php $this->plugin('translate')->setTranslatorTextDomain('default');// Pour le texte ?>
+<?php
+$children = $this->viewModel()
+    ->getCurrent()
+    ->getChildren();
+
+$ourView  = $children[0];
+?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://opengraphprotocol.org/schema/" lang="fr">
+    <head>
+        <?php echo $this->partial('playground-game/partial/meta.phtml', array('headParams' => $this->headParams, 'channel' => $this->channel)) ?>
+        <?php echo $this->head();?>
+    </head>
+    <body>
+        <div id="fb-root"></div>
+
+        <!-- CONTENT PAGE -->
+        <div class="col-md-12 game-content">
+            <?php if (isset($ourView->flashMessages) && count($ourView->flashMessages)) : ?>
+                <ul class="flashMessages">
+                    <?php foreach ($ourView->flashMessages as $fMessage) : ?>
+                    <li><?php echo $this->translate($fMessage); ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
+
+            <?php echo $this->content; ?>
+        </div><!-- END CONTENT PAGE -->
+        
+        
+        <?php echo $this->inlineScript() ?>
+
+        <!-- POPIN RULES -->
+        <div class="modal fade" id="rules-popin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $this->translate('Close'); ?></button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <div id="rules-popin">
+            <div class="modal-body"></div>
+        </div>
+        <!-- POPIN RULES -->
+    </body>
+</html>

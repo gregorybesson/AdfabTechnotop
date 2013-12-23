@@ -1,0 +1,21 @@
+<?php $this->plugin('translate')->setTranslatorTextDomain('playgrounddesign');// Pour le texte ?>
+<?php $baseUrl         = $this->url('frontend', array('channel' => $this->channel), array('force_canonical' => true)); ?>
+
+<div class="sidebar col-md-4">
+
+    <!-- BLOCK NEWSLETTER -->
+	<?php if($this->zfcUserIdentity() && ! $this->zfcUserIdentity()->getOptin()): ?>
+	    <div class="sb-block newsletter-connect">
+	    	<img src="<?php echo $this->frontendAssetPath('images/common/icon-newsletter.png')?>" alt="newsletter" />
+	    	<h5 class="sb-block-title"><?php echo $this->translate('Sign up for the newsletter and never miss a game!'); ?></h5>
+			<div class="sb-block-content">
+			    <form action="<?php echo $this->url('frontend/zfcuser/ajax_newsletter', array('channel' => $this->channel));?>" method="POST" id="ajax-newsletter">
+			        <input type="hidden" value="1" name="optin" />
+			    	<input class="btn btn-default up" type="submit" value="<?php echo $this->translate('Sign up now!'); ?>"/>
+			    </form>
+			    <div class="suscribe-success"><?php echo $this->translate('Thank you, your registration is taken into account!'); ?></div>
+			</div>
+	    </div>
+    <?php endif; ?>
+    <!-- END BLOCK NEWSLETTER -->
+</div>

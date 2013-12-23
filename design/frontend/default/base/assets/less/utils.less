@@ -1,0 +1,60 @@
+// Class
+@sprite-icon: '../images/common/sprite-playground.png';
+
+.up{
+  text-transform: uppercase;
+}
+
+.txt-center{
+  text-align: center;
+}
+.red{
+  color:red;
+}
+.badge{
+  background-color: @pg-grey-light;
+  color: @pg-black;
+}
+
+form{
+  .annotation{
+    font-size: 10px;
+  }
+  .has-error{
+    label{
+      color:#b94a48;
+      font-size: 11px;
+    }
+  }
+  .radio{
+    .has-error{
+      label{
+        position: absolute;
+        bottom: 0px;
+        left: 0;
+      }
+      input{
+        margin-bottom:15px
+      }
+    }
+  }
+}
+
+.dark-overlay{
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+// width & height, position x & y of the sprite, plus background color
+.sprite-it(@width:10px, @height: 10px, @x: 0, @y: 0, @repeat: no-repeat, @color: transparent){
+  background:url(@sprite-icon) @repeat @x @y @color;
+  width: @width;
+  height: @height;
+  display: block;
+}
+
+// inline-block avec hack pour IE7
+.inline-block(){
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+}

@@ -1,0 +1,311 @@
+
+.block-game{
+  
+  .icon-bloc-game{
+  position: absolute;
+  top: 0;
+  left: 40px;
+  width: 61px;
+  height: 72px;
+  
+  &.instantwin,&.lottery{
+    background: url('../images/common/sprite-bloc-game.png') no-repeat 0 top transparent;
+  }
+  &.postvote{
+    background: url('../images/common/sprite-bloc-game.png') no-repeat 0 -77px transparent;
+  }
+  }
+  &.price{
+    a{
+      width: 100%;
+    float: left;
+    
+    img{
+      width: 100%;
+    }
+    }
+    
+    .game-price-content{
+      float: left;
+    width: 100%;
+    background-color:@pg-orange;
+    height: 126px;
+    padding: 20px 17px 5px;
+    
+    .logo-star{display:none;}
+    
+    .txt{
+      
+      h2{
+        margin:0 0 15px 0 !important;
+        float: left;
+        width: 70%;
+        margin: 0;
+        padding: 0;
+        text-align: left;
+        text-shadow: none;
+        font-family: @futura;
+        font-size: 14px;
+        line-height: 16px;
+        color:@pg-white;
+      }
+      
+      div{
+        float: left;
+        width: 70%;
+        p{
+          color:@pg-white;
+          font-family: @futura;
+          font-size: 14px;
+          line-height: 16px;
+        }
+      }
+    }
+    }
+    
+    .readmore{
+      position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 28%;
+    height: 126px;
+    
+    a{
+      font-family: @futura;
+      font-size:18px;
+      line-height:32px;
+      color:@pg-white;
+      text-transform:uppercase;
+      width:100%;
+      height:100%;
+      background: url('../images/common/bt-play.png') no-repeat 0 top transparent;
+      padding: 48px 0 48px 35px;
+      
+      &:hover{
+        color:@pg-white;
+        text-decoration:none;
+      }
+    }
+    
+    &:active{
+      box-shadow: none;
+    }
+    }
+  }
+  
+  &.no-image{
+    display: block;
+    .img-content{
+      height: 200px;
+      > a{
+        height: 200px;
+        display: block;
+      }
+    }
+  }
+  .img-content{
+    position: relative;
+    height:100%;
+    
+    img{
+      display: block;
+      max-width:100%;
+    }
+  }
+  .dark-overlay{
+    background-color: #d95f49;
+  //position: absolute;
+  //left: 0!important;
+  width: 100%;
+  //bottom: 0;
+  z-index: 10;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+  padding: 0!important;
+  //height: 126px;
+  margin:0;
+  
+  h2{
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    text-shadow: none;
+    font-family: @futura;
+    font-size: 14px;
+    line-height: 16px;
+  }
+  .col-md-2{
+    .btn-default{
+      padding: 0;
+      margin: 0;
+      text-shadow: none;
+      background: none;
+      border: none
+    }
+  }
+  }
+  .logo-sponsor{
+    display:none;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+  .col-md-12{
+    padding:0;
+  }
+  
+  .wrapper-game{
+    width: 72%;
+  float: left;
+  padding: 17px 17px 5px;
+  
+  h2 {
+  width:100%;
+    color:@pg-white;
+    text-transform: uppercase;
+    font-size: 14px;
+    text-transform: none;
+  }
+  
+  .game-infos{
+    margin: 5px 0 10px;
+    padding: 0;
+    text-align: left;
+    text-shadow: none;
+    float:left;
+    
+    .desc{
+      float:left;
+      font-family: @futura;
+      font-size:16px;
+      line-height:20px;
+      text-align: left;
+      text-shadow: none;
+      margin:0px 0 0px;
+      padding: 0 0 0 30px;
+      
+      &.lottery,&.instantwin{
+        background:url('../images/common/sprite-desc.png') no-repeat left top transparent;
+      }
+      &.postvote{
+        background:url('../images/common/sprite-desc.png') no-repeat left -48px transparent;
+      }
+    }
+  }
+  }
+  
+  .button-play{
+    width: 28%;
+  float: right;
+  height: 126px;
+  
+  .button-wrap{
+      width: 100%;
+    height: 100%;
+      background:url('../images/common/bt-play.png') no-repeat 0 top transparent;
+      
+      .btn{
+        width: 100%;
+      height: 100%;
+      padding: 45px 0;
+      
+      a{
+        font-family: @futura;
+        font-size:30px;
+        line-height:32px;
+        color:@pg-white;
+        text-transform:uppercase;
+        text-shadow: none;
+        
+        &:hover{
+          color:@pg-white;
+          text-decoration:none;
+        }
+      }
+      
+      &:active{
+        box-shadow: none;
+      }
+      }
+    }
+  }
+  .btn-default{
+    margin-top: 15px;
+    font-family: @futura;
+  font-size:30px;
+  line-height:32px;
+  color:@pg-white;
+  text-transform:uppercase;
+  }
+  .stamp{
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+  }
+}
+
+.block-game {
+  margin-bottom: 50px;
+  
+  .social-share {
+    margin: 0px 0px 0px 30px;
+  }
+  
+  .game-infos {
+    .logo-partner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin: 0px 0 0 5px;
+    }
+  }
+  
+  &.no-image{
+    
+    .img-content{
+      height: auto;
+      
+      .dark-overlay{
+        margin: 0 0 0 40px !important;
+        width: 100%;
+        
+        .postvote{
+          text-align: left;
+          text-shadow: none;
+          color:@pg-black;
+          background: url('../images/common/sprite-desc.png') no-repeat left -72px transparent;
+          padding: 0 0 0 30px;
+        }
+      }
+    }
+  }
+
+  .img-content{
+    .dark-overlay{
+      &.row{
+        
+        h2{
+          font-family:@futura;
+          font-size:12px;
+          line-height:14px;
+          background:url('../images/games/sprite-deploy-game.png') no-repeat 0 0 transparent;
+          padding:5px 0 5px 30px;
+        }
+        #reglement{
+          float:right;
+          
+          a{
+            text-shadow: none;
+            font-family:@futura;
+            font-size:12px;
+            line-height:14px;
+            text-decoration:underline;
+            color:@pg-black;
+          }
+        }
+      }
+    }
+  }
+}
+/* block game */

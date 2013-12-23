@@ -1,0 +1,41 @@
+<?php $this->plugin('translate')->setTranslatorTextDomain('playgrounddesign');// Pour le texte ?>
+
+<?php
+    $first = true;
+    $nb = count($this->sliderItems);
+?>
+<div id="top-promo" class="row">
+    <div id="homepage-carousel" class="carousel slide bs-docs-carousel-example">
+        <!-- Indicators -->
+        <?php if($nb > 1):?>
+        <ol class="carousel-indicators">
+            <?php $counter = 0; foreach($this->sliderItems as $item):?>
+                <li data-target="#homepage-carousel" data-slide-to="<?php echo $counter; ?>" <?php if($counter++ === 0) echo 'class="active"'; ?> ></li>
+            <?php endforeach;?>
+        </ol>
+        <?php endif;?>
+        <!-- Carousel items -->
+        <div class="carousel-inner">
+            <?php foreach($this->sliderItems as $item):?>
+            	<?php
+                   $item->first = false;
+                   if($first){
+                       $item->first = true;
+                       $first = false;
+                   }
+                 if(! $item instanceof PlaygroundCms\Entity\Page):?>
+                    <?php $this->partial()->setObjectKey('game')?>
+                    <?php echo $this->partial('playground-game/partial/slider-game.phtml', array('game' =>$item, 'channel' => $this->channel)) ?>
+                <?php else:?>
+                    <?php $this->partial()->setObjectKey('page')?>
+                    <?php echo $this->partial('playground-cms/page/partial/slider-page.phtml', array('page' =>$item, 'channel' => $this->channel)) ?>
+                <?php endif;?>
+            <?php endforeach;?>
+        </div>
+        <?php if($nb > 1):?>
+            <!-- Carousel nav -->
+            <a class="carousel-control left" href="#homepage-carousel" data-slide="prev">&lsaquo;</a>
+            <a class="carousel-control right" href="#homepage-carousel" data-slide="next">&rsaquo;</a>
+        <?php endif;?>
+    </div>
+</div>

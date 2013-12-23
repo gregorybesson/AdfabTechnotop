@@ -1,0 +1,37 @@
+<?php $this->plugin('translate')->setTranslatorTextDomain('playgroundcore');// Pour le texte ?>
+<?php $this->layout()->setTemplate('layout/layout'); ?>
+<div class="page-error">
+	<div class="img-404">
+	    <img src="<?php echo $this->frontendAssetPath('images/common/page-404.jpg')?>" />
+	</div>
+	<div class="text-404">
+		<h1>
+		    <?php echo $this->translate('The page you requested was not found') ?>
+		</h1>
+		<p>
+		    <a href="" class="btn btn-default" ><?php echo $this->translate('Other games in') ?></a>
+		</p>
+	</div>
+	<?php
+	if (isset($this->reason) && $this->reason){
+        $reasonMessage= '';
+        switch ($this->reason) {
+            case 'error-controller-cannot-dispatch':
+                $reasonMessage = $this->translate('The requested controller was unable to dispatch the request.');
+                break;
+            case 'error-controller-not-found':
+                $reasonMessage = $this->translate('The requested controller could not be mapped to an existing controller class.');
+                break;
+            case 'error-controller-invalid':
+                $reasonMessage = $this->translate('The requested controller was not dispatchable.');
+                break;
+            case 'error-router-no-match':
+                $reasonMessage = $this->translate('The requested URL could not be matched by routing.');
+                break;
+            default:
+                $reasonMessage = $this->translate('We cannot determine at this time why a 404 was generated.');
+                break;
+        }
+	}
+    ?>
+</div>

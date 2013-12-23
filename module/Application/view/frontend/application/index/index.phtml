@@ -1,0 +1,16 @@
+<?php $this->plugin('translate')->setTranslatorTextDomain('application');// Pour le texte ?>
+
+<?php //echo $this->partialLoop('application/index/partial/item.phtml', $this->games) ?>
+
+<?php foreach($this->items as $item):?>
+    <?php if(! $item instanceof PlaygroundCms\Entity\Page):?>
+        <?php $this->partial()->setObjectKey('game')?>
+        <?php echo $this->partial('playground-game/partial/game.phtml', $item) ?>
+    <?php else:?>
+        <?php $this->partial()->setObjectKey('page')?>
+        <?php echo $this->partial('playground-cms/page/partial/page.phtml', $item) ?>
+        
+        <?php //echo '<h1>'. $item->getTitle() .'</h1>'?>
+    <?php endif;?>
+<?php endforeach;?>
+<?php echo $this->paginationControl($this->items, 'Sliding', 'application/index/partial/pagination.phtml', array('url' => 'home/pagination')); ?>

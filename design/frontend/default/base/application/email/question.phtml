@@ -1,0 +1,8 @@
+<?php $this->plugin('translate')->setTranslatorTextDomain('playgrounddesign');// Pour le texte ?>
+
+<?php echo $this->translate('Mail send from contact page'); ?> :<br/>
+<?php echo $this->translate('Last name'); ?> : <?php echo $this->data['lastname']; ?><br/>
+<?php echo $this->translate('First name'); ?> : <?php echo $this->data['firstname']; ?><br/>
+<?php echo $this->translate('Email'); ?> : <?php echo $this->data['email']; ?><br/>
+<?php echo $this->translate('Object'); ?> : <?php echo $this->data['object']; ?><br/>
+<?php echo $this->translate('Message'); ?> : <?php echo $this->data['message']; ?>

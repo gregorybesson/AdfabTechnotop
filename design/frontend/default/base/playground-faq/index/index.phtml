@@ -1,0 +1,12 @@
+<div id="faq" class="row-fluid">
+				
+	<h1>F.A.Q</h1>
+		
+	<?php foreach($this->faqs as $faq):?>
+	        <h3><a href="#" id="faq-title-<?php echo $faq->getId(); ?>"><?php echo $faq->getQuestion(); ?></a></h3>
+			<div id="faq-content-<?php echo $faq->getId(); ?>" class="content-block">
+				<?php echo $faq->getAnswer(); ?>
+			</div>
+	<?php endforeach; ?>
+		
+</div><!-- END FAQ -->

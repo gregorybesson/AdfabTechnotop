@@ -1,0 +1,306 @@
+<?php $achievements    = $this->activityWidget();?>
+<?php $leaderboard     = $this->leaderboardWidget();?>
+<?php $leaderboardWeek = $this->leaderboardWidget('','week');?>
+<?php $baseUrl         = $this->url('frontend', array('channel' => $this->channel), array('force_canonical' => true)); ?>
+
+<div id="sidebar-homepage" class="sidebar span4">
+
+    <!-- BLOCK NEWSLETTER -->
+	<?php if($this->zfcUserIdentity() && ! $this->zfcUserIdentity()->getOptin()): ?>
+	    <div class="sd-block newsletter-connect">
+	    	<img src="<?php echo $this->frontendAssetPath('images/common/icon-newsletter.png')?>" width="82" height="81" border="0" alt="newsletter" />
+			<div class="bg-sdblock">
+				<p class="green">Inscrivez-vous à la newsletter et ne ratez aucun jeu !</p>
+			    <form action="<?php echo $this->url('frontend/zfcuser/ajax_newsletter', array('channel' => $this->channel));?>" method="POST" id="ajax-newsletter">
+			        <input type="hidden" value="1" name="optin" />
+			    	<input class="btn btn-success" type="submit" value="Je m’inscris !"/>
+			    </form>
+			    <div class="suscribe-success">Merci, votre inscription est bien prise en compte!</div>
+			</div>
+	    </div>
+    <?php endif; ?>
+    <!-- END BLOCK NEWSLETTER -->
+
+    <?php if(($this->playgroundDynablock('column_home')) != ''):?>
+    	<?php foreach($this->playgroundDynablock('column_home') as $block): ?>
+    		<div class="sd-block ad"><?php echo $block ?></div>
+    	<?php endforeach; ?>
+    	<?php //echo $this->playgroundDynablock('column_home') ;?>
+    <?php endif; ?>
+
+	<!-- BLOCK TONNES CADEAUX -->
+	<?php if(!$this->zfcUserIdentity()): ?>
+	    <div class="tonnes-cadeaux sd-block">
+	    	<img src="<?php echo $this->frontendAssetPath('images/common/icon-gifts.png')?>" width="84" height="82" border="0" alt="gifts" />
+	    	<div class="bg-sdblock">
+				<p class="green">Gagnez des tonnes de cadeaux !</p>
+		    	<div class="txt">Inscrivez-vous sur Playground et participez aux jeux concours de nos partenaires pour gagner pleins de cadeaux.</div>
+		    	<div class="accroche">Playground est 100% gratuit !</div>
+		    	<div class="btn btn-success"><a href="<?php echo $this->url('frontend/zfcuser/register', array('channel' => $this->channel)) . ($this->redirect ? '?redirect='.$this->redirect : '') ?>">Je m’inscris !</a></div>
+		    	<div class="btn btn-inverse"><a href="<?php echo $this->url('frontend/zfcuser/register', array('channel' => $this->channel)) . ($this->redirect ? '?redirect='.$this->redirect : '') ?>">Connexion</a></div>
+		    </div>
+	    </div>
+    <?php endif; ?><!-- END BLOCK TONNES CADEAUX -->
+
+    <!-- ADSERVING SIDEBAR -->
+    <?php //echo $this->partial('application/index/partial/col-adserving.phtml', array('cat1' => $this->cat1, 'cat2' => $this->cat2, 'cat3' => $this->cat3, 'channel' => $this->channel)); ?>
+    <!-- END ADSERVING SIDEBAR -->
+
+    
+    <?php if ($this->facebookUrl()):?>
+        <!-- BLOCK FACEBOOK -->
+        <div class="fb-box sd-block">
+        	<p class="green">Rejoignez-nous sur Facebook</p>
+        	<div class="fb-like-box" data-href="<?php echo $this->facebookUrl()?>" data-width="287" data-height="291" data-show-faces="true" data-stream="false" data-border-color="#eeefef" data-header="false"></div>
+        </div>
+        <!-- END BLOCK FACEBOOK -->
+    <?php endif;?>
+    
+    
+    <!-- BLOCK NEWSLETTER -->
+    <!-- <?php if(!$this->zfcUserIdentity()): ?>
+    	    <div class="sd-block newsletter">
+    	    	<img src="<?php echo $this->frontendAssetPath('images/common/icon-newsletter.png')?>" width="82" height="81" border="0" alt="newsletter" />
+    			<div class="bg-sdblock">
+    				<p class="green">Inscrivez-vous à la newsletter et ne ratez aucun jeu !</p>
+    		    	<form action="" method="POST">
+    		    		<input class="input" type="email" name="email" value="Votre adresse email" onclick="if(this.value=='Votre adresse email'){this.value=''}" onblur="if(this.value==''){this.value='Votre adresse email'} " />
+    		    		<input class="btn btn-greendark" type="submit" value="Ok"/>
+    		    	</form>
+    		    </div>
+    	    </div>
+    <?php endif; ?> -->
+    <!-- END BLOCK NEWSLETTER -->
+
+    <!-- BLOCK WIN POINTS -->
+    <?php if($this->zfcUserIdentity()): ?>
+		<div class="sd-block win-points">
+			<img src="<?php echo $this->frontendAssetPath('images/common/icon-cup-home.png')?>" width="81" height="80" border="0" alt="cup" />
+			<div class="bg-sdblock">
+				<p class="green">Gagnez plus de points !</p>
+				<ul class="links-list">
+					<li class="coordonnees">
+						<a href="<?php echo $this->url('frontend/zfcuser/profile', array('channel' => $this->channel));?>">
+							<div class="libelle">Remplissez vos coordonnées</div>
+							<div class="points">50 points</div>
+						</a>
+					</li>
+					<li class="parrain">
+						<a href="<?php echo $this->url('frontend/sponsorfriends', array('channel' => $this->channel)); ?>">
+							<div class="libelle">Parrainez vos amis</div>
+							<div class="points">100 points par amis parrainé</div>
+						</a>
+					</li>
+					<li class="partage">
+						<a href="<?php echo $this->url('frontend/sponsorfriends', array('channel' => $this->channel)); ?>">
+							<div class="libelle">Partagez sur les réseaux sociaux</div>
+							<div class="points">50 points</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	<?php endif; ?><!-- END BLOCK WIN POINTS -->
+
+    <!-- BLOCK HOW IT WORKS -->
+    <div class="sd-block how-works">
+    	<img src="<?php echo $this->frontendAssetPath('images/common/icon-question.png')?>" width="82" height="80" border="0" alt="question" />
+		<div class="bg-sdblock">
+			<p class="green">Comment ça marche ?</p>
+	    	<ul class="links-list">
+	    		<li class="connect"><a href="<?php echo $this->url('frontend/zfcuser/register', array('channel' => $this->channel)) . ($this->redirect ? '?redirect='.$this->redirect : '') ?>">Inscrivez-vous</a> ou <a href="<?php echo $this->url('frontend/zfcuser/register', array('channel' => $this->channel)) . ($this->redirect ? '?redirect='.$this->redirect : '') ?>">connectez-vous</a> à votre compte</li>
+	    		<li class="game-play"><a href="<?php echo $this->url('frontend/jeuxconcours', array('channel' => $this->channel)); ?>">Participez aux jeux concours</a> pour gagner des cadeaux</li>
+	    		<li class="gain-points">Cumulez des points et obtenez des badges.</li>
+	    	</ul>
+	    	<div class="link">&gt; <a href="<?php echo $this->url('frontend/cms', array('id' => 'comment-ca-marche', 'channel' => $this->channel)); ?>" class="green">Voir comment gagner plus de points !</a></div>
+	   </div>
+    </div><!-- END BLOCK HOW IT WORKS -->
+
+    <!-- BLOCK CLASSEMENT -->
+    <div class="sd-block ranking">
+    	<p class="green"><a href="<?php echo $this->url('frontend/reward/leaderboard', array('period'=>'general', 'channel' => $this->channel)); ?>" class="green">Classement</a></p>
+    	<div class="filter-bar">
+    		<div class="filter week"><a href="#" class="active">Cette semaine</a></div>
+    		<div class="filter general"><a href="#">Général</a></div>
+    	</div>
+    	<ul class="list">
+    	    <?php $i=1;foreach($leaderboard as $entry):?>
+				<li class="line general rank<?php echo $i?>">
+				    <div class="rank"><?php echo $i ?></div>
+					<div class="avatar">
+						<?php if($entry['avatar']): ?>
+							<img src="<?php echo $this->basePath($entry['avatar'])?>" width="33" height="33" border="0" alt="<?php echo $entry['firstname']; ?> <?php echo $entry['lastname']; ?>" />
+						<?php elseif($entry['title'] && $entry['title'] == 'M') : ?>
+							<img src="<?php echo $this->frontendAssetPath('images/user/no-avatar-small-h.png'); ?>" alt="<?php echo $entry['firstname']; ?> <?php echo $entry['lastname']; ?>" width="33" height="33" border="0" />
+						<?php else : ?>
+							<img src="<?php echo $this->frontendAssetPath('images/user/no-avatar-small-f.png'); ?>" alt="<?php echo $entry['firstname']; ?> <?php echo $entry['lastname']; ?>" width="33" height="33" border="0" />
+						<?php endif; ?>
+					</div>
+	    			<div class="name">
+	    				<?php
+	    				if($entry['username']):
+	    					echo $entry['username'];
+						else :
+							echo $entry['firstname'].' '.substr($entry['lastname'], 0, 1).'.';
+						endif;
+	    				?>
+	    			</div>
+	    			<div class="points">(<?php echo number_format($entry['points'], 0, ',', ' ' ); ?> points)</div>
+				</li>
+			<?php $i++;endforeach;?>
+
+			<?php $i=1;foreach($leaderboardWeek as $entry):?>
+				<li class="line week rank<?php echo $i?>">
+				    <div class="rank"><?php echo $i ?></div>
+					<div class="avatar">
+						<?php if($entry['avatar']): ?>
+							<img src="<?php echo $this->basePath($entry['avatar'])?>" width="33" height="33" border="0" alt="<?php echo $entry['firstname']; ?> <?php echo $entry['lastname']; ?>" />
+						<?php elseif($entry['title'] && $entry['title'] == 'M') : ?>
+							<img src="<?php echo $this->frontendAssetPath('images/user/no-avatar-small-h.png'); ?>" alt="<?php echo $entry['firstname']; ?> <?php echo $entry['lastname']; ?>" width="33" height="33" border="0" />
+						<?php else : ?>
+							<img src="<?php echo $this->frontendAssetPath('images/user/no-avatar-small-f.png'); ?>" alt="<?php echo $entry['firstname']; ?> <?php echo $entry['lastname']; ?>" width="33" height="33" border="0" />
+						<?php endif; ?>
+					</div>
+	    			<div class="name">
+	    				<?php
+	    				if($entry['username']):
+	    					echo $entry['username'];
+						else :
+							echo $entry['firstname'].' '.substr($entry['lastname'], 0, 1).'.';
+						endif;
+	    				?>
+	    			</div>
+	    			<div class="points">(<?php echo number_format($entry['points'], 0, ',', ' ' );?> points)</div>
+				</li>
+			<?php $i++;endforeach;?>
+
+    		<?php if($this->zfcUserIdentity()): ?>
+    			<?php $rank =  $this->rankWidget($this->zfcUserIdentity()->getId());?>
+	    		<li class="line general current">
+					<div class="position">Votre position</div>
+					<div class="row-fluid">
+						<div class="avatar span3">
+							<?php if($this->zfcUserIdentity()->getAvatar()):?>
+								<img src="<?php echo $this->basePath($this->zfcUserIdentity()->getAvatar()) ?>" width="33" height="33" border="0" alt="<?php echo $this->zfcUserIdentity()->getFirstname(); ?> <?php echo $this->zfcUserIdentity()->getLastname(); ?>" />
+							<?php else:?>
+								<?php if($this->zfcUserIdentity()->getTitle() && $this->zfcUserIdentity()->getTitle() == 'M'): ?>
+	        			        	<img src="<?php echo $this->frontendAssetPath('images/user/no-avatar-small-h.png'); ?>" alt="<?php echo $this->zfcUserIdentity()->getFirstname(); ?> <?php echo $this->zfcUserIdentity()->getLastname(); ?>" width="33" height="33" border="0" />
+	        			    	<?php else: ?>
+	        			    		<img src="<?php echo $this->frontendAssetPath('images/user/no-avatar-small-f.png'); ?>" alt="<?php echo $this->zfcUserIdentity()->getFirstname(); ?> <?php echo $this->zfcUserIdentity()->getLastname(); ?>" width="33" height="33" border="0" />
+	        			    	<?php endif; ?>
+	        			    <?php endif;?>
+						</div>
+						<div class="span9">
+							<div class="points row-fluid"><?php echo number_format($rank['points'], 0, ',', ' ' );?> points</div>
+							<div class="rank row-fluid"><?php echo $rank['rank']; ?><sup><?php echo ($rank['rank'] == 1)? 'ère':'ème'; ?></sup> position</div>
+						</div>
+					</div>
+				</li>
+				<?php $rank =  $this->rankWidget($this->zfcUserIdentity()->getId(), 'week');?>
+	    		<li class="line week current">
+					<div class="position">Votre position</div>
+					<div class="row-fluid">
+						<div class="avatar span3">
+							<?php if($this->zfcUserIdentity()->getAvatar()):?>
+								<img src="<?php echo $this->basePath($this->zfcUserIdentity()->getAvatar()) ?>" width="33" height="33" border="0" alt="<?php echo $this->zfcUserIdentity()->getFirstname(); ?> <?php echo $this->zfcUserIdentity()->getLastname(); ?>" />
+							<?php else:?>
+								<?php if($this->zfcUserIdentity()->getTitle() && $this->zfcUserIdentity()->getTitle() == 'M'): ?>
+	        			        	<img src="<?php echo $this->frontendAssetPath('images/user/no-avatar-small-h.png'); ?>" alt="<?php echo $this->zfcUserIdentity()->getFirstname(); ?> <?php echo $this->zfcUserIdentity()->getLastname(); ?>" width="33" height="33" border="0" />
+	        			    	<?php else: ?>
+	        			    		<img src="<?php echo $this->frontendAssetPath('images/user/no-avatar-small-f.png'); ?>" alt="<?php echo $this->zfcUserIdentity()->getFirstname(); ?> <?php echo $this->zfcUserIdentity()->getLastname(); ?>" width="33" height="33" border="0" />
+	        			    	<?php endif; ?>
+	        			    <?php endif;?>
+						</div>
+						<div class="span9">
+							<div class="points row-fluid"><?php echo number_format($rank['points'], 0, ',', ' ' );?> points</div>
+							<div class="rank row-fluid"><?php echo $rank['rank']; ?><sup><?php echo ($rank['rank'] == 1)? 'ère':'ème'; ?></sup> position</div>
+						</div>
+					</div>
+				</li>
+			<?php endif; ?>
+    	</ul>
+    	<div class="link">&gt; <a href="<?php echo $this->url('frontend/reward/leaderboard', array('period'=>'general', 'channel' => $this->channel)) ?>" class="green"> Voir le classement général</a></div>
+    </div>
+
+    <!-- BLOC ACTIVITES RECENTES -->
+	<div class="sd-block activities">
+		<p class="green">Activités récentes</p>
+		<ul class="list">
+    		<?php foreach($achievements as $achievement):?>
+			<li>
+				<div class="avatar">
+					<img src="<?php
+						if($achievement->getUser()->getAvatar()) :
+							echo $this->basePath($achievement->getUser()->getAvatar());
+						elseif($achievement->getUser()->getTitle() && $achievement->getUser()->getTitle() == 'M') :
+							echo $this->frontendAssetPath('images/user/no-avatar-small-h.png');
+						else :
+							echo $this->frontendAssetPath('images/user/no-avatar-small-f.png');
+						endif;
+					?>" width="33" height="33" border="0" alt="avatar" />
+				</div>
+				<div class="infos">
+					<span class="name">
+						<?php if($achievement->getUser()->getUsername()) :
+							echo $achievement->getUser()->getUsername();
+						else :
+							echo $achievement->getUser()->getFirstname().' '.substr($achievement->getUser()->getLastname(), 0, 1).'.';
+						endif; ?>
+					</span> a obtenu le badge <span class="badgename"><?php echo $achievement->getLabel() . " " . ucfirst(strtolower($achievement->getLevelLabel()));?></span></div>
+			</li>
+			<?php endforeach;?>
+		</ul>
+	</div>
+	<!-- END BLOC ACTIVITES RECENTES -->
+
+	<?php
+		try {
+		    $channel = \Zend\Feed\Reader\Reader::import($this->rssUrl);
+		} catch (Exception $e){
+		    $channel = array();
+		}
+
+	?>
+	<?php if(count($channel) > 0):?>
+	<!-- BLOC NEWS -->
+	<div class="sd-block news-feed">
+		<p class="green">Sur TF1</p>
+
+		<?php $i=1; foreach ($channel as $item) : ?>
+    		<?php if($i>5):?>
+    		    <?php break;?>
+    		<?php endif;?>
+    		<?php if($i==1):?>
+    		<div class="news-one row-fluid">
+    			<div class="head-news"><span>A la une</span></div>
+    			<a href="<?php echo $item->getLink(); ?>" target="_blank">
+    				<img src="<?php echo $item->getEnclosure()->url; ?>" height="120" border="0" alt="actualité à la une : <?php echo $item->getTitle(); ?>" />
+    				<div class="title-news"><?php echo $item->getTitle(); ?></div>
+    				<div class="content-news"><?php echo $item->getDescription(); ?></div>
+    			</a>
+    		</div>
+    		<?php endif;?>
+    		<?php if($i==2) :?>
+    		<div class="news-list row-fluid">
+    			<div class="head-news"><span>Dans l’actu</span></div>
+    			<ul>
+    		<?php endif;?>
+    		<?php if($i>=2):?>
+    				<li <?php if($i&1) : echo 'class="right"'; endif; ?>>
+    					<a href="<?php echo $item->getLink(); ?>" target="_blank">
+                            <?php if($item->getEnclosure()) : ?>
+    					       <img src="<?php echo $item->getEnclosure()->url; ?>" height="63" border="0" alt="actualité : <?php echo $item->getTitle(); ?>" />
+                            <?php endif; ?>
+    						<div class="content-news"><?php echo $item->getTitle(); ?></div>
+    					</a>
+    				</li>
+    		<?php endif;?>
+    		<?php if($i==5):?>
+    			</ul>
+    		</div>
+    		<?php endif;?>
+		<?php $i++; endforeach; ?>
+	</div><!-- END BLOC NEWS -->
+	<?php endif;?>
+
+</div>

@@ -1,0 +1,38 @@
+<div id="footer" class="row-fluid">
+	<div class="logo span3"><a href="<?php echo $this->url('frontend', array('channel' => $this->channel)) ?>"><img src="<?php echo $this->frontendAssetPath('images/common/logo.png')?>" width="117" height="116" border="0" /></a></div>
+	<div class="social-share">
+		<div class="title">Rejoignez-nous!</div>
+		<ul>
+		    <?php if ($this->facebookUrl()):?><li><a href="<?php echo $this->facebookUrl()?>" class="fb" target="_blank"></a></li><?php endif;?>
+			<li><a href="#" class="tw" target="_blank"></a></li>
+			<li><a href="#" class="gl" target="_blank"></a></li>
+			<li><a href="#" class="pt" target="_blank"></a></li>
+		</ul>
+	</div>
+	<ul class="bottomnav span3">
+		<li class="nav-item"><a href="<?php echo $this->url('frontend', array('channel' => $this->channel)) ?>">Accueil</a></li>
+		<li class="nav-item"><a href="<?php echo $this->url('frontend/jeuxconcours', array('channel' => $this->channel)) ?>">Tous les jeux concours</a></li>
+		<li class="nav-item"><a href="<?php echo $this->url('frontend/winner', array('channel' => $this->channel)) ?>">Les gagnants</a></li>
+		<li class="nav-item"><a href="<?php echo $this->url('frontend/cms', array('id' => 'comment-ca-marche', 'channel' => $this->channel)); ?>">Comment ça marche ?</a></li>
+		<li class="nav-item"><a href="<?php if($this->zfcUserIdentity()): echo $this->url('frontend/badges', array('channel' => $this->channel)); else : echo $this->url('frontend/zfcuser/register', array('channel' => $this->channel)) . ($this->redirect ? '?redirect='.$this->redirect : ''); endif; ?>">Mon compte</a></li>
+		<li class="nav-item"><a href="<?php echo $this->url('frontend/contact', array('channel' => $this->channel)) ?>">Contactez-nous</a></li>
+		<li class="nav-item"><a href="<?php echo $this->url('frontend/faq', array('channel' => $this->channel)) ?>">FAQ</a></li>
+	</ul>
+	<ul class="jeuxnav span3">
+		<li class="title">Les jeux concours,<br />à gagner :</li>
+		<?php $categories = $this->playgroundPrizeCategory(); ?>
+        <?php foreach($categories as $category): ?>
+            <li class="jeu-item"><a href="<?php echo $this->url('frontend/prizecategories', array('channel' => $this->channel)) . $category->getIdentifier(); ?>"><?php echo $category->getTitle() ?></a></li>
+        <?php endforeach ?>
+	</ul>
+	
+	<?php if ($this->facebookUrl()):?>
+        <!-- BLOCK FACEBOOK -->
+        <div class="fb-box span3">
+    		<div class="fb-like-box" data-href="<?php echo $this->facebookUrl()?>" data-width="287" data-height="185" data-show-faces="true" data-stream="false" data-border-color="#ffffff" data-header="false"></div>
+    	</div>
+        <!-- END BLOCK FACEBOOK -->
+    <?php endif;?>
+	
+	<div class="actu"><a href="http://www.playground.gg" target="_blank">&lt; Retrouvez toute l'actualité</a></div>
+</div>

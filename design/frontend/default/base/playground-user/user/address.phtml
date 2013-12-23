@@ -1,0 +1,94 @@
+<?php
+$this->plugin('translate')->setTranslatorTextDomain('playgrounduser');
+$form = $this->form;
+$form->prepare();
+$form->setAttribute('method', 'post');
+$form->setAttribute('class', 'validate');
+?>
+<div id="content-article" class="coordinates row">
+	<p class="col-md-12">
+	    <?php echo $this->translate('Your details');?>
+	</p>
+	<p class="col-md-12">
+	    <strong>
+	        <?php echo $this->translate('Complete or confirm your details so we can send your gift');?> :
+	    </strong>
+	</p>
+	<?php echo $this->form()->openTag($form) ?>
+        <?php echo $this->formHidden($form->get('email')); ?>
+		<div class="form-group row col-md-12">
+			<label class="block-left col-md-4">
+				<?php echo $form->get('lastname')->getLabel(); ?>
+				<span class="red">*</span> :
+			</label>
+			<div class="block-right col-md-8">
+				<?php echo $this->formInput($form->get('lastname')->setAttributes(array('class' => 'form-control'))) ?>
+				<?php echo $this->formElementErrors($form->get('lastname')); ?>
+			</div>
+		</div>	
+		<div class="form-group row col-md-12">
+			<label class="block-left col-md-4">
+				<?php echo $form->get('firstname')->getLabel(); ?>
+				<span class="red">*</span> :
+			</label>
+			<div class="block-right col-md-8">
+				<?php echo $this->formInput($form->get('firstname')->setAttributes(array('class' => 'form-control'))) ?>
+				<?php echo $this->formElementErrors($form->get('firstname')) ?>
+			</div>
+		</div>
+		<div class="form-group row col-md-12">
+			<label class="block-left col-md-4">
+				<?php echo $form->get('address')->getLabel(); ?>
+				<span class="red">*</span> :
+			</label>
+			<div class="block-right col-md-8">
+				<?php echo $this->formInput($form->get('address')->setAttributes(array('class' => 'form-control'))) ?>
+				<?php echo $this->formElementErrors($form->get('address')) ?>
+			</div>
+		</div>
+		<div class="form-group row col-md-12">
+			<label class="block-left col-md-4">
+				<?php echo $form->get('address2')->getLabel(); ?> :
+			</label>
+			<div class="block-right col-md-8">
+				<?php echo $this->formInput($form->get('address2')->setAttributes(array('class' => 'form-control'))) ?>
+				<?php echo $this->formElementErrors($form->get('address2')) ?>
+			</div>
+		</div>
+		<div class="form-group row col-md-12">
+			<label class="block-left col-md-4">
+				<?php echo $form->get('city')->getLabel(); ?>
+				<span class="red">*</span> :
+			</label>
+			<div class="block-right col-md-8">
+				<?php echo $this->formInput($form->get('city')->setAttributes(array('class' => 'form-control'))) ?>
+				<?php echo $this->formElementErrors($form->get('city')) ?>
+			</div>
+		</div>
+		<div id="cp" class="form-group row col-md-12">
+			<label class="block-left col-md-4">
+				<?php echo $form->get('postal_code')->getLabel(); ?>
+				<span class="red">*</span> :
+			</label>
+			<div class="block-right col-md-8">
+				<?php echo $this->formInput($form->get('postal_code')->setAttributes(array('class' => 'form-control'))) ?>
+				<?php echo $this->formElementErrors($form->get('postal_code')) ?>
+			</div>
+		</div>
+		<div id="country" class="form-group row col-md-12">
+			<label class="block-left col-md-4">
+				<?php echo $form->get('country')->getLabel(); ?> :
+			</label>
+			<div class="block-right col-md-8">
+				<?php echo $this->formSelect($form->get('country')->setAttributes(array('class' => 'form-control'))) ?>
+				<?php echo $this->formElementErrors($form->get('country')) ?>
+			</div>
+		</div>
+		<div class="win col-md-12 clearfix text-center">
+    		<button type="submit" class="btn btn-default btn-green">
+			    <?php echo $this->translate('Validate my details');?>
+    		</button>
+	    </div>
+	<?php echo $this->form()->closeTag() ?>
+	<p id="annotation" class="win">* <?php echo $this->translate('required fields');?></p>
+</div>

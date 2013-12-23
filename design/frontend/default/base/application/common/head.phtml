@@ -1,0 +1,15 @@
+<?php $this->plugin('translate')->setTranslatorTextDomain('playgrounddesign');// Pour le texte ?>
+
+<?php echo $this->headTitle($this->translate('Playground'))->setSeparator(' - ')->setAutoEscape(false) ?>
+
+<?php
+$this->headMeta()->setCharset('UTF-8');
+$this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable = no');
+?>
+<?php echo $this->headMeta(); ?>
+
+<?php
+	echo $this->plugin('HeadLink');
+    echo $this->plugin('HeadStyle');
+    echo $this->plugin('HeadScript');
+?>

@@ -1,0 +1,280 @@
+/* My badges */
+#account-badge{
+  #my-badges{
+    li{
+      img{
+        width: 50%;
+      }
+    }
+  }
+  #my-points{
+    .view-detail{
+      padding-top: 10px;
+    }
+  }
+}
+
+  #account-modify{
+    padding: 0 0 0 40px;
+    
+    h1{
+      padding:0;
+      margin:0 0 20px 0;
+    }
+    
+    #wrap-account{
+      border:1px solid #e6e6e3;
+      background-color:#f2f2f2;
+      padding:0px;
+      
+      #update-login{
+        padding:20px;
+        
+        .update-login-block{
+          h3{
+            font-family:@futura;
+            font-size:24px;
+            line-height:26px;
+            color:@pg-grey-normal;
+            margin:0 0 15px 0;
+          }
+          .desc-form{
+            font-family:@futura;
+            font-size:14px;
+            line-height:16px;
+            margin: 0 0 15px 20px;
+          }
+          
+          form{
+            border:none;
+            margin: 0 0 0 20px;
+            padding:0;
+            
+            .row{
+              margin: 0 0 8px 0;
+              .col-md-4{
+                padding:0;
+                text-align: right;
+                font-family:@futura;
+                font-size:14px;
+                line-height:16px;
+                color:@pg-black;
+                margin: 6px 0 0 0;
+                
+                p{
+                  margin:0;
+                }
+              }
+              .col-md-6{
+                input{
+                  width:100%;
+                  border-radius: 0;
+                  border: 1px solid #e6e6e3;
+                  background-color:@pg-white;
+                  padding: 6px;
+                  height: 30px;
+                  font-family:@futura;
+                  font-size:12px;
+                  line-height:14px;
+                }
+                &.credential{
+                  width: 27%;
+                }
+              }
+            }
+            .wrapper-submit{
+              padding:0;
+            }
+          }
+        }
+      }
+      
+      form{
+        &.validate{
+          border-top:1px solid #e6e6e3;
+          padding:20px;
+          
+          #update-adresse{
+            h3{
+              font-family:@futura;
+              font-size:24px;
+              line-height:26px;
+              color:@pg-grey-normal;
+              margin:0 0 15px 0;
+            }
+            .desc-form{
+              font-family:@futura;
+              font-size:14px;
+              line-height:16px;
+              margin: 0 0 15px 20px;
+              color:@pg-orange;
+              background:url('../images/common/puce-sb-block.png') no-repeat left top transparent;
+              padding:0 0 0 15px;
+            }
+            .row{
+              margin: 0 0 8px 0;
+              .col-md-2{
+                padding:0;
+                .orange-points{
+                  padding:8px 0 8px 34px;
+                  background: url('../images/common/classement.png') no-repeat left top transparent;
+                  color:@pg-yellow;
+                  font-family:@futura;
+                  font-size:12px;
+                  line-height:14px;
+                }
+              }
+              .col-md-4{
+                padding:0;
+                text-align: right;
+                font-family:@futura;
+                font-size:12px;
+                line-height:16px;
+                color:@pg-black;
+                margin: 6px 0 0 0;
+                
+                p{
+                  margin:0;
+                }
+              }
+              .col-md-6{
+                input{
+                  width:100%;
+                  border-radius: 0;
+                  border: 1px solid #e6e6e3;
+                  background-color:@pg-white;
+                  padding: 6px;
+                  height: 30px;
+                  font-family:@futura;
+                  font-size:12px;
+                  line-height:14px;
+                }
+                &.credential{
+                  width: 27%;
+                }
+                .uploader{
+                  width: 100%;
+                  background: @pg-white;
+                  border: 1px solid #e6e6e3;
+                  height: 30px;
+                  
+                  .filename,.action{
+                    font-family:@futura;
+                    font-size:12px;
+                    line-height:14px;
+                    padding: 6px 5px;
+                    height: 28px;
+                    background: none;
+                  }
+                }
+                label{
+                  padding: 0;
+                  width: 119px;
+                  float:left;
+                  .radio{
+                    margin: 0 5px 0 0;
+                    float:left;
+                    span{
+                      float:left;
+                      input{
+                        width: auto;
+                        margin: 0;
+                        height: 20px;
+                      }
+                    }
+                  }
+                }
+                .selector{
+                  width:100% !important;
+                  span{
+                    display: block;
+                    width: 229px !important;
+                  }
+                  select{
+                    top: 0;
+                    width:100%;
+                    border-radius: 0;
+                    border: 1px solid #e6e6e3;
+                    background-color: @pg-white;
+                    padding: 6px;
+                    height: 30px;
+                    font-family:@futura;
+                    font-size:12px;
+                    line-height:14px;
+                  }
+                }
+              }
+            }
+            .wrapper-submit{
+              padding:0;
+            }
+          }
+        }
+      }
+    }
+    .wrapper-submit{
+      
+      &.delete{
+        .btn-default{
+          border-bottom:2px solid #b93d30;
+          background-color:@pg-orange;
+        }
+      }
+    }
+  }/*account modify*/
+  
+  #delete-account{
+    margin: 30px 0;
+    border: 1px solid #e6e6e3;
+    background-color: #f2f2f2;
+    padding:20px;
+    
+    h3{
+      font-family:@futura;
+      font-size:24px;
+      line-height:26px;
+      color:@pg-grey-normal;
+      margin:0 0 15px 0;
+    }
+    form{
+      border:none;
+      margin: 0 0 0 20px;
+      
+      .row{
+        margin: 0 0 8px 0;
+        .col-md-4{
+          padding:0;
+          text-align: right;
+          font-family:@futura;
+          font-size:14px;
+          line-height:16px;
+          color:@pg-black;
+          margin: 6px 0 0 0;
+          
+          p{
+            margin:0;
+          }
+        }
+        .col-md-6{
+          input{
+            width:100%;
+            border-radius: 0;
+            border: 1px solid #e6e6e3;
+            background-color:@pg-white;
+            padding: 6px;
+            height: 30px;
+            font-family:@futura;
+            font-size:12px;
+            line-height:14px;
+          }
+          &.credential{
+            width: 27%;
+          }
+        }
+      }
+      .wrapper-submit{
+        padding:0;
+      }
+    }
+  }
+  /* delete account*/

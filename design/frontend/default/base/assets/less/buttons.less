@@ -1,0 +1,107 @@
+/*play-instantwin*/
+.btn-group {
+  width:100%;
+  margin: 0 0 30px 0;
+}
+
+.btn-arrow-right {
+  float: right;
+  padding: 0;
+  border: none;
+  background: transparent;
+  
+  &.participate,
+  &.rules {
+    clear: both;
+    color: #2e2e2e;
+    font-family: @futura;
+    font-size: 12px;
+    line-height: 14px;
+    text-decoration: underline;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    margin: 5px 0 0 15px;
+  }
+  
+  &.rules {
+    margin:5px 20px 0 0;
+  }
+  
+  &:active {
+    box-shadow: none;
+  }
+  
+  .left,
+  .right {
+    width: 20px;
+    height: 57px;
+    float: left;
+    text-indent: -9999px;
+    background: url('../images/common/sprite-participate.png') no-repeat left bottom transparent;
+  }
+  
+  .center {
+    float: left;
+    background-color: @pg-orange;
+    padding: 0 10px;
+    height: 57px;
+    font-family: @futura;
+    font-size: 18px;
+    line-height: 57px;
+    text-transform: uppercase;
+    color: #fff;
+  }
+  
+  .right {
+    background: url('../images/common/sprite-participate.png') no-repeat left top transparent;
+  }
+  
+  &.modify,
+  &.validate {
+    float:left;
+    padding: 0;
+    border: 0;
+    border-bottom: 2px solid #25967b;
+    color: #fff;
+    font-family: @futura;
+    font-size: 14px;
+    line-height: 16px;
+    text-transform: uppercase;
+    background-color: @pg-green;
+    padding: 12px 32px;
+    margin: 40px 0 0 20px;
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+  
+  &.validate {
+    float:right;
+    margin: 40px 20px 0 0;
+    border-radius: 4px;
+  }
+}
+
+.btn-green {
+  margin-top: 20px;
+  display: inline-block;
+  padding: 0;
+  border: 0;
+  border-bottom: 2px solid #25967b;
+  color: @pg-white;
+  font-family: @futura;
+  font-size: 14px;
+  line-height: 16px;
+  text-transform: uppercase;
+  background-color: @pg-green;
+  padding: 12px 32px;
+  
+  &:hover,
+  &:active,
+  &:focus {
+    margin-top: 22px;
+    border-bottom: 0px solid #25967b;
+    background-color: @pg-green;
+    color: @pg-white;
+  }
+}

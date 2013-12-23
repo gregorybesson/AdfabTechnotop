@@ -1,0 +1,27 @@
+<?php
+$form = $this->forgotForm;
+$form->prepare();
+$form->setAttribute('action', $this->url('frontend/zfcuser/forgotpassword', array('channel' => $this->channel)));
+$form->setAttribute('method', 'post');
+$form->setAttribute('class', 'validate');
+?>
+<!-- LOST PASSWORD -->
+<div id="lost-pass" class="row-fluid">
+	<div class="container-content span8">
+		<div class="row-fluid">
+			<p class="h2"><?php echo $this->translate('Forgot your password?');?></p>
+			
+			<div id="container-form" class="row-fluid">
+				<p><?php echo $this->translate('Please enter your email address, your password will be sent to the address indicated');?> :</p>
+				<?php echo $this->form()->openTag($form) ?>
+					<?php //echo $this->formLabel($form->get('email')) ?>
+					<?php echo $this->formInput($form->get('email')) ?>
+					<?php echo $this->formElementErrors($form->get('email')) ?>
+					
+					<?php echo $this->formButton($form->get('submit')) ?>
+				<?php echo $this->form()->closeTag() ?>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- END LOST PASSWORD -->

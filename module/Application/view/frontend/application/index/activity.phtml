@@ -1,0 +1,62 @@
+<?php $this->plugin('translate')->setTranslatorTextDomain('application');// Pour le texte ?>
+
+
+<!-- USER ACTIVITY -->
+<div id="user-activity" class="row-fluid">
+				
+	<div class="row-fluid">
+		<h1 class="span5">Mon activité</h1>
+		<div class="filter span7">
+			<div class="row-fluid">
+				<p class="span7"><b>Filtrer l’historique par type d’action :</b></p>
+				<div class="span5">
+					<select name="filter-activity" id="filter-activity" class="select">
+						<option value="">Selectionnez</option>
+						<option value="<?php echo $this->url('frontend/activity', array('channel' => $this->channel)) ?>">Vue d'ensemble</option>
+						<?php foreach ($filters  as $filter) : ?>
+							<option value="<?php echo $this->url('frontend/activity', array('channel' => $this->channel)).'/'.$filter->getCode()?>"><?php echo $filter->getLabel(); ?></option>
+						<?php endforeach; ?>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<?php $i=0; foreach($this->stories as $story): ?>
+	<div id="list-activity" class="row-fluid orange-dot-top">
+		<div class="span10">
+			<!-- @todo : avoir des templates par type de telling -->
+			<?php //echo $story['openGraphMapping']; ?>
+			A <?php echo $story['created_at']->format('d-m-Y H:i:s') ?>, <?php echo $this->translate($story['label']); ?>
+				<?php 
+				foreach ($story['object'] as $type => $values) :
+					echo $type."<br />";
+					if(is_array($values)) {
+					foreach ($values as $key => $value) :
+						if(is_array($value)) {
+							foreach ($value as $k => $v) {
+								echo $k.":".$v."<br />";
+							}
+						} else {
+							echo $key.":".$value."<br />";	
+						}
+						
+					endforeach;
+					} else {
+						echo $value;
+					}
+
+					echo "<br/>";
+				endforeach;
+				?>
+		
+			<?php echo $story['points']?> points 
+
+		</div>
+	</div>
+	<?php  $i++; endforeach;?>
+</div>
+<?php if($i < $this->total): ?>
+	<div id="more-activity" class="row-fluid more"><a href="<?php echo $this->url('frontend/activity', array('channel' => $this->channel)). '/' . $this->filter ;?>" data-count="2" data-total="<?php echo $total; ?>">+ Plus d'actus</a></div>
+<?php endif; ?>
+<!-- END USER ACTIVITY -->

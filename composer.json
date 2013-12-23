@@ -1,0 +1,49 @@
+{
+	"name" : "adfab/technotop",
+	"description" : "This engine grabs the most visited websites in a country and analyses the technos they use",
+	"authors" : [{
+			"name" : "Greg Besson",
+			"email" : "gregory.besson@adfab.fr",
+			"homepage" : "http://www.technotop.fr"
+		}
+	],
+	"keywords" : [
+		"framework",
+		"zf2",
+		"technotop"
+	],
+	"homepage" : "http://www.playground.gg/",
+	"license" : [
+		"BSD-3-Clause"
+	],
+	"require" : {
+		"playground/design" : "dev-develop",
+		"doctrine/data-fixtures" : "dev-master",
+		"zendframework/zend-developer-tools" : "dev-master",
+		"zendframework/zendframework" : "2.*",
+		"ocramius/ocra-cached-view-resolver" : "1.0.*",
+		"hounddog/doctrine-data-fixture-module" : "0.*",
+		"jhuet/zdt-logger-module" : "0.*",
+		"php" : ">=5.3.3",
+		"playground/user" : "dev-develop",
+		"playground/facebook" : "dev-develop",
+		"doctrine/doctrine-orm-module" : "0.8.*@dev",
+		"doctrine/doctrine-module" : "0.8.*@dev",
+		"bjyoungblood/bjy-authorize" : "1.1.*",
+		"playground/zdt-templatehint" : "dev-master",
+		"playground/hybridauth" : "dev-master",
+		"playground/faq" : "dev-develop",
+		"playground/core" : "dev-master",
+		"playground/translate" : "dev-develop",
+		"zendframework/zftool": "dev-master"
+	},
+	"require-dev" : {
+		"phpunit/phpunit" : "3.7.*",
+		"satooshi/php-coveralls" : "dev-master"
+	},
+	"repositories" : [{
+			"type" : "git",
+			"url" : "https://github.com/gregorybesson/hybridauth"
+		}
+	]
+}

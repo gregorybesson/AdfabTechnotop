@@ -1,0 +1,42 @@
+<?php $this->plugin('translate')->setTranslatorTextDomain('playgroundfaq'); ?>
+
+<ul class="liste-buttons">
+	<li class="btn-admin"><a href="<?php echo $this->url('admin/playgroundfaq_admin/create');?>"><?php echo $this->translate('New FAQ'); ?></a></li>
+</ul>
+
+<h1 class="f-left"><?php echo $this->translate('FAQ list'); ?></h1>
+
+<table class="table">
+	    <tr>
+	        <th><?php //echo $this->translate('Id'); ?></th>
+	        <th><?php echo $this->translate('Question and Answer'); ?></th>
+	        <th><?php echo $this->translate('Active'); ?></th>
+	        <th></th>
+	    </tr>
+	    <tbody id="sort-table">
+	    <?php foreach ($this->faqs as $faq): ?>
+	        <?php $editLink = $this->url('admin/playgroundfaq_admin/edit', array('faqId' => $faq->getId()));?>
+	        <?php $deleteLink = $this->url('admin/playgroundfaq_admin/remove', array('faqId' => $faq->getId()));?>
+	        <tr class="sortable" id="<?php echo $faq->getId() ?>" 
+	        	data-url="<?php echo $this->url('admin/playgroundfaq_admin/edit', array('faqId' => $faq->getId()))?>"
+	        	data-active="<?php echo $faq->getIsActive() ?>">
+	            
+	            <td><?php //echo $faq->getId() ?></td>
+	            <td>
+	            	<?php echo $faq->getQuestion() ?>
+	            	<?php echo $faq->getAnswer() ?>
+	            </td>
+	            <td><?php echo ($faq->getIsActive())? $this->translate('Active'):$this->translate('Inactive')?></td>
+	            <td>
+	                <a href='<?php echo $editLink ?>'><?php echo $this->translate('Edit'); ?></a> | <a class="remove-entry" href='<?php echo $deleteLink ?>'><?php echo $this->translate('Delete'); ?></a>
+	            </td>
+	        </tr>
+	    <?php endforeach; ?>
+    </tbody>
+</table>
+
+<ul class="liste-buttons bottom">
+	<li class="btn-admin bottom"><a href="<?php echo $this->url('admin/playgroundfaq_admin/create');?>"><?php echo $this->translate('New FAQ'); ?></a></li>
+</ul>
+
+<?php //echo $this->paginationControl($this->faqs, 'Sliding', 'playground-faq/admin/pagination_faqlist.phtml'); ?>

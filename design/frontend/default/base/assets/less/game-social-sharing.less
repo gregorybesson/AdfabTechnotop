@@ -1,0 +1,126 @@
+.content-game {
+  
+  .share-text {
+    font-family: @futura;
+    font-size: 14px;
+    line-height: 16px;
+    color: @pg-orange;
+    background: url('../images/common/puce-sb-block.png') no-repeat left 20px transparent;
+    padding: 20px 0 20px 20px;
+  }
+  
+  .invite-social,
+  .invit-mail {
+    
+    p {
+      padding: 0;
+      text-transform: uppercase;
+      font-family: @futura;
+      font-size: 14px;
+      line-height: 16px;
+    }
+    
+    .img-mail {
+      display: none;
+    }
+    
+    input {
+      width: 100%;
+      border-radius: 0;
+      border: 1px solid #e6e6e3;
+      background-color: #fff;
+      padding: 6px;
+      height: 30px;
+      font-family: 'futura-bk';
+      font-size: 12px;
+      line-height: 14px;
+      margin: 0 0 12px 0;
+    }
+    
+    .wrapper-share {
+      margin-top: 20px;
+    }
+    
+    .social-icon {
+      margin-top: 20px;
+      padding:0;
+      
+      li {
+        display: inline-block;
+        padding:0;
+        margin: 0 0 0 20px;
+        
+        .link {
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          border-radius: 50%;
+          width: 65px;
+          height: 65px;
+          float: left;
+          text-indent: -9999px;
+          
+          &.fb {
+            background: url('../images/common/icon-social.png') no-repeat 22px center @pg-fb;
+          }
+          &.twitter {
+            background: url('../images/common/icon-social.png') no-repeat -58px center @pg-twitter;
+          }
+          &.google-plus {
+            background: url('../images/common/icon-social.png') no-repeat -145px center @pg-google;
+          }
+        }
+      }
+    }
+  }
+}
+
+.social-share {
+  text-align: right;
+  display: inline-block;
+  margin: 10px 0px;
+  width: 100%;
+  
+  li {
+    display: inline-block;
+    margin:0 0 0 8px;
+    
+    &:first-child {
+      margin:0;
+    }
+    
+    .link {
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+      width:35px;
+      height:35px;
+      float: left;
+      text-indent: -9999px;
+      background-size: auto 60% !important;
+    
+      &.fb {
+        background:url('../images/common/icon-social.png') no-repeat 12px center #262626;
+      
+        &:hover {
+          background-color:@pg-fb;
+        }
+      }
+      
+      &.twitter {
+        background:url('../images/common/icon-social.png') no-repeat -32px center #262626;
+        
+        &:hover {
+          background-color:@pg-twitter;
+        }
+      }
+      
+      &.google {
+        background:url('../images/common/icon-social.png') no-repeat -77px center #262626;
+        
+        &:hover {
+          background-color:@pg-google;
+        }
+      }
+    }
+  }
+}

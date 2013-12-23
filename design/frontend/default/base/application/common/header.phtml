@@ -1,0 +1,63 @@
+<?php $this->plugin('translate')->setTranslatorTextDomain('playgrounddesign');// Pour le texte ?>
+
+<div id="fb-root"></div>
+
+<!-- HEADER -->
+<div class="wrap-header">
+    <div class="header" id="header">
+
+        <nav class="navbar navbar-default" role="navigation">
+
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-menu">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="logo-title" ><?php echo $this->translate('The first open source platform games!'); ?></div>
+
+                <a class="navbar-brand" href="<?php echo $this->url('frontend', array('channel' => $this->channel)) ?>">
+                    <img src="<?php echo $this->frontendAssetPath('images/common/logo-white.png')?>" alt="logo" />
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="navbar-collapse-menu">
+            <?php if(!$this->zfcUserIdentity()): ?>
+                <?php echo $this->userLoginWidget(array('redirect' => $this->url('frontend', array('channel' => $this->channel)),'enableRegistration' => true)); ?>
+            <?php else: ?>
+
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href=""> menu1 </a>
+                    </li>
+                    <li>
+                        <a href=""> menu2 </a>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="<?php echo $this->url('frontend/zfcuser/profile', array('channel' => $this->channel)) ?>">
+                            <?php if($this->zfcUserIdentity()->getAvatar()):?>
+                                <img src="<?php echo $this->basePath($this->zfcUserIdentity()->getAvatar()) ?>" width="28" height="28" alt="<?php echo $this->zfcUserIdentity()->getFirstname(); ?> <?php echo $this->zfcUserIdentity()->getLastname(); ?>" />
+                            <?php else:?>
+                                    <?php if($this->zfcUserIdentity()->getTitle() && $this->zfcUserIdentity()->getTitle() == 'M'): ?>
+                                        <span class="glyphicon glyphicon-user"></span>
+                                    <?php else: ?>
+                                        <span class="glyphicon glyphicon-user"></span>
+                                    <?php endif; ?>
+                            <?php endif;?>
+                            <?php echo $this->zfcUserIdentity()->getUsername();?>
+                       </a>
+                    </li>
+                </ul>
+                <?php endif; ?>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- END HEADER -->

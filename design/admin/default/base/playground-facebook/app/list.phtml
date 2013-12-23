@@ -1,0 +1,80 @@
+<?php $this->plugin('translate')->setTranslatorTextDomain('playgroundfacebook'); ?>
+<?php
+// TODO : refactor message display
+$fm = $this->flashMessenger()->setNamespace('playgroundfacebook')->getMessages();
+if (isset($fm[0]))
+{
+    echo '<span class="alert">' . $fm[0] . '</span>';
+}
+?>
+<ul class="liste-buttons">
+	<li class="btn-admin"><a href="<?php echo $this->url('admin/facebook/app/create');?>"><?php echo $this->translate('Add facebook application'); ?></a></li>
+</ul>
+
+<h1><?php echo $this->translate('Your facebook applications'); ?></h1>
+
+<?php if(!$this->fbLogged):?>
+<?php echo $this->translate('You\'re not connected to Facebook or you don\'t have enough right to manage these apps and pages.');?><br/>
+<?php echo $this->translate('To manage these apps');?>
+    <a href="<?php echo $this->fbLoginUrl ?>"><?php echo $this->translate('Login to Facebook with page management authorization');?></a>
+<?php endif;?>
+<table class="table">
+    <tr>
+        <th><?php echo $this->translate('App Id'); ?></th>
+        <th><?php echo $this->translate('Name'); ?></th>
+        <!--th><?php //echo $this->translate('Icône'); ?></th>
+        <th><?php //echo $this->translate('Logo'); ?></th-->
+        <th><?php echo $this->translate('Available'); ?></th>
+        <th><?php echo $this->translate('Content'); ?></th>
+        <?php if($this->fbLogged):?>
+            <th><?php echo $this->translate('Installed'); ?></th>
+            <th><?php echo $this->translate('Title'); ?></th>
+            <th><?php echo $this->translate('Logo'); ?></th>
+        <?php endif;?>
+        <th></th>
+    </tr>
+    <?php foreach ($this->apps as $app): ?>
+        <?php $installLink = $this->url('admin/facebook/app/install', array('appId' => $app['object_id']));?>
+        <?php $uninstallLink = $this->url('admin/facebook/app/uninstall', array('appId' => $app['object_id']));?>
+        <?php $editLink = $this->url('admin/facebook/app/edit', array('appId' => $app['object_id']));?>
+        <?php $deleteLink = $this->url('admin/facebook/app/remove', array('appId' => $app['object_id']));?>
+        <tr>
+            <td><?php echo $app['id'] ?></td>
+            <td><a href="<?php echo $app['link'] ?>" target="_blank"><?php echo $app['name'] ?></a></td>
+            <!--td><img src="<?php //echo $app['icon_url'] ?>"/></td>
+            <td><img src="<?php //echo $app['logo_url'] ?>"/></td-->
+            <td><?php echo ($app['is_available'])? $this->translate('Yes'):$this->translate('No'); ?></td>
+            <td><?php echo $app['source_type'] . ' - ' . $app['source_title'] ?></td>
+            <?php if($this->fbLogged && $this->fbAllowed):?>
+                <td><?php echo ($app['is_installed'])? $this->translate('Yes'):$this->translate('No'); ?></td>
+                <td><a href="<?php echo $app['link']?>" target="_blank"><?php echo (isset($app['custom_name']))? $app['custom_name']:''; ?></a></td>
+                <td><?php if(isset($app['custom_image_url'])):?><img src="<?php echo $app['custom_image_url']; ?>"/><?php endif;?></td>
+            <?php endif;?>
+            <td>
+                <?php if($this->fbAllowed):?>
+                    <?php if(!$app['is_installed'] && !$app['is_available']):?>
+                    <?php     if($app['has_pages']):?>
+                        <a href='<?php echo $installLink ?>'><?php echo $this->translate('Install on Facebook page').' '.$app['pages_number'].' '.$this->translate('page(s)'); ?></a>
+                    <?php     else:?>
+                        <a href='<?php echo $editLink ?>'><?php echo $this->translate('Choose FB page(s)'); ?></a>
+                    <?php     endif;?>
+                        |
+                    <?php endif;?>
+                    <?php if($app['is_installed']): ?>
+                    <?php     if($app['has_pages']):?>
+                        <a href='<?php echo $uninstallLink ?>'><?php echo $this->translate('Uninstall from Facebook page').' '.$app['pages_number'].' '.$this->translate('page(s)'); ?></a>
+                        |
+                    <?php     endif;?>
+                    <?php endif;?>
+                <?php endif;?>
+                <a href='<?php echo $editLink ?>'><?php echo $this->translate('Edit'); ?></a> | <a href='<?php echo $deleteLink ?>'><?php echo $this->translate('Delete'); ?></a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+</table>
+
+<ul class="liste-buttons bottom">
+	<li class="btn-admin bottom"><a href="<?php echo $this->url('admin/facebook/app/create');?>"><?php echo $this->translate('Add facebook application'); ?></a></li>
+</ul>
+
+<?php //echo $this->paginationControl($this->apps, 'Sliding', 'playground-facebook/admin/pagination_applist.phtml'); ?>

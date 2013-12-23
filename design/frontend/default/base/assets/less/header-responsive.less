@@ -1,0 +1,152 @@
+// RESPONSIVE
+@media screen and (max-width: @screen-sm) {
+  .wrap-header {
+    padding: 0px;
+    
+    .header {
+      height: 55px;
+    }
+    
+    .separator {
+      display: none;
+    }
+    
+    button.navbar-toggle {
+      border-radius: 0px;
+      
+      &:focus,
+      &:hover,
+      &:active {
+        background-color: white;
+        
+        .icon-bar {
+          border: @pg-black;
+          background-color: @pg-black;
+          outline: none;
+        }
+      }
+    }
+    
+    .navbar-header {
+      min-height: 100px;
+    }
+    
+    .navbar-collapse {
+      max-height: inherit;
+      top: 55px;
+      position: absolute;
+      
+      li {
+        
+        a {
+          display: block;
+        }
+      }
+    }
+    
+    .navbar-brand {
+      position: absolute;
+      
+      img {
+        width: 50px;
+      }
+    }
+    
+    .navbar-nav {
+      margin: 0px;
+      background-color:@pg-black;
+      
+      .caret {
+        float: right;
+        margin-top: 14px;
+      }
+      
+      .dropdown-menu {
+        border: 0;
+        background-color: @pg-black;
+        border-radius: 0;
+        -moz-box-shadow: inset 0 5px 6px 0 #000;
+        -webkit-box-shadow: inset 0 5px 6px 0 #000;
+        -o-box-shadow: inset 0 5px 6px 0 #000;
+        box-shadow: inset 0 5px 6px 0 #000;
+        
+        &.login {
+            
+          .form-control {
+            display: inline-block;
+          }
+          
+          a {
+            position: relative;
+            text-transform: none;
+          }
+          
+          .btn-default {
+            margin: 5px 0px;
+          }
+          
+          .fbconnect-header {
+            display: inline-block;
+          }
+        }
+      }
+      
+      &.navbar-right {
+        height: auto;
+        margin: 0px;
+        
+        li {
+          
+          a {
+            text-transform: uppercase;
+            margin: 0px;
+            background-color:@pg-black;
+            
+            &:hover,
+            &:active,
+            &:focus {
+              color:@pg-white;
+              background-color: @pg-orange;
+            }
+          }
+        }
+      
+        .dropdown,
+        .dropdown.open {
+          background-color: @pg-black;
+          
+          .dropdown-toggle {
+            padding: 0px 14px;
+          }
+          
+          .dropdown-menu {
+            
+            a {
+              text-transform: none;
+            }
+            
+            &.login {
+              width: 100%;
+            }
+            
+            &.account {
+              width: 100%;
+              
+              li a {
+                text-align: left;
+              }
+            }
+            
+            &.all-badges {
+              width: 100%;
+              
+              li {
+                display: block;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

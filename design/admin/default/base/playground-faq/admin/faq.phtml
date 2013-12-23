@@ -1,0 +1,58 @@
+<?php
+$form = $this->form;
+$form->prepare();
+?>
+
+<h1><?php echo $this->translate('New FAQ'); ?></h1>
+
+<?php echo $this->form()->openTag($form) ?>
+<?php $form->get('submit')->setLabel($this->translate('Validate')); ?>
+<?php echo $this->formButton($form->get('submit')) ?>
+
+<div>
+        <?php echo $this->formHidden($form->get('id')); ?>
+
+        <?php echo $this->formTextarea($form->get('question')); ?>
+        <?php echo $this->formElementErrors($form->get('question')) ?>
+        <?php $this->QgCKEditor(
+            'question',
+                array(
+                	'BasePath' => $this->libAssetPath('js/ckeditor'),
+                	'Width' => "50%",
+                    'Height' => "100",
+                    //'filebrowserBrowseUrl' => '/elfinder', // eg. 'includes/elFinder/elfinder.html'
+                    'uiColor' => '#9AB8F3',
+                    //'Color' => "#000",
+                    'Toolbar'=> array(
+                         array('Bold','Italic','Underline','NumberedList','BulletedList','Outdent','Indent','Link','Unlink','Source'),
+                     )
+                )
+            );
+        ?>
+
+        <?php echo $this->formTextarea($form->get('answer')); ?>
+        <?php echo $this->formElementErrors($form->get('answer')) ?>
+        <?php $this->QgCKEditor(
+            'answer',
+                array(
+                	'BasePath' => $this->libAssetPath('js/ckeditor'),
+                	'Width' => "50%",
+                    'Height' => "100",
+                    //'filebrowserBrowseUrl' => '/elfinder', // eg. 'includes/elFinder/elfinder.html'
+                    'uiColor' => '#9AB8F3',
+                    //'Color' => "#000",
+                    'Toolbar'=> array(
+                         array('Bold','Italic','Underline','NumberedList','BulletedList','Outdent','Indent','Link','Unlink','Source'),
+                     )
+                )
+            );
+        ?>
+
+        <?php echo $this->formLabel($form->get('isActive')); ?>
+        <?php echo $this->formSelect($form->get('isActive')); ?>
+        <?php echo $this->formElementErrors($form->get('isActive')) ?>
+
+</div>
+
+<?php echo $this->form()->closeTag() ?>
+
