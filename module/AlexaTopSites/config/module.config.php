@@ -84,6 +84,15 @@ return array(
                             'action'     => 'topsites'
                         )
                     )
+                ),
+                'technofeel' => array(
+                    'options' => array(
+                        'route'    => 'technofeel [--url=]',
+                        'defaults' => array(
+                            'controller' => 'alexatopsitesconsole',
+                            'action'     => 'technofeel'
+                        )
+                    )
                 )
             )
         )
