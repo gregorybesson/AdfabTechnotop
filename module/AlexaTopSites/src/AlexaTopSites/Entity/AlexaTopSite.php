@@ -11,15 +11,15 @@ use Doctrine\ORM\Mapping\PreUpdate;
  * @ORM\Entity @HasLifecycleCallbacks
  * @ORM\Table(name="alexa_top_site")
  */
-class TopCountry
+class AlexaTopSite
 {
-    
+
     /**
      * @ORM\Id
      * @ORM\Column(type="string");
      */
     protected $url;
-    
+
     /**
      * @ORM\Id
      * @ORM\Column(type="string");
@@ -30,22 +30,22 @@ class TopCountry
      * @ORM\Column(type="bigint", nullable=false)
      */
     protected $rank;
-    
+
     /**
      * @ORM\Column(name="country_rank", type="bigint")
      */
     protected $countryRank;
-    
+
     /**
      * @ORM\Column(name="country_reach_per_million", type="bigint")
      */
     protected $countryReachPerMillion;
-    
+
     /**
      * @ORM\Column(name="country_page_views_per_million", type="bigint", nullable=true)
      */
     protected $countryPageViewsPerMillion;
-    
+
     /**
      * @ORM\Column(name="country_page_views_per_user", type="bigint", nullable=true)
      */
@@ -206,7 +206,7 @@ class TopCountry
     public function setCreatedAt($created_at)
     {
         $this->created_at = $created_at;
-        
+
         return $this;
     }
 
@@ -224,7 +224,7 @@ class TopCountry
     public function setUpdatedAt($updated_at)
     {
         $this->updated_at = $updated_at;
-        
+
         return $this;
     }
 

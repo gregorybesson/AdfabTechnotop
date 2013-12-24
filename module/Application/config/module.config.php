@@ -1,6 +1,21 @@
 <?php
 
 return array(
+    'doctrine' => array(
+        'driver' => array(
+            'application_entity' => array(
+                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                'cache' => 'array',
+                'paths' => __DIR__ . '/../src/Application/Entity'
+            ),
+
+            'orm_default' => array(
+                'drivers' => array(
+                    'Application\Entity' => 'application_entity'
+                )
+            )
+        )
+    ),
     'router' => array(
         'routes' => array(
             'frontend' => array(
@@ -77,6 +92,22 @@ return array(
         ),
     ),
 
+    'console' => array(
+        'router' => array(
+            'routes' => array(
+                'technofeel' => array(
+                    'options' => array(
+                        'route'    => 'technofeel [--url=] [--num=]',
+                        'defaults' => array(
+                            'controller' => 'technotopconsole',
+                            'action'     => 'technofeel'
+                        )
+                    )
+                )
+            )
+        )
+    ),
+
     'core_layout' => array(
         'application' => array(
             'layout' => 'layout/homepage-2columns-right',
@@ -147,8 +178,9 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Application\Controller\Index' => 'Application\Controller\IndexController',
+            'Application\Controller\Index' => 'Application\Controller\Frontend\IndexController',
             'applicationadmin' => 'Application\Controller\Admin\StatisticsController',
+            'technotopconsole' => 'Application\Controller\Console\IndexController',
         ),
     ),
     'view_manager' => array(

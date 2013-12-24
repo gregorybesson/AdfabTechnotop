@@ -42,14 +42,14 @@ class Module implements ConsoleUsageProviderInterface
             'invokables' => array(
                 'alexatopsites_topsites_service' => 'AlexaTopSites\Service\Topsites',
             ),
-            
+
             'factories' => array(
-            
-                'alexatopsites_topcountry_mapper' => function ($sm) {
-                    $mapper = new \AlexaTopSites\Mapper\TopCountry(
+
+                'alexatopsites_alexatopsite_mapper' => function ($sm) {
+                    $mapper = new \AlexaTopSites\Mapper\AlexaTopSite(
                         $sm->get('doctrine.entitymanager.orm_default')
                     );
-            
+
                     return $mapper;
                 },
             ),

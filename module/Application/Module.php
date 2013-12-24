@@ -12,6 +12,8 @@ namespace Application;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 use Zend\Validator\AbstractValidator;
+use Zend\Console\Adapter\AdapterInterface;
+use Zend\ModuleManager\Feature\ConsoleUsageProviderInterface;
 
 class Module
 {
@@ -57,8 +59,11 @@ class Module
     public function getServiceConfig()
     {
         return array(
-            'factories' => array(
+            'invokables' => array(
+                'application_technotop_service' => 'Application\Service\TechnoTop',
+            ),
 
+            'factories' => array(
                 'application_contact_form' => function($sm) {
                     $translator = $sm->get('translator');
                       $form = new Form\Contact(null, $sm, $translator);
@@ -66,6 +71,19 @@ class Module
                     return $form;
                 },
             ),
+        );
+    }
+
+    public function getConsoleUsage(AdapterInterface $console)
+    {
+        return array(
+            // Describe available commands
+            'technofeel [--url=]' => 'Get the technos associated with websites',
+            'technofeel [--num=]' => 'Get the number of recorded websites to analyze',
+
+            // Describe expected parameters
+            array( '--url',     '(optional) URL to be analyzed' ),
+            array( '--num',     '(optional) Number of sites to analyze. If none provided => num = 100' ),
         );
     }
 }

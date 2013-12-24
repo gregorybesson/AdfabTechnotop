@@ -6,7 +6,7 @@ use ZfcBase\EventManager\EventProvider;
 use Zend\ServiceManager\ServiceManagerAwareInterface;
 use Zend\ServiceManager\ServiceManager;
 
-use AlexaTopSites\Entity\TopCountry;
+use AlexaTopSites\Entity\AlexaTopSite;
 
 /**
  * Makes a request to ATS for the top 10 sites in a country
@@ -19,10 +19,10 @@ class Topsites  extends EventProvider implements ServiceManagerAwareInterface
      * @var ServiceManager
      */
     protected $serviceManager;
-    
+
     protected $em;
     protected $er;
-    
+
     protected $ActionName        = 'TopSites';
     protected $ResponseGroupName = 'Country';
     protected $ServiceHost      = 'ats.amazonaws.com';
@@ -43,39 +43,39 @@ class Topsites  extends EventProvider implements ServiceManagerAwareInterface
         $iterations= (int)($total/$pagination);
         $reste = $total%$pagination;
         $found = 0;
-        
+
         $this->accessKeyId = $accessKeyId;
         $this->secretAccessKey = $secretAccessKey;
         $this->countryCode = $countryCode;
-        
+
         for($i=0;$i<$iterations;$i++){
             $this->startNum = $pagination*$i + $startNum;
             $this->pagination = $pagination;
-    
+
             $queryParams = $this->buildQueryParams();
             $sig = $this->generateSignature($queryParams);
             $url = 'http://' . $this->ServiceHost . '/?' . $queryParams .
                 '&Signature=' . $sig;
             $ret = $this->makeRequest($url);
-            
+
             $found += $this->parseResponse($ret);
             echo "found: " . $found . " \n";
         }
-        
+
         if($reste > 0){
             $this->startNum = $pagination*$iterations + $startNum;
             $this->pagination = $reste;
-            
+
             $queryParams = $this->buildQueryParams();
             $sig = $this->generateSignature($queryParams);
             $url = 'http://' . $this->ServiceHost . '/?' . $queryParams .
             '&Signature=' . $sig;
             $ret = $this->makeRequest($url);
-            
+
             $found += $this->parseResponse($ret);
             echo "found: " . $found . " \n";
         }
-        
+
         return $found;
     }
 
@@ -133,13 +133,13 @@ class Topsites  extends EventProvider implements ServiceManagerAwareInterface
      * @param String $response    xml response from ATS
      */
     protected function parseResponse($response) {
-        
+
         $array = array();
         $xml = new \SimpleXMLElement($response,null, false, 'http://ats.amazonaws.com/doc/2005-11-21');
         $i=0;
-        
+
         $countryCode = (string) $xml->Response->TopSitesResult->Alexa->TopSites->Country->CountryCode;
-        
+
         foreach($xml->Response->TopSitesResult->Alexa->TopSites->Country->Sites->children('http://ats.amazonaws.com/doc/2005-11-21') as $site) {
             /*$array[$i]['dataUrl']                     = (string) $site->DataUrl;
             $array[$i]['rank']                        = (string) $site->Global->Rank;
@@ -148,28 +148,28 @@ class Topsites  extends EventProvider implements ServiceManagerAwareInterface
             $array[$i]['countryReachPerMillion']      = (string) $site->Country->Reach->PerMillion;
             $array[$i]['countryPageViewsPerMillion']  = (string) $site->Country->PageViews->PerMillion;
             $array[$i]['countryPageViewsPerUser']     = (string) $site->Country->PageViews->PerUser;*/
-            
+
             $url = (string) $site->DataUrl;
-            
-            $topCountry = $this->getEntityRepository()->findOneBy(array('url' => $url, 'country' => $countryCode));
-            if (!$topCountry) {
-                $topCountry = new TopCountry($url, $countryCode);
+
+            $alexaTopSite = $this->getEntityRepository()->findOneBy(array('url' => $url, 'country' => $countryCode));
+            if (!$alexaTopSite) {
+                $alexaTopSite = new AlexaTopSite($url, $countryCode);
             }
 
-            $topCountry->setRank((string) $site->Global->Rank);            
-            $topCountry->setCountryRank((string) $site->Country->Rank);
-            $topCountry->setCountryReachPerMillion((string) $site->Country->Reach->PerMillion);
-            $topCountry->setCountryPageViewsPerMillion((string) $site->Country->PageViews->PerMillion);
-            $topCountry->setCountryPageViewsPerUser((string) $site->Country->PageViews->PerUser);
+            $alexaTopSite->setRank((string) $site->Global->Rank);
+            $alexaTopSite->setCountryRank((string) $site->Country->Rank);
+            $alexaTopSite->setCountryReachPerMillion((string) $site->Country->Reach->PerMillion);
+            $alexaTopSite->setCountryPageViewsPerMillion((string) $site->Country->PageViews->PerMillion);
+            $alexaTopSite->setCountryPageViewsPerUser((string) $site->Country->PageViews->PerUser);
 
-            $this->getEntityManager()->persist($topCountry);
-            
+            $this->getEntityManager()->persist($alexaTopSite);
+
             $i++;
         }
 
             $this->getEntityManager()->flush();
             $this->getEntityManager()->clear(); // Detaches all objects from Doctrine!
-        
+
         return $i;
     }
 
@@ -230,7 +230,7 @@ class Topsites  extends EventProvider implements ServiceManagerAwareInterface
       $this->countryCode = $countryCode;
       return $this;
      }
-     
+
      /**
       * Retrieve service manager instance
       *
@@ -240,7 +240,7 @@ class Topsites  extends EventProvider implements ServiceManagerAwareInterface
      {
          return $this->serviceManager;
      }
-     
+
      /**
       * Set service manager instance
       *
@@ -250,25 +250,25 @@ class Topsites  extends EventProvider implements ServiceManagerAwareInterface
      public function setServiceManager(ServiceManager $serviceManager)
      {
          $this->serviceManager = $serviceManager;
-     
+
          return $this;
      }
-     
+
      public function getEntityManager()
      {
          if (!$this->em) {
              $this->em = $this->getServiceManager()->get('doctrine.entitymanager.orm_default');
          }
-     
+
          return $this->em;
      }
-     
+
      public function getEntityRepository()
      {
          if (!$this->er) {
-             $this->er = $this->getEntityManager()->getRepository('AlexaTopSites\Entity\TopCountry');
+             $this->er = $this->getEntityManager()->getRepository('AlexaTopSites\Entity\AlexaTopSite');
          }
-          
+
          return $this->er;
      }
 }

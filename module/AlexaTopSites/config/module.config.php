@@ -7,7 +7,7 @@ return array(
                 'cache' => 'array',
                 'paths' => __DIR__ . '/../src/AlexaTopSites/Entity'
             ),
-    
+
             'orm_default' => array(
                 'drivers' => array(
                     'AlexaTopSites\Entity' => 'alexatopsites_entity'
@@ -85,15 +85,6 @@ return array(
                         )
                     )
                 ),
-                'technofeel' => array(
-                    'options' => array(
-                        'route'    => 'technofeel [--url=]',
-                        'defaults' => array(
-                            'controller' => 'alexatopsitesconsole',
-                            'action'     => 'technofeel'
-                        )
-                    )
-                )
             )
         )
     ),

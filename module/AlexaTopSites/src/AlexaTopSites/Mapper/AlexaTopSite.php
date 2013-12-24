@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityManager;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-class TopCountry implements ServiceLocatorAwareInterface
+class AlexaTopSite implements ServiceLocatorAwareInterface
 {
     /**
      * @var \Doctrine\ORM\EntityManager
@@ -17,7 +17,7 @@ class TopCountry implements ServiceLocatorAwareInterface
      * @var \Doctrine\ORM\EntityRepository
      */
     protected $er;
-    
+
     /**
      * @var ServiceLocatorInterface
      */
@@ -72,12 +72,12 @@ class TopCountry implements ServiceLocatorAwareInterface
     public function getEntityRepository()
     {
         if (null === $this->er) {
-            $this->er = $this->em->getRepository('AlexaTopSites\Entity\TopCountry');
+            $this->er = $this->em->getRepository('AlexaTopSites\Entity\AlexaTopSite');
         }
 
         return $this->er;
     }
-    
+
     /**
      * Set serviceManager instance
      *
