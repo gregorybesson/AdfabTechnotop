@@ -8,9 +8,6 @@
 		<h1>
 		    <?php echo $this->translate('The page you requested was not found') ?>
 		</h1>
-		<p>
-		    <a href="" class="btn btn-default" ><?php echo $this->translate('Other games in') ?></a>
-		</p>
 	</div>
 	<?php
 	if (isset($this->reason) && $this->reason){
@@ -34,4 +31,5 @@
         }
 	}
     ?>
+    <p> <?php echo $reasonMessage ?></p>
 </div>

@@ -18,6 +18,19 @@ return array(
     ),
     'router' => array(
         'routes' => array(
+            // this config must be out of frontend config...
+            'techno' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/techno[/:id]',
+                    'constraints' => array(
+                        'id' => '[a-zA-Z0-9_-]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Frontend\Rest'
+                    ),
+                ),
+            ),
             'frontend' => array(
                 'options' => array(
                     'defaults' => array(
@@ -179,16 +192,21 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Application\Controller\Index' => 'Application\Controller\Frontend\IndexController',
+            'Application\Controller\Frontend\Rest' => 'Application\Controller\Frontend\RestController',
             'applicationadmin' => 'Application\Controller\Admin\StatisticsController',
             'technotopconsole' => 'Application\Controller\Console\IndexController',
         ),
     ),
     'view_manager' => array(
+        'strategies' => array(
+            'ViewJsonStrategy',
+        ),
         'template_path_stack' => array(
             __DIR__ . '/../view/admin',
             __DIR__ . '/../view/frontend',
         ),
     ),
+
     'navigation' => array(
         'default' => array(
             array(

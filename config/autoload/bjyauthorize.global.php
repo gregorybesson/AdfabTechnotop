@@ -64,6 +64,8 @@ return array(
                 array('controller' => 'facebook',                                  'roles' => array('guest', 'user')),
                 array('controller' => 'playgroundcore_console',                    'roles' => array('guest', 'user')),
                 array('controller' => 'playgroundfaq',                             'roles' => array('guest', 'user')),
+                array('controller' => 'Application\Controller\Frontend\Rest',      'roles' => array('guest', 'user')),
+
 
                 // Console
                 array('controller' => 'AsseticBundle\Controller\Console',          'roles' => array('guest', 'user')),
