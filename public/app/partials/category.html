@@ -1,17 +1,14 @@
-<div ng-controller="TechnoTopCtrl">
+<div ng-controller="TechnoCategoryCtrl">
 	<div class="page-header">
-	  <h1>{{techno}} <small>{{technos.length}} web sites</small></h1>
+	  <h1><small>{{technos.length}} technos</small></h1>
 	</div>
     <p></p>
     
     <div class="col-sm-4 col-lg-6 col-md-4">
         <table>
-          <tr><th>Site</th><th>Rang FR</th><th>Rang Mondial</th><th>Top</th></tr>
+          <tr><th>Techno</th></tr>
           <tr ng-repeat="techno in technos">
-            <td><a href="http://{{techno.url}}" target="_blank">{{techno.url}}</a></td>
-            <td>{{techno.country_rank}}</td>
-            <td>{{techno.rank}}</td>
-            <td>{{$index + 1}}</td>
+            <td><a href="#/techno/{{techno.techno}}">{{techno.techno}}</a></td>
           </tr>
         </table>
     </div>

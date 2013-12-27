@@ -1,23 +1,21 @@
 <?php
 
-namespace Application\Controller\Frontend;
+namespace Application\Controller\Rest;
 
 use Application\Entity\TechnoSite;
 use Zend\Mvc\Controller\AbstractRestfulController;
 use Zend\View\Model\JsonModel;
 use Doctrine\ORM\Query\ResultSetMappingBuilder;
 
-class RestController extends AbstractRestfulController {
+class CategoryController extends AbstractRestfulController {
 
     public function getList() {
         $em = $this
                 ->getServiceLocator()
                 ->get('doctrine.entitymanager.orm_default');
 
-        $results= $em->createNativeQuery('select * from techno_site INNER JOIN alexa_top_site on techno_site.url=alexa_top_site.url where alexa_top_site.country="FR" and techno_site=:techno order by techno_site.country_rank asc' )
-        ->setParameter("techno", $techno)
+        $results= $em->createQuery('select c from \Application\Entity\TechnoCategory c order by c.id asc' )
             ->getArrayResult();
-
 
         return new JsonModel(array(
             'data' => $results)
@@ -25,19 +23,12 @@ class RestController extends AbstractRestfulController {
     }
 
     public function get($id) {
-
         $em = $this
-                ->getServiceLocator()
-                ->get('doctrine.entitymanager.orm_default');
+        ->getServiceLocator()
+        ->get('doctrine.entitymanager.orm_default');
 
-        $rsm = new ResultSetMappingBuilder($em);
-        $rsm->addScalarResult('url', 'url');
-        $rsm->addScalarResult('country_rank', 'country_rank');
-        $rsm->addScalarResult('rank', 'rank');
-
-        $results= $em->createNativeQuery('select t.url, a.country_rank, a.rank from techno_site t INNER JOIN alexa_top_site a on t.url=a.url where a.country="FR" and t.techno=:techno order by a.country_rank asc',
-            $rsm)
-            ->setParameter("techno", $id)
+        $results= $em->createQuery('select t from \Application\Entity\Techno t JOIN t.categories c WHERE c.id=:id GROUP BY t.techno order by t.techno asc' )
+            ->setParameter("id", $id)
             ->getArrayResult();
 
         return new JsonModel(array(

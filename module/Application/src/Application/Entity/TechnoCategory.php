@@ -1,6 +1,7 @@
 <?php
 namespace Application\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 use Doctrine\ORM\Mapping\PrePersist;
@@ -24,6 +25,11 @@ class TechnoCategory
      * @ORM\Column(type="string");
      */
     protected $label;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="\Application\Entity\Techno", mappedBy="categories")
+     */
+    protected $technos;
 
     /**
      * @ORM\Column(type="datetime")
@@ -111,6 +117,27 @@ class TechnoCategory
     public function getLabel()
     {
         return $this->label;
+    }
+
+    /**
+     * @return the unknown_type
+     */
+    public function getTechnos() {
+        return $this->technos;
+    }
+
+    /**
+     * @param unknown_type $technos
+     */
+    public function setTechnos($technos) {
+        $this->technos = $technos;
+
+        return $this;
+    }
+
+    public function addTechno(\Application\Entity\Techno $techno)
+    {
+        $this->technos[] = $techno;
     }
 
 	/**

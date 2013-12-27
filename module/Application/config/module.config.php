@@ -27,7 +27,19 @@ return array(
                         'id' => '[a-zA-Z0-9_-]+',
                     ),
                     'defaults' => array(
-                        'controller' => 'Application\Controller\Frontend\Rest'
+                        'controller' => 'Application\Controller\Rest\Techno'
+                    ),
+                ),
+            ),
+            'category' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/category[/:id]',
+                    'constraints' => array(
+                        'id' => '[a-zA-Z0-9_-]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Rest\Category'
                     ),
                 ),
             ),
@@ -192,7 +204,8 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Application\Controller\Index' => 'Application\Controller\Frontend\IndexController',
-            'Application\Controller\Frontend\Rest' => 'Application\Controller\Frontend\RestController',
+            'Application\Controller\Rest\Techno' => 'Application\Controller\Rest\TechnoController',
+            'Application\Controller\Rest\Category' => 'Application\Controller\Rest\CategoryController',
             'applicationadmin' => 'Application\Controller\Admin\StatisticsController',
             'technotopconsole' => 'Application\Controller\Console\IndexController',
         ),

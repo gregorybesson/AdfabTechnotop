@@ -14,5 +14,6 @@ var technoTopApp = angular.module('technoTopApp', [
 technoTopApp.config(['$routeProvider', function($routeProvider) {
 	$routeProvider
 		.when('/techno/:techno', {templateUrl: 'partials/techno.html', controller: 'TechnoTopCtrl'})
+		.when('/category/:id', {templateUrl: 'partials/category.html', controller: 'TechnoCategoryCtrl'})
 		.otherwise({redirectTo: '/'});
 }]);
