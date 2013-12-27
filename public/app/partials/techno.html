@@ -1,0 +1,11 @@
+<div ng-controller="TechnoTopCtrl">
+    <p>Technologie {{techno}} : {{technos.length}} occurences</p>
+    <table>
+      <tr><th>Site</th><th>Rang FR</th><th>Top</th></tr>
+      <tr ng-repeat="techno in technos">
+        <td><a href="http://{{techno.url}}" target="_blank">{{techno.url}}</a></td>
+        <td>{{techno.country_rank}}</td>
+        <td>{{$index + 1}}</td>
+      </tr>
+    </table>
+</div>
