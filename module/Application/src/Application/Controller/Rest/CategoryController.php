@@ -27,7 +27,24 @@ class CategoryController extends AbstractRestfulController {
         ->getServiceLocator()
         ->get('doctrine.entitymanager.orm_default');
 
-        $results= $em->createQuery('select t from \Application\Entity\Techno t JOIN t.categories c WHERE c.id=:id GROUP BY t.techno order by t.techno asc' )
+        /*$results= $em->createQuery('select t from \Application\Entity\Techno t JOIN t.categories c WHERE c.id=:id GROUP BY t.techno order by t.techno asc' )
+            ->setParameter("id", $id)
+            ->getArrayResult();
+        */
+
+        $rsm = new ResultSetMappingBuilder($em);
+        $rsm->addScalarResult('techno', 'techno');
+        //$rsm->addScalarResult('website', 'website');
+        $rsm->addScalarResult('count', 'count');
+
+        $results= $em->createNativeQuery('
+            select t.techno, t.website, count(ts.techno) as count from techno as t
+            inner join technos_categories as tc on tc.techno = t.techno
+            inner join techno_site as ts on ts.techno = t.techno
+            where tc.category_id=:id
+            group by t.techno
+            order by t.techno ASC',
+            $rsm)
             ->setParameter("id", $id)
             ->getArrayResult();
 

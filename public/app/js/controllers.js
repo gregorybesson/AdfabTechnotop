@@ -53,12 +53,14 @@ technoTopControllers.controller('TechnoCategoryCtrl', function ($scope, $routePa
 	    $scope.chartTitle = "Category share";
 		$scope.chartWidth = 500;
 		$scope.chartHeight = 320;
-	    $scope.chartData = [
-	                	    ['Drupal',     250],
-	                	    ['WordPress',      2],
-	                	    ['Magento',  2],
-	                	    ['ZF2', 2],
-	                	    ['SF2',    7]
-	                	  ];
+		//$scope.chartData = data.data;
+		//$scope.chartData = google.visualization.arrayToDataTable(data.data);
+
+        var sampleData = [];
+		angular.forEach(data.data, function(row) {
+			console.log(row.techno + ' ' +row.count);
+            sampleData.push({ 0:row.techno, 1:row.count });
+        });
+		$scope.chartData = sampleData;
 	});
 });
