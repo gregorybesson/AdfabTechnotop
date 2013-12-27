@@ -32,8 +32,14 @@ class IndexController extends AbstractActionController
         } else {
             $num = 100;
         }
+        
+        if ($request->getParam('start')) {
+            $start = $request->getParam('start');
+        } else {
+            $start = 1;
+        }
 
-        $numFound = $service->getTopSites($accessKeyId, $secretAccessKey, $countryCode, $num);
+        $numFound = $service->getTopSites($accessKeyId, $secretAccessKey, $countryCode, $num, $start);
 
         echo "FINISHED : " . $numFound . " elements found";
     }

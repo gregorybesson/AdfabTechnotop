@@ -78,7 +78,7 @@ return array(
             'routes' => array(
                 'topsites' => array(
                     'options' => array(
-                        'route'    => 'topsites <accessKeyId> <secretAccessKey> [--co=] [--num=]',
+                        'route'    => 'topsites <accessKeyId> <secretAccessKey> [--co=] [--num=] [--start=]',
                         'defaults' => array(
                             'controller' => 'alexatopsitesconsole',
                             'action'     => 'topsites'

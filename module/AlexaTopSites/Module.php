@@ -26,13 +26,14 @@ class Module implements ConsoleUsageProviderInterface
     {
         return array(
             // Describe available commands
-            'topsites <ACCESS_KEY_ID> <SECRET_ACCESS_KEY> [--co=]' => 'Get the 10 top websites from co COUNTRY_CODE',
+            'topsites <ACCESS_KEY_ID> <SECRET_ACCESS_KEY> [--co=] [--num=] [--start=]' => 'Get the num top websites from co COUNTRY_CODE',
 
             // Describe expected parameters
             array( 'ACCESS_KEY_ID', 'Your AWS Access Key Id' ),
             array( 'SECRET_ACCESS_KEY', 'Your AWS Secret Key' ),
-            array( '--co',     '(optional) COUNTRY CODE for the search' ),
+            array( '--co',      '(optional) COUNTRY CODE for the search' ),
             array( '--num',     '(optional) Number of sites to grab. If none provided => num = 100' ),
+            array( '--start',   '(optional) position of first site to grab. If none provided => start = 1' ),
         );
     }
 

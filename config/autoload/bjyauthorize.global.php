@@ -71,6 +71,7 @@ return array(
                 // Console
                 array('controller' => 'AsseticBundle\Controller\Console',          'roles' => array('guest', 'user')),
                 array('controller' => 'DoctrineModule\Controller\Cli',             'roles' => array('guest', 'user')),
+                array('controller' => 'alexatopsitesconsole',                      'roles' => array('guest', 'user')),
                 array('controller' => 'technotopconsole',                          'roles' => array('guest', 'user')),
 
                 // Admin area
