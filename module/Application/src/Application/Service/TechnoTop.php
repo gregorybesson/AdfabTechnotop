@@ -251,6 +251,7 @@ class TechnoTop  extends EventProvider implements ServiceManagerAwareInterface
 
         // Updating technos linked to categories
         foreach ($data['apps'] as $technoId => $data) {
+            
             $techno = $this->getTechnoRepository()->findOneBy(array('techno' => $technoId));
             if (!$techno) {
                 $techno = new Techno($technoId);
@@ -262,6 +263,8 @@ class TechnoTop  extends EventProvider implements ServiceManagerAwareInterface
             foreach($data['cats'] as $k=>$v){
                 $technoCategory = $this->getTechnoCategoryRepository()->findOneBy(array('id' => $v));
                 if ($technoCategory) {
+                    // if the association already exist, I remove it.
+                    $techno->getCategories()->removeElement($technoCategory);
                     $techno->addCategory($technoCategory);
                 }
             }
