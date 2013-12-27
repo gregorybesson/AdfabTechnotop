@@ -7,6 +7,7 @@ use Zend\ServiceManager\ServiceManagerAwareInterface;
 use Zend\ServiceManager\ServiceManager;
 
 use Application\Entity\TechnoSite;
+use Application\Entity\TechnoCategory;
 
 class TechnoTop  extends EventProvider implements ServiceManagerAwareInterface
 {
@@ -18,7 +19,9 @@ class TechnoTop  extends EventProvider implements ServiceManagerAwareInterface
     protected $serviceManager;
 
     protected $em;
-    protected $er;
+    protected $topSiteER;
+    protected $technoSiteER;
+    protected $technoCategoryER;
 
     protected $pagination;
     protected $startNum;
@@ -30,9 +33,12 @@ class TechnoTop  extends EventProvider implements ServiceManagerAwareInterface
     public function batchAnalyze($num=50,$country='FR') {
         $alexaTopSites = $this->getAlexaTopSites($num, $country);
         $websites = array();
-        $i=0;
+        $i=1;
+        $limit = min($num, 100);
+        
+        echo "nombre : " . $num . "\n" ;
         foreach($alexaTopSites as $site) {
-            if($i%100 == 0){
+            if($i%$limit == 0){
                 foreach($websites as $website => $technos){
                     foreach($technos as $techno => $types){
                         $technoSite = $this->getTechnoSiteRepository()->findOneBy(array('url' => $website, 'techno' => $techno));
@@ -49,7 +55,9 @@ class TechnoTop  extends EventProvider implements ServiceManagerAwareInterface
                 $websites = array();
                 echo $i . " websites analyzed \n";
             }
+            //echo "analyse : " . $site->getUrl() . "\n";
             $websites[$site->getUrl()] = $this->analyze('http://'.$site->getUrl());
+            //print_r($websites[$site->getUrl()]);
             $i++;
         }
 
@@ -218,6 +226,28 @@ class TechnoTop  extends EventProvider implements ServiceManagerAwareInterface
 
         return $technos;
     }
+    
+    /**
+     * Analyze the categories based on json Wappalyzer file
+     */
+    public function updateTechnoCategory() {
+        $reader = new \Zend\Config\Reader\Json();
+        $data = $reader->fromFile(__DIR__ . '/../../../config/apps.json');
+        
+        foreach ($data['categories'] as $id => $label) {
+            $technoCategory = $this->getTechnoCategoryRepository()->findOneBy(array('id' => $id));
+            if (!$technoCategory) {
+                $technoCategory = new TechnoCategory($id);
+            }
+            $technoCategory->setLabel($label);
+            $this->getEntityManager()->persist($technoCategory);
+        }
+            
+        $this->getEntityManager()->flush();
+        $this->getEntityManager()->clear();
+    
+        return true;
+    }
 
     protected function parse($patterns)
     {
@@ -311,19 +341,28 @@ class TechnoTop  extends EventProvider implements ServiceManagerAwareInterface
 
      public function getEntityRepository()
      {
-         if (!$this->er) {
-             $this->er = $this->getEntityManager()->getRepository('AlexaTopSites\Entity\AlexaTopSite');
+         if (!$this->topSiteER) {
+             $this->topSiteER = $this->getEntityManager()->getRepository('AlexaTopSites\Entity\AlexaTopSite');
          }
 
-         return $this->er;
+         return $this->topSiteER;
      }
 
      public function getTechnoSiteRepository()
      {
-         if (!$this->er) {
-             $this->er = $this->getEntityManager()->getRepository('Application\Entity\TechnoSite');
+         if (!$this->technoSiteER) {
+             $this->technoSiteER = $this->getEntityManager()->getRepository('Application\Entity\TechnoSite');
          }
 
-         return $this->er;
+         return $this->technoSiteER;
+     }
+     
+     public function getTechnoCategoryRepository()
+     {
+         if (!$this->technoCategoryER) {
+             $this->technoCategoryER = $this->getEntityManager()->getRepository('Application\Entity\TechnoCategory');
+         }
+     
+         return $this->technoCategoryER;
      }
 }

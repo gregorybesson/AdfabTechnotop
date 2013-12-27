@@ -21,6 +21,8 @@ class IndexController extends AbstractActionController
         $service = $this->getTechnoTopService();
         $websites = array();
 
+        $service->updateTechnoCategory();
+        
         if (! $request instanceof ConsoleRequest) {
             throw new \RuntimeException('You can only use this action from a console!');
         }
@@ -37,6 +39,18 @@ class IndexController extends AbstractActionController
             //$url='http://www.gemo.fr';
 
             $websites[$url] = $service->analyze($url);
+            foreach($websites as $website => $technos){
+                echo "Technos detectees site :" . $website . "\n";
+                foreach($technos as $techno => $types){
+                    echo $techno . "\n";
+                    foreach($types as $type=>$entries){
+                      echo "-- " . $type . "\n";
+                    foreach($entries as $entry){
+                      echo "---- " . $entry . "\n";
+                    }
+                    }
+                }
+            }
         }else{
             $websites = $service->batchAnalyze($num,'FR');
         }

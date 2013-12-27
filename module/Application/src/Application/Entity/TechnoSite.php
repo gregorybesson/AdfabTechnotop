@@ -25,6 +25,12 @@ class TechnoSite
      * @ORM\Column(type="string");
      */
     protected $techno;
+    
+
+    /**
+     * @ORM\Column(name="category_id",type="integer");
+     */
+    protected $categoryId;
 
     /**
      * @ORM\Column(type="datetime")
@@ -89,6 +95,22 @@ class TechnoSite
         $this->techno = $techno;
 
         return $this;
+    }
+
+	/**
+     * @return the $categoryId
+     */
+    public function getCategoryId()
+    {
+        return $this->categoryId;
+    }
+
+	/**
+     * @param field_type $categoryId
+     */
+    public function setCategoryId($categoryId)
+    {
+        $this->categoryId = $categoryId;
     }
 
 	/**
