@@ -30,6 +30,11 @@ class TechnoCategory
      * @ORM\ManyToMany(targetEntity="\Application\Entity\Techno", mappedBy="categories")
      */
     protected $technos;
+    
+    /**
+     * @ORM\Column(name="display_menu", type="boolean");
+     */
+    protected $displayMenu=1;
 
     /**
      * @ORM\Column(type="datetime")
@@ -138,6 +143,22 @@ class TechnoCategory
     public function addTechno(\Application\Entity\Techno $techno)
     {
         $this->technos[] = $techno;
+    }
+
+	/**
+     * @return the $displayMenu
+     */
+    public function getDisplayMenu()
+    {
+        return $this->displayMenu;
+    }
+
+	/**
+     * @param field_type $displayMenu
+     */
+    public function setDisplayMenu($displayMenu)
+    {
+        $this->displayMenu = $displayMenu;
     }
 
 	/**

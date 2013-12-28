@@ -32,6 +32,12 @@ class IndexController extends AbstractActionController
         }else{
             $num = 50;
         }
+        
+        if($request->getParam('start')){
+            $start = $request->getParam('start');
+        }else{
+            $start = 1;
+        }
 
         if($request->getParam('url')){
             $url = $request->getParam('url');
@@ -52,7 +58,7 @@ class IndexController extends AbstractActionController
                 }
             }
         }else{
-            $websites = $service->batchAnalyze($num,'FR');
+            $websites = $service->batchAnalyze($num,'FR',$start);
         }
 
         /*foreach($websites as $website => $technos){

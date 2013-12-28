@@ -79,11 +79,12 @@ class Module
         return array(
             // Describe available commands
             'technofeel [--url=]' => 'Get the technos associated with websites',
-            'technofeel [--num=]' => 'Get the number of recorded websites to analyze',
+            'technofeel [--num=] [--start=]' => 'Get the number of recorded websites to analyze',
 
             // Describe expected parameters
             array( '--url',     '(optional) URL to be analyzed' ),
             array( '--num',     '(optional) Number of sites to analyze. If none provided => num = 100' ),
+            array( '--start',   '(optional) Position from which to start analyzing sites. If none provided => start = 1'),
         );
     }
 }

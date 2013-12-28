@@ -14,7 +14,7 @@ class CategoryController extends AbstractRestfulController {
                 ->getServiceLocator()
                 ->get('doctrine.entitymanager.orm_default');
 
-        $results= $em->createQuery('select c from \Application\Entity\TechnoCategory c order by c.id asc' )
+        $results= $em->createQuery('select c from \Application\Entity\TechnoCategory c WHERE c.displayMenu=1 order by c.id asc' )
             ->getArrayResult();
 
         return new JsonModel(array(

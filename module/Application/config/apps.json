@@ -894,7 +894,7 @@
 		},
 		"eZ Publish": {
 			"website": "ez.no",
-			"cats": [ 1, 6 ],
+			"cats": [ 1 ],
 			"meta": { "generator": "eZ Publish" },
 			"headers": { "X-Powered-By": "^eZ Publish" },
 			"implies": "PHP"

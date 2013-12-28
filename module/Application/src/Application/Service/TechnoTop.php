@@ -32,8 +32,8 @@ class TechnoTop  extends EventProvider implements ServiceManagerAwareInterface
     /**
      * Analyze the technos of a website
      */
-    public function batchAnalyze($num=50,$country='FR') {
-        $alexaTopSites = $this->getAlexaTopSites($num, $country);
+    public function batchAnalyze($num=50, $country='FR', $start=1) {
+        $alexaTopSites = $this->getAlexaTopSites($num, $country, $start);
         $websites = array();
         $i=1;
         $limit = min($num, 100);
@@ -323,14 +323,16 @@ class TechnoTop  extends EventProvider implements ServiceManagerAwareInterface
     /**
      *
      */
-    public function getAlexaTopSites($maxResults = 50, $country='FR')
+    public function getAlexaTopSites($maxResults = 50, $country='FR', $start=1)
     {
         $em = $this->getEntityManager();
 
         $query = $em->createQuery('SELECT a FROM AlexaTopSites\Entity\AlexaTopSite a
                 WHERE a.country = :country
+                AND a.countryRank >= :start
                 ORDER BY a.countryRank ASC');
         $query->setParameter('country', $country);
+        $query->setParameter('start', $start);
         $query->setMaxResults($maxResults);
         $sites = $query->getResult();
 

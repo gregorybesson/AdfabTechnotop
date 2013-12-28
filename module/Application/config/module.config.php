@@ -23,9 +23,9 @@ return array(
                 'type' => 'segment',
                 'options' => array(
                     'route' => '/techno[/:id]',
-                    'constraints' => array(
+                    /*'constraints' => array(
                         'id' => '[a-zA-Z0-9_-]+',
-                    ),
+                    ),*/
                     'defaults' => array(
                         'controller' => 'Application\Controller\Rest\Techno'
                     ),
@@ -122,7 +122,7 @@ return array(
             'routes' => array(
                 'technofeel' => array(
                     'options' => array(
-                        'route'    => 'technofeel [--url=] [--num=]',
+                        'route'    => 'technofeel [--url=] [--num=] [--start=]',
                         'defaults' => array(
                             'controller' => 'technotopconsole',
                             'action'     => 'technofeel'
