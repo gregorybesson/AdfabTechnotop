@@ -46,21 +46,42 @@ technoTopControllers.controller('CategoriesCtrl', function ($scope, $routeParams
 	});
 });
 
-technoTopControllers.controller('TechnoCategoryCtrl', function ($scope, $routeParams, $http) {
+technoTopControllers.controller('TechnoCategoryCtrl', function ($scope, $routeParams, $resource, ngTableParams) {
 	  
-	$http.get('/category/' + $routeParams.id).success(function(data) {
-	    $scope.technos = data.data;
-	    $scope.chartTitle = "Category share";
-		$scope.chartWidth = 500;
-		$scope.chartHeight = 320;
-		//$scope.chartData = data.data;
-		//$scope.chartData = google.visualization.arrayToDataTable(data.data);
+    var Api = $resource('/category/' + $routeParams.id);
+    
+    $scope.tableParams = new ngTableParams({
+        page: 1,            // show first page
+        count: 10,          // count per page
+        sorting: {
+            techno: 'asc'   // initial sorting
+        }
+    }, {
+        //total: 0,           // length of data
+        getData: function($defer, params) {
+            Api.get(params.url(), function(data) {
+                
+                params.total(data.total);
+                $defer.resolve(data.data);
+                
+                $scope.totalTechnos = data.total;
+                $scope.chartTitle = "Category share";
+                $scope.chartWidth = 500;
+                $scope.chartHeight = 320;
+                //$scope.chartData = data.data;
+                //$scope.chartData = google.visualization.arrayToDataTable(data.data);
 
-        var sampleData = [];
-		angular.forEach(data.data, function(row) {
-			console.log(row.techno + ' ' +row.count);
-            sampleData.push({ 0:row.techno, 1:row.count });
-        });
-		$scope.chartData = sampleData;
-	});
+                var sampleData = [];
+                angular.forEach(data.data, function(row) {
+                    //console.log(row.techno + ' ' +row.count);
+                    sampleData.push({ 0:row.techno, 1:row.count });
+                });
+                $scope.chartData = sampleData;
+                $scope.chartData = data.chart;
+                
+                console.log($scope.chartData);
+            });
+        }
+    });
+	
 });

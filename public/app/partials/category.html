@@ -1,15 +1,18 @@
 <div ng-controller="TechnoCategoryCtrl">
 	<div class="page-header">
-	  <h1><small>{{technos.length}} technos</small></h1>
+	  <h1><small>{{totalTechnos}} technos</small></h1>
 	</div>
     <p></p>
     
+    <!--button ng-click="tableParams.sorting({})" class="btn btn-default pull-right">Clear sorting</button>
+    <p><strong>Sorting:</strong> {{tableParams.sorting()|json}}</p-->
+    
     <div class="col-sm-4 col-lg-6 col-md-4">
-        <table class="table table-hover table-condensed">
-          <tr><th>Techno</th></tr>
-          <tr ng-repeat="techno in technos">
-            <td><a href="#/techno/{{techno.techno}}">{{techno.techno}}</a> ({{techno.count}} sites)</td>
-          </tr>
+        <table ng-table="tableParams" class="table">
+	          <tr ng-repeat="techno in $data">
+	            <td data-title="'Techno'" sortable="techno"><a href="#/techno/{{techno.techno}}">{{techno.techno}}</a></td>
+	            <td data-title="'Count'" sortable="count">{{techno.count}}</td>
+	          </tr>
         </table>
     </div>
     

@@ -7,6 +7,8 @@ google.load('visualization', '1', {packages: ['corechart']});
 
 var technoTopApp = angular.module('technoTopApp', [
   'ngRoute',
+  'ngResource',
+  'ngTable',
   'technoTopControllers',
   'technoTopDirectives'
 ]);
