@@ -223,6 +223,35 @@ class TechnoTop  extends EventProvider implements ServiceManagerAwareInterface
                         }
                     }
                 }
+                
+                if (isset($app['pages'])) {
+                    $pages = $this->parse($app['pages']);
+                    //print_r($pages);
+                    forEach ($pages as $k=>$page) {
+                        $r = new \Zend\Http\Request();
+                        $call->setUri($url.str_replace('\/', '/', $page));
+                        $response = false; 
+                        try{
+                            $response = $client->dispatch($call);
+                        } catch (\Exception $ex) {
+                
+                        }
+                        
+                        if ($response && $response->isSuccess() && $response->getStatusCode() == 200){
+                            $technos[$appId]['page'][] = $page;
+                            if (isset($app['implies'])) {
+                                $implies = $app['implies'];
+                                if(is_array($implies)){
+                                    foreach($implies as $imply ){
+                                        $technos[$imply]['implies'][] = '';
+                                    }
+                                }elseif($implies){
+                                    $technos[$implies]['implies'][] = '';
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
 
