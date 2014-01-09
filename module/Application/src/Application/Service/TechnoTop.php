@@ -227,9 +227,9 @@ class TechnoTop  extends EventProvider implements ServiceManagerAwareInterface
                 if (isset($app['pages'])) {
                     $pages = $this->parse($app['pages']);
                     //print_r($pages);
-                    forEach ($pages as $k=>$page) {
+                    forEach ($pages as $k=>$pattern) {
                         $r = new \Zend\Http\Request();
-                        $call->setUri($url.str_replace('\/', '/', $page));
+                        $call->setUri($url.str_replace('\/', '/', $k));
                         $response = false; 
                         try{
                             $response = $client->dispatch($call);
@@ -238,15 +238,23 @@ class TechnoTop  extends EventProvider implements ServiceManagerAwareInterface
                         }
                         
                         if ($response && $response->isSuccess() && $response->getStatusCode() == 200){
-                            $technos[$appId]['page'][] = $page;
-                            if (isset($app['implies'])) {
-                                $implies = $app['implies'];
-                                if(is_array($implies)){
-                                    foreach($implies as $imply ){
-                                        $technos[$imply]['implies'][] = '';
+                            $content='';
+                            try{
+                                $content = $response->getBody();
+                            } catch (\Exception $ex) {
+                            
+                            }
+                            if (preg_match("/" . $pattern . "/i", $content)) {
+                                $technos[$appId]['page'][] = $k . " " . $pattern;
+                                if (isset($app['implies'])) {
+                                    $implies = $app['implies'];
+                                    if(is_array($implies)){
+                                        foreach($implies as $imply ){
+                                            $technos[$imply]['implies'][] = '';
+                                        }
+                                    }elseif($implies){
+                                        $technos[$implies]['implies'][] = '';
                                     }
-                                }elseif($implies){
-                                    $technos[$implies]['implies'][] = '';
                                 }
                             }
                         }
