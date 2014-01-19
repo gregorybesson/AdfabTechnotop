@@ -31,18 +31,17 @@ technoTopControllers.controller('TechnoTopCtrl', function ($scope, $routeParams,
 	$http.get('/techno/' + $routeParams.techno).success(function(data) {
 	    $scope.technos = data.data;
 	    $scope.chartData = [
-	                	    ['Drupal',     250],
-	                	    ['WordPress',      2],
-	                	    ['Magento',  2],
-	                	    ['ZF2', 2],
-	                	    ['SF2',    7]
-	                	  ];
+    	    ['Drupal',     250],
+    	    ['WordPress',      2],
+    	    ['Magento',  2],
+    	    ['ZF2', 2],
+    	    ['SF2',    7]
+	    ];
 	});
 });
 
 technoTopControllers.controller('CategoriesCtrl', function ($scope, $routeParams, $http, Analytics) {
 
-    Analytics.trackPage('/category');
 	$http.get('/category').success(function(data) {
 	    $scope.categories = data.data;
 	});
@@ -87,4 +86,16 @@ technoTopControllers.controller('TechnoCategoryCtrl', function ($scope, $routePa
         }
     });
 	
+});
+
+technoTopControllers.controller('CreditsCtrl', function ($scope, $routeParams, $resource, ngTableParams, Analytics) {
+    Analytics.trackPage('/credits');
+});
+
+technoTopControllers.controller('ContactCtrl', function ($scope, $routeParams, $resource, ngTableParams, Analytics) {
+    Analytics.trackPage('/contact');
+});
+
+technoTopControllers.controller('HomeCtrl', function ($scope, $routeParams, $resource, ngTableParams, Analytics) {
+    Analytics.trackPage('/');
 });

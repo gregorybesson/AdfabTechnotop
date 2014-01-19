@@ -20,7 +20,7 @@ var technoTopApp = angular.module('technoTopApp', [
     AnalyticsProvider.trackPages(true);
 
     //Optional set domain (Use 'none' for testing on localhost)
-    //AnalyticsProvider.setDomainName('XXX');
+    AnalyticsProvider.setDomainName('technotop.fr');
 
     // url prefix (default is empty)
     // - for example: when an app doesn't run in the root directory
@@ -56,5 +56,8 @@ technoTopApp.config(['$routeProvider', function($routeProvider) {
 	$routeProvider
 		.when('/techno/:techno', {templateUrl: 'partials/techno.html', controller: 'TechnoTopCtrl'})
 		.when('/category/:id', {templateUrl: 'partials/category.html', controller: 'TechnoCategoryCtrl'})
+		.when('/credits', {templateUrl: 'partials/credits.html', controller: 'CreditsCtrl'})
+		.when('/contact', {templateUrl: 'partials/contact.html', controller: 'ContactCtrl'})
+		.when('/', {templateUrl: 'partials/home.html', controller: 'HomeCtrl'})
 		.otherwise({redirectTo: '/'});
 }]);
