@@ -40,6 +40,8 @@ technoTopDirectives.directive('pieChart', function ($timeout) {
         if (selectedItem) {
           $scope.$apply(function () {
             $scope.selectFn({selectedRowIndex: selectedItem.row});
+            var value = data.getValue(selectedItem.row, 0);
+            document.location.href= '/app/index.html#/techno/'+value;
           });
         }
       });
