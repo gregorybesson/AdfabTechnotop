@@ -54,9 +54,9 @@ technoTopControllers.controller('TechnoCategoryCtrl', function ($scope, $routePa
     
     $scope.tableParams = new ngTableParams({
         page: 1,            // show first page
-        count: 10,          // count per page
+        count: 25,          // count per page
         sorting: {
-            techno: 'asc'   // initial sorting
+            count: 'desc'   // initial sorting
         }
     }, {
         //total: 0,           // length of data
