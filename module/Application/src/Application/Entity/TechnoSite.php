@@ -25,6 +25,11 @@ class TechnoSite
      * @ORM\Column(type="string");
      */
     protected $techno;
+    
+    /**
+     * @ORM\Column(type="string", nullable=true);
+     */
+    protected $version;
 
     /**
      * @ORM\Column(type="datetime")
@@ -89,6 +94,22 @@ class TechnoSite
         $this->techno = $techno;
 
         return $this;
+    }
+
+	/**
+     * @return the $version
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+
+	/**
+     * @param field_type $version
+     */
+    public function setVersion($version)
+    {
+        $this->version = $version;
     }
 
 	/**

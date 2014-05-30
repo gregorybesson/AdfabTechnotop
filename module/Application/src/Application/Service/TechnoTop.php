@@ -47,6 +47,11 @@ class TechnoTop  extends EventProvider implements ServiceManagerAwareInterface
                         if (!$technoSite) {
                             $technoSite = new TechnoSite($website, $techno);
                         }
+                        foreach($types as $type=>$entries){
+                            if($type=='version'){
+                                $technoSite->setVersion($entries[0]);
+                            }
+                        }
                         $this->getEntityManager()->persist($technoSite);
                     }
                 }
@@ -63,6 +68,49 @@ class TechnoTop  extends EventProvider implements ServiceManagerAwareInterface
             $i++;
         }
 
+        return true;
+    }
+    
+    /**
+     * Analyze the technos of a list of websites already associated to a techno
+     */
+    public function batchAnalyzeTechno($tech, $country='FR') {
+        $sites = $this->getTechnoSiteRepository()->findBy(array('techno' => $tech));
+        //print_r($sites);
+        $websites = array();
+        $i=1;
+        $num = count($sites);
+        $limit = min($num, 10);
+    
+        echo "nombre : " . $num . "\n" ;
+        foreach($sites as $site) {
+            if($i%$limit == 0){
+                foreach($websites as $website => $technos){
+                    foreach($technos as $techno => $types){
+                        $technoSite = $this->getTechnoSiteRepository()->findOneBy(array('url' => $website, 'techno' => $techno));
+                        if (!$technoSite) {
+                            $technoSite = new TechnoSite($website, $techno);
+                        }
+                        foreach($types as $type=>$entries){
+                            if($type=='version'){
+                                $technoSite->setVersion($entries[0]);
+                            }
+                        }
+                        $this->getEntityManager()->persist($technoSite);
+                    }
+                }
+    
+                $this->getEntityManager()->flush();
+                $this->getEntityManager()->clear();
+    
+                $websites = array();
+                echo $i . " websites with the techno " . $tech . " analyzed \n";
+            }
+            //echo "analyse : " . $site->getUrl() . "\n";
+            $websites[$site->getUrl()] = $this->analyze('http://'.$site->getUrl());
+            $i++;
+        }
+    
         return true;
     }
 
@@ -241,6 +289,7 @@ class TechnoTop  extends EventProvider implements ServiceManagerAwareInterface
                             $content='';
                             try{
                                 $content = $response->getBody();
+                                //echo $k . " : " . strlen($content) . "\n";
                             } catch (\Exception $ex) {
                             
                             }
@@ -254,6 +303,33 @@ class TechnoTop  extends EventProvider implements ServiceManagerAwareInterface
                                         }
                                     }elseif($implies){
                                         $technos[$implies]['implies'][] = '';
+                                    }
+                                }
+                                
+                                if (isset($app['version'])) {
+                                    $versions = $this->parse($app['version']);
+                                    //print_r($versions);
+                                    forEach ($versions as $k=>$pattern) {
+                                        $r = new \Zend\Http\Request();
+                                        $call->setUri($url.str_replace('\/', '/', $k));
+                                        $response = false; 
+                                        try{
+                                            $response = $client->dispatch($call);
+                                        } catch (\Exception $ex) {
+                                
+                                        }
+                                        
+                                        if ($response && $response->isSuccess() && $response->getStatusCode() == 200){
+                                            $content='';
+                                            try{
+                                                $content = $response->getBody();
+                                            } catch (\Exception $ex) {
+                                            
+                                            }
+                                            if (preg_match("/" . $pattern . "/i", $content, $vmatches)) {
+                                                $technos[$appId]['version'][] = $vmatches[1];
+                                            }
+                                        }
                                     }
                                 }
                             }

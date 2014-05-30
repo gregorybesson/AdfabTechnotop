@@ -122,7 +122,7 @@ return array(
             'routes' => array(
                 'technofeel' => array(
                     'options' => array(
-                        'route'    => 'technofeel [--url=] [--num=] [--start=]',
+                        'route'    => 'technofeel [--url=] [--num=] [--start=] [--techno=]',
                         'defaults' => array(
                             'controller' => 'technotopconsole',
                             'action'     => 'technofeel'

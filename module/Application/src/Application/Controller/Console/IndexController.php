@@ -57,6 +57,9 @@ class IndexController extends AbstractActionController
                     }
                 }
             }
+        }elseif($request->getParam('techno')){
+            $techno = $request->getParam('techno');
+            $websites = $service->batchAnalyzeTechno($techno,'FR');
         }else{
             $websites = $service->batchAnalyze($num,'FR',$start);
         }
